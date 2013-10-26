@@ -1,0 +1,240 @@
+<article id="article-recent" ng-class="{collapsed: article.blog}">
+	<header>
+		<h1>Blog</h1>
+	</header>
+	
+	<div class="article-sections">
+		<section ng-show="blogs == null">
+			<h3>Loading...</h3>
+		</section>
+		<section ng-show="blogs && blogs.length == 0">
+			<h3>Requested article was not found. <a href="#">Load most recent one instead?</a></h3>
+		</section>
+		<section ng-repeat="blog in blogs">
+			<a ng-show="blog.thumb && !requested" href="" ng-click="readmore('blog')"><img class="section-thumb circular" src="img/blog/{{blog.thumb}}" /></a>
+			<span ng-show="requested"><img class="section-thumb circular" src="img/blog/{{blog.thumb}}" /></span>
+			<h3><a href="#/blog/{{blog.key}}">{{blog.title}}</a></h3>
+			<h4>{{blog.created | date:'longDate'}}</h4>
+			<p ng-bind-html-unsafe="blog.content"></p>
+		</section>
+		<div class="fade"></div>
+	</div>
+	
+	<div class="readmore" ng-show="article.blog">
+		<a href="" ng-click="readmore('blog')">Show More</a>
+	</div>
+	<div class="back" ng-show="requested">
+		<a href="#">Back</a>
+	</div>
+	
+</article>
+
+<div ng-hide="requested">
+	
+	<article id="article-aboutme" ng-class="{collapsed: article.aboutme}">
+		<header>
+			<h1>About Me</h1>
+		</header>
+		
+		<div class="article-sections">
+			<section class="first">
+				<a href="" ng-click="readmore('aboutme')"><img class="section-thumb circular" src="img/aboutme-thumb.jpg" /></a>
+				<h3>Never Stop Learning</h3>
+				<p>I've been programming professionally since 2007 and enthusiast since my high school years. When I was first introduced to my IBM Intel Pentium II 300Mhz I quickly developed an unquenchable thirst for information technology that has never left me. My first taste of real programmatic thinking came when I discovered a little tool for developing role playing games called RPG Maker. At the age of 16 I developed my first RPG game called Time Trigger which was a great hit. For entertainment I found myself setting up dedicated servers for hosting Counter-Strike games which eventually led me to developing websites for our local clan. At the time, websites were only just starting to gain the ability to actually be an application. Once I realized this, I quickly noticed the potential for web application development and that's where I took my career when I started work with Statusfirm.</p>
+				<p>At Statusfirm I worked on media websites that served 1000's of simultaneous viewers, but this didn't quite satisfy my application development desire. I ended up finding <a class="external" href="http://www.bluedrop.com">Bluedrop</a> where I started with a couple of other developers to build the next eLearning platform. This is where <a class="external" href="http://www.coursepark.com">CoursePark</a> was born. It is really quite the experience to see something you developed straight from line 1 to being used by 10's of thousands of users everyday.</p>
+				<p>Off the clock, I'm always experimenting with new technologies so I can remain on top of the curve, which is how <a class="external" href="http://www.synapsie.com">Synapsie</a> came to be. My latest endeavour has been iOS application development which has been a great learning experience coming from the web development perspective.</p>
+				<p>At home my loving girlfriend, Tiffany always supports my overly ambitious endeavours and I'm ever thankful she has come into my life.</p>
+			</section>
+			<div class="fade"></div>
+		</div>
+		
+		<div class="readmore" ng-show="article.aboutme">
+			<a href="" ng-click="readmore('aboutme')">Show More</a>
+		</div>
+	</article>
+	
+	<article id="article-workeducation" ng-class="{collapsed: article.workeducation}">
+		<header>
+			<h1>Work and Education</h1>
+		</header>
+		
+		<div class="article-sections">
+			<section>
+				<a href="" ng-click="readmore('workeducation')"><img class="section-thumb circular" src="img/workeducation-thumb.jpg" /></a>
+				<h3>Bluedrop Performance Learning</h3>
+				<p>Lead Programmer &amp; Release Engineer &mdash; Nov 17, 2008 to Present</p>
+			</section>
+			<section>
+				<h3>Statusfirm</h3>
+				<p>Web Application Developer &mdash; Jun 2007 to Aug 2008</p>
+			</section>
+			<section>
+				<h3>College of the North Atlantic</h3>
+				<p>Website Administrator &mdash; Class of 2007</p>
+			</section>
+			<div class="fade"></div>
+		</div>
+		
+		<div class="readmore" ng-show="article.workeducation">
+			<a href="" ng-click="readmore('workeducation')">Show More</a>
+		</div>
+	</article>
+	
+	<article id="article-workeducation" ng-class="{collapsed: article.skills}">
+		<header>
+			<h1>Skills</h1>
+		</header>
+		
+		<div class="article-sections">
+			<section>
+				<a href="" ng-click="readmore('skills')"><img class="section-thumb circular" src="img/skills-thumb.jpg" /></a>
+				<h3>Languages</h3>
+				<section>
+					<h4>PHP</h4>
+					<p>Probably my strongest language. I've been coding in PHP since the first day I could code. Object-Oriented and frameworks such as <a class="external" href="http://framework.zend.com">Zend</a>, <a class="external" href="http://silex.sensiolabs.org">Silex</a> and <a class="external" href="http://cakephp.org">CakePHP</a> are second-nature to me. From single-page sites to large-scale web applications, I've done them all.</p>
+				</section>
+				<section>
+					<h4>Javascript</h4>
+					<p>I've used Javascript in almost any scope you can imagine. I'm very fluent with <a class="external" href="http://jquery.com">jQuery</a> and DOM manipulation, as well as entire Javascript driven web applications using frameworks such as <a class="external" href="http://angularjs.org">AngularJS</a>. I've also used Javascript templating engines, the best in my opinion being <a class="external" href="http://underscorejs.org">underscore.js</a>. Javascript has been used in essentially every web application I've worked on so I'm very comfortable with it.</p>
+				</section>
+				<section>
+					<h4>HTML and CSS</h4>
+					<p>Being a web application developer, it's hard to not obtain an extensive knowledge of HTML and my case is no exception. I've also had the pleasure of developing modern web applications that utilize new technolgoies; such as <a class="external" href="http://en.wikipedia.org/wiki/HTML5">HTML5</a> and <a class="external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS3</a>, while remaining functional in older browsers (as far back as IE6).</p>
+				</section>
+				<section>
+					<h4>Python</h4>
+					<p>By far my favourite language to code in, largely attributed to it's beautiful syntax. When building a web application in <a class="external" href="http://www.python.org">Python</a>, I've found <a class="external" href="https://www.djangoproject.com">Django</a> the most satisfying.</p>
+				</section>
+				<section>
+					<h4>Git</h4>
+					<p>Always my first choice for version control, from personal to large-scale business projects. My knowledge of <a class="external" href="http://git-scm.com">Git</a> is extensive and I'm a strong advocate of the pull request, peer review style of development.</p>
+				</section>
+				<section>
+					<h4>Objective-C</h4>
+					<p>I never stop learning and my goal to teach myself <a class="external" href="http://en.wikipedia.org/wiki/Objective-C">Objective-C</a> and write my first iPhone application is well underway.</p>
+				</section>
+				<section>
+					<h4>MySql and Postgres</h4>
+					<p>These are my two databases of choice usually depending on the scale of the application. All the web applications I've developed have used one or the other.</p>
+				</section>
+				<section>
+					<h4>Unit and Functional Testing</h4>
+					<p>It's one of those things you don't realize how important it is until you actually start doing it. And once you start, you won't go back. Every application I develop now is always done with testing in mind. Test first, code second. Being a believer of continuous deployment makes it easy to see the value in unit tests. You won't find me coding without them.</p>
+				</section>
+			</section>
+			
+			<section>
+				<h3>Roles</h3>
+				<section>
+					<h4>Lead Programmer</h4>
+					<p>I've been overseeing the development of CoursePark for nearly 4 years as the Lead Programmer, managing our 7 senior developers and providing guidance whenever possible. On a daily basis I'm involved in problem solving and architecting solutions that satisfy our tight deadlines while keeping future development efforts in mind. To help achieve our demanding goals, I have implemented short iteration cycles and a Continuous Deployment workflow that focuses on automated unit tests and peer code review.</p>
+				</section>
+				<section>
+					<h4>Release Engineer</h4>
+					<p>As the Release Engineer on CoursePark, I'm in charge of ensuring we always have a stable, but latest version to release. I manage the automated compilation, assembly and delivery of source code to our prodution servers. Essentially no code goes to production without first being approved by me.</p>
+				</section>
+				<section>
+					<h4>Project Management</h4>
+					<p>Being the Lead Programmer on the cornerstone product of a million dollar company has often pushed me into the Project Management role. I often manage scope, along with determining the risk and the resources required as well as problem solving.</p>
+				</section>
+			</section>
+			<div class="fade"></div>
+		</div>
+		
+		<div class="readmore" ng-show="article.skills">
+			<a href="" ng-click="readmore('skills')">Show More</a>
+		</div>
+	</article>
+	
+	<article id="article-projects" ng-class="{collapsed: article.projects}">
+		<header>
+			<h1>Projects</h1>
+		</header>
+		
+		<div class="article-sections">
+			<section>
+				<a class="section-project-thumb" href="" ng-click="readmore('projects')"><img src="img/projects/synapsie.png" /></a>
+				<h3><a class="external" href="http://synapsie.com">Synapsie</a></h3>
+				<h4>Built in 2011</h4>
+				<p>I built Synapsie as an opportunity to learn Python web development and it accomplished this nicely. It was a great learning experiment that introduced me to the increasingly popular Django Framework as well as Facebook Connect.</p>
+				<p>For the development of Synapsie, I used a <a class="external" href="http://www.vagrantup.com">Vagrant Virtual Machine</a> along with Puppet for server configuration. I implemented a simple RESTful API and the majority of the UX is accomplished using jQuery and calls to the API. Although I'm not much of a designer, I did design Synapsie myself using Adobe Illustrator and I think it turned out well.</p>
+			</section>
+			<section>
+				<a class="section-project-thumb" href="" ng-click="readmore('projects')"><img src="img/projects/coursepark.png" /></a>
+				<h3><a class="external" href="http://www.coursepark.com">CoursePark</a></h3>
+				<h4>From 2008 &mdash; Present</h4>
+				<p>I have worked on CoursePark ever since I was hired at <a class="external" href="http://www.bluedrop.com">Bluedrop</a>. CoursePark was little more than a thought scribbled on paper when we started development and has since become a cornerstone product from Bluedrop with 10s of thousands of active users.</p>
+				<p>About a year into development I was promoted to Lead Programmer of CoursePark and my team and I have never stopped improving the application. We continue to implement the latest technologies such as the newly established eLearning API called <a class="external" href="http://tincanapi.com">TinCan</a> and we are in the process of expanding to a mobile offering. As Lead on the project, I pushed us towards a Continuous Deployment model utilizing Unit &amp; Functional Tests along with Pull Request style peer review. We also migrated from using SVN to GIT for version control which showed substantial performance improvements and allowed us to obtain the rapid development and release workflow we needed.</p>
+				<p>We built CoursePark on PHP, Postgres and the Zend Framework using the MVC architecture pattern. Our servers have been architected to provide a reliable uptime, performance and avoid any single point of failure. Vagrant VMs are used for local development along with Puppet scripts for managing development and production configurations.</p>
+			</section>
+			<div class="fade"></div>
+		</div>
+		
+		<div class="readmore" ng-show="article.projects">
+			<a href="" ng-click="readmore('projects')">Show More</a>
+		</div>
+	</article>
+	
+	<article id="article-social" ng-class="{collapsed: article.social}">
+		<header>
+			<h1>Social</h1>
+		</header>
+		
+		<div class="article-sections article-social-sections">
+			<section ng-show="feed == null">
+				<h3>Loading...</h3>
+			</section>
+			<section ng-repeat="post in feed">
+				<a ng-hide="post.link" href="{{post.type_url}}"><img class="section-social-logo" src="img/icons/{{post.type}}_16.png" /></a>
+				<a ng-show="post.link" href="{{post.link}}"><img class="section-social-logo" src="img/icons/{{post.type}}_16.png" /></a>
+				<a href="{{post.link}}" class="section-social-thumb circular"><img src="{{post.thumbnail}}" /></a>
+				<h3 ng-show="post.title">
+					<a ng-show="post.link" class="external" href="{{post.link}}" ng-bind-html-unsafe="post.title"></a>
+					<span ng-hide="post.link" ng-bind-html-unsafe="post.title"></span>
+				</h3>
+				<h3 ng-hide="post.title">&nbsp;</h3>
+				<h4>{{post.created | date:'MMM d, y'}} at {{post.created | date:'h:mm a'}}</h4>
+				<p ng-bind-html-unsafe="post.description"></p>
+			</section>
+			<div class="fade"></div>
+		</div>
+		
+		<div class="readmore" ng-show="article.social">
+			<a href="" ng-click="readmore('social')">Show More</a>
+		</div>
+	</article>
+	
+	<article id="article-contact" ng-class="{collapsed: article.contact}">
+		<header>
+			<h1>Contact</h1>
+		</header>
+		
+		<div class="article-sections">
+			<section>
+				<h3>Email</h3>
+				<p><a class="external" href="mailto:chezbrown@gmail.com">chezbrown@gmail.com</a></p>
+			</section>
+			<section>
+				<h3>Twitter</h3>
+				<p><a class="external" href="https://twitter.com/Chesley">@Chesley</a></p>
+			</section>
+			<section>
+				<h3>Facebook</h3>
+				<p><a class="external" href="http://facebook.com/chesleybrown">chesleybrown</a></p>
+			</section>
+			<section>
+				<h3>LinkedIn</h3>
+				<p><a class="external" href="http://www.linkedin.com/pub/chesley-brown/10/1a5/18b">chesley-brown</a></p>
+			</section>
+			<section>
+				<h3>GitHub</h3>
+				<p><a class="external" href="https://github.com/chesleybrown">chesleybrown</a></p>
+			</section>
+			<div class="fade"></div>
+		</div>
+		
+		<div class="readmore" ng-show="article.contact">
+			<a href="" ng-click="readmore('contact')">Show More</a>
+		</div>
+	</article>
+</div>

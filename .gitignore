@@ -1,0 +1,17 @@
+# Mac system file
+*.DS_Store
+
+# Vagrant
+.vagrant
+
+# Node Modules
+node_modules
+
+# Chef
+chef/chef-stacktrace.out
+
+# Logs
+output.log
+
+# Settings
+settings.js

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="ngPortfolio" class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Chesley</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		
+		<link rel="stylesheet" href="css/normalize.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+		
+		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="js/vendor/angular.min.js"></script>
+	</head>
+	<body>
+		
+		<div class="header-container">
+			<header class="wrapper clearfix">
+				<div class="title">
+					<h1><a href="/#">Chesley</a></h1>
+					<h2><a href="/#">Web Application Developer</a></h2>
+				</div>
+				<a href="/#" class="header-logo img-container">
+					<img class="circular" src="img/logo.jpg" />
+				</a>
+			</header>
+			<div class="site-promo">
+				
+			</div>
+		</div>
+		
+		<div class="main-container">
+			<div class="main wrapper clearfix">
+				
+				<ng-view></ng-view>
+				
+			</div> <!-- #main -->
+		</div> <!-- #main-container -->
+		
+		<script src="js/portfolio.js"></script>
+		<script src="js/vendor/google-analytics.js"></script>
+		
+	</body>
+</html>
