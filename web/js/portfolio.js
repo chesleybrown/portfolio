@@ -2,8 +2,8 @@ var app = angular.module('ngPortfolio', [])
 	
 	.config(function ($routeProvider) {
 		$routeProvider
-			.when('/', { controller: 'PortfolioCtrl', templateUrl: 'app.html' })
 			.when('/blog/:key', { controller: 'PortfolioCtrl', templateUrl: 'app.html' })
+			.otherwise({ controller: 'PortfolioCtrl', templateUrl: 'app.html' })
 		;
 	})
 	
