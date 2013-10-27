@@ -104,7 +104,7 @@ app.get('/api/refresh/blog', function(req, res) {
 	result_spec.includeUpdated = true;
 	
 	var note_store = evernote.getNoteStore();
-	note_store.findNotesMetadata(evernote.token, filter, 0, 3, result_spec, function(results) {
+	note_store.findNotesMetadata(evernote.token, filter, 0, 10, result_spec, function(results) {
 		var notes = [];
 		var num_completed = 0;
 		
@@ -114,7 +114,7 @@ app.get('/api/refresh/blog', function(req, res) {
 				.replace(/[^\w ]+/g,'')
 				.replace(/ +/g,'-')
 			;
-				
+			
 			notes[note] = {
 				key: key,
 				guid: results.notes[note].guid,
@@ -127,7 +127,7 @@ app.get('/api/refresh/blog', function(req, res) {
 				note_store.getNote(evernote.token, notes[note].guid, true, true, false, false, function(data) {
 					notes[note].content = data.content;
 					
-					if (data.resources) {
+					if (data.resources && data.resources.length) {
 						notes[note].thumb = data.resources[0].attributes.fileName;
 					}
 					num_completed++;
