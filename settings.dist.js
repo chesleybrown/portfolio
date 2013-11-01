@@ -12,8 +12,8 @@ var config = {
 		consumerKey: 'EVERNOTE_CONSUMER_KEY_HERE',
 		consumerSecret: 'EVERNOTE_CONSUMER_SECRET_HERE',
 		callbackURL: 'EVERNOTE_CALLBACK_URL_HERE',
-		notebookGuid: 'EVERNOTE_BLOG_NOTEBOOK_GUID_HERE',
-		tagGuid: 'EVERNOTE_PLUBLISHED_TAG_GUID_HERE',
+		blogNotebookGuid: 'EVERNOTE_BLOG_NOTEBOOK_GUID_HERE',
+		publishedTagGuid: 'EVERNOTE_PLUBLISHED_TAG_GUID_HERE',
 		token: 'EVERNOTE_DEVELOPER_TOKEN_HERE',
 		sandbox: false
 	},
