@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var settings = require('./settings.js');
 var express = require('express');
 var app = express();
@@ -96,78 +97,96 @@ app.get('/api/refresh/blog', function(req, res) {
 	});
 	
 	var filter = new Evernote.NoteFilter();
-	filter.notebookGuid = settings.evernote.notebookGuid; // Blog notebook
-	filter.tagGuids = [settings.evernote.tagGuid]; // published tag
+	filter.notebookGuid = settings.evernote.blogNotebookGuid;
+	filter.tagGuids = [settings.evernote.publishedTagGuid];
 	
 	var result_spec = new Evernote.NotesMetadataResultSpec();
 	result_spec.includeTitle = true;
 	result_spec.includeUpdated = true;
+	result_spec.includeTagGuids = true;
 	
 	var note_store = evernote.getNoteStore();
+	
 	note_store.findNotesMetadata(evernote.token, filter, 0, 10, result_spec, function(results) {
 		var notes = [];
 		var num_completed = 0;
+		var availableTags = [];
 		
-		for (note in results.notes) {
-			var key = results.notes[note].title
-				.toLowerCase()
-				.replace(/[^\w ]+/g,'')
-				.replace(/ +/g,'-')
-			;
+		note_store.listTagsByNotebook(evernote.token, settings.evernote.blogNotebookGuid, function(tagResults) {
+			allTags = tagResults;
 			
-			notes[note] = {
-				key: key,
-				guid: results.notes[note].guid,
-				title: results.notes[note].title,
-				created: new Date(results.notes[note].updated)
-			};
-			
-			// get note content
-			(function(note) {
-				note_store.getNote(evernote.token, notes[note].guid, true, true, false, false, function(data) {
-					notes[note].content = data.content;
-					
-					if (data.resources && data.resources.length) {
-						notes[note].thumb = data.resources[0].attributes.fileName;
+			for (note in results.notes) {
+				var key = results.notes[note].title
+					.toLowerCase()
+					.replace(/[^\w ]+/g,'')
+					.replace(/ +/g,'-')
+				;
+				
+				// get presentable tags
+				var tags = _.filter(allTags, function(tag) {
+					if (tag.guid != settings.evernote.publishedTagGuid) {
+						return (results.notes[note].tagGuids.indexOf(tag.guid) >= 0);
 					}
-					num_completed++;
-					
-					if (num_completed == results.totalNotes) {
-						// save to mongo db
-						mongoClient.open(function(err, mongoClient) {
-							db = mongoClient.db(settings.mongo.db);
-							var blog = db.collection('blog')
-							blog.remove({}, {w:1}, function(err, result) {
-								blog.insert(notes, {w:1}, function(err, result) {
-									mongoClient.close();
-									
-									// return notes
-									res.send(notes);
+					return false;
+				});
+				tags = _.pluck(tags, 'name');
+				
+				notes[note] = {
+					key: key,
+					guid: results.notes[note].guid,
+					title: results.notes[note].title,
+					created: new Date(results.notes[note].updated),
+					tags: tags
+				};
+				
+				// get note content
+				(function(note) {
+					note_store.getNote(evernote.token, notes[note].guid, true, true, false, false, function(data) {
+						notes[note].content = data.content;
+						
+						if (data.resources && data.resources.length) {
+							notes[note].thumb = data.resources[0].attributes.fileName;
+						}
+						num_completed++;
+						
+						if (num_completed == results.totalNotes) {
+							// save to mongo db
+							mongoClient.open(function(err, mongoClient) {
+								db = mongoClient.db(settings.mongo.db);
+								var blog = db.collection('blog')
+								blog.remove({}, {w:1}, function(err, result) {
+									blog.insert(notes, {w:1}, function(err, result) {
+										mongoClient.close();
+										
+										// return notes
+										res.send(notes);
+									});
 								});
 							});
-						});
-					}
-				});
-			})(note);
-		}
-		if (!notes.length) {
-			// save to mongo db
-			mongoClient.open(function(err, mongoClient) {
-				db = mongoClient.db(settings.mongo.db);
-				var blog = db.collection('blog')
-				blog.remove({}, {w:1}, function(err, result) {
-					blog.insert(notes, {w:1}, function(err, result) {
-						mongoClient.close();
-						
-						// return notes
-						res.send(notes);
+						}
 					});
+				})(note);
+			}
+			if (!notes.length) {
+				// save to mongo db
+				mongoClient.open(function(err, mongoClient) {
+					db = mongoClient.db(settings.mongo.db);
+					var blog = db.collection('blog')
+					blog.remove({}, {w:1}, function(err, result) {
+						blog.insert(notes, {w:1}, function(err, result) {
+							mongoClient.close();
+							
+							// return notes
+							res.send(notes);
+						});
+					});
+					
+					// return notes
+					res.send(notes);
 				});
-				
-				// return notes
-				res.send(notes);
-			});
-		}
+			}
+		});
+		
 	});
 });
 
