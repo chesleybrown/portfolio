@@ -252,6 +252,11 @@ section .section-social-logo {
 	right: 0;
 }
 
+section .tags a {
+	font-size: 0.8em;
+	margin-right: 15px;
+}
+
 article {
 	margin-bottom: 30px;
 	overflow: auto;
@@ -261,7 +266,7 @@ article header h1 {
 	padding-bottom: 15px;
 }
 article section {
-	padding-bottom: 15px;
+	padding-bottom: 20px;
 }
 article section h2 {
 	color: #666;

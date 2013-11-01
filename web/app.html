@@ -16,6 +16,9 @@
 			<h3><a href="#/blog/{{blog.key}}">{{blog.title}}</a></h3>
 			<h4>{{blog.created | date:'longDate'}}</h4>
 			<p ng-bind-html-unsafe="blog.content"></p>
+			<div class="tags" ng-show="blog.tags">
+				<a class="external" ng-repeat="tag in blog.tags" href="http://www.twitter.com/search?q=%23{{tag}}">#{{tag}}</a>
+			</div>
 		</section>
 		<div class="fade"></div>
 	</div>
