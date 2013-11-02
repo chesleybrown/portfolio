@@ -1,0 +1,8 @@
+{
+	"name": "portfolio",
+	"version": "0.0.2",
+	"dependencies": {
+		"angular" : "1.0.8",
+		"normalize-css": "2.1.3"
+	}
+}

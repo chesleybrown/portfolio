@@ -10,3 +10,6 @@
 [submodule "cookbooks/mongodb"]
 	path = cookbooks/mongodb
 	url = git@github.com:edelight/chef-mongodb.git
+[submodule "cookbooks/git"]
+	path = cookbooks/git
+	url = git@github.com:deepak/chef-cookbook-git.git

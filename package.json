@@ -1,7 +1,7 @@
 {
 	"name": "portfolio",
 	"description": "Chesley's Portfolio",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"private": true,
 	"dependencies": {
 		"underscore": "1.5.2",

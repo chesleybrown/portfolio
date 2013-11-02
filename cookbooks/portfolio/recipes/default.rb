@@ -5,6 +5,7 @@ include_recipe "build-essential"
 include_recipe "nodejs::install_from_package"
 include_recipe "nodejs::npm"
 include_recipe "mongodb::default"
+include_recipe "git"
 
 user "vagrant" do
 	comment "Vagrant User"
