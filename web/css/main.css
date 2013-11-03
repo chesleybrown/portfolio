@@ -255,6 +255,7 @@ section .section-social-logo {
 section .tags a {
 	font-size: 0.8em;
 	margin-right: 15px;
+	display: inline-block;
 }
 
 article {
