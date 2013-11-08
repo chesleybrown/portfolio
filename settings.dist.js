@@ -2,7 +2,7 @@
  * Copy me into settings.js and update accordingly
  */
 
-var config = {
+var settings = {
 	port: 3000,
 	logger: false,
 	session: {
@@ -36,4 +36,4 @@ var config = {
 	}
 }
 
-module.exports = config;
+module.exports = settings;
