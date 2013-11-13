@@ -433,6 +433,14 @@ article div.back a {
 	}
 }
 
+/* iPad Landscape */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+	.wrapper {
+		width: 90%;
+		margin: 0 5%;
+	}
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
