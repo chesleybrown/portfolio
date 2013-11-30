@@ -46,51 +46,51 @@ app.use(Passport.session());
 // END evernote auth
 
 // setup db connection
+var mongoClient;
 function getClient() {
 	return new MongoClient(new Server(settings.mongo.host, settings.mongo.port));
 }
+connection = getClient();
+connection.open(function(err, client) {
+	if (err) throw err;
+	
+	mongoClient = client;
+	
+	// only start listening after connection to database is made
+	app.listen(settings.port);
+	console.log('Listening on port ' + settings.port);
+});
 
 app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function(req, res) {
-	mongoClient = getClient();
 	var notes = [];
 	
-	mongoClient.open(function(err, mongoClient) {
-		db = mongoClient.db(settings.mongo.db);
-		var blog = db.collection('blog');
-		var filter = null;
-		
-		if (req.params.key) {
-			filter = {key: req.params.key};
-		}
-		
-		blog.find(filter).sort({created: -1}).toArray(function(err, result) {
-			mongoClient.close();
-			
-			// return notes
-			res.send(result);
-		});
+	db = mongoClient.db(settings.mongo.db);
+	var blog = db.collection('blog');
+	var filter = null;
+	
+	if (req.params.key) {
+		filter = {key: req.params.key};
+	}
+	
+	blog.find(filter).sort({created: -1}).toArray(function(err, result) {
+		// return notes
+		res.send(result);
 	});
 });
 
 app.get('/api/feed', function(req, res) {
-	mongoClient = getClient();
 	var feed = [];
 	
 	// get feed from mongo db
-	mongoClient.open(function(err, mongoClient) {
-		db = mongoClient.db(settings.mongo.db);
-		var social = db.collection('social');
-		social.find().sort({created: -1}).limit(25).toArray(function(err, result) {
-			mongoClient.close();
-			
-			// return social feed
-			res.send(result);
-		});
+	db = mongoClient.db(settings.mongo.db);
+	var social = db.collection('social');
+	social.find().sort({created: -1}).limit(25).toArray(function(err, result) {
+		// return social feed
+		res.send(result);
 	});
 });
 
 app.get('/api/refresh/blog', function(req, res) {
-	mongoClient = getClient();
 	var evernote = new Evernote.Client({
 		token: settings.evernote.token,
 		sandbox: settings.evernote.sandbox
@@ -151,16 +151,12 @@ app.get('/api/refresh/blog', function(req, res) {
 						
 						if (num_completed == results.totalNotes) {
 							// save to mongo db
-							mongoClient.open(function(err, mongoClient) {
-								db = mongoClient.db(settings.mongo.db);
-								var blog = db.collection('blog')
-								blog.remove({}, {w:1}, function(err, result) {
-									blog.insert(notes, {w:1}, function(err, result) {
-										mongoClient.close();
-										
-										// return notes
-										res.send(notes);
-									});
+							db = mongoClient.db(settings.mongo.db);
+							var blog = db.collection('blog')
+							blog.remove({}, {w:1}, function(err, result) {
+								blog.insert(notes, {w:1}, function(err, result) {
+									// return notes
+									res.send(notes);
 								});
 							});
 						}
@@ -169,21 +165,17 @@ app.get('/api/refresh/blog', function(req, res) {
 			}
 			if (!notes.length) {
 				// save to mongo db
-				mongoClient.open(function(err, mongoClient) {
-					db = mongoClient.db(settings.mongo.db);
-					var blog = db.collection('blog')
-					blog.remove({}, {w:1}, function(err, result) {
-						blog.insert(notes, {w:1}, function(err, result) {
-							mongoClient.close();
-							
-							// return notes
-							res.send(notes);
-						});
+				db = mongoClient.db(settings.mongo.db);
+				var blog = db.collection('blog')
+				blog.remove({}, {w:1}, function(err, result) {
+					blog.insert(notes, {w:1}, function(err, result) {
+						// return notes
+						res.send(notes);
 					});
-					
-					// return notes
-					res.send(notes);
 				});
+				
+				// return notes
+				res.send(notes);
 			}
 		});
 		
@@ -191,7 +183,6 @@ app.get('/api/refresh/blog', function(req, res) {
 });
 
 app.get('/api/refresh/feed', function(req, res) {
-	mongoClient = getClient();
 	var feed = [];
 	var num_completed = 0;
 	var total = 2;
@@ -229,16 +220,12 @@ app.get('/api/refresh/feed', function(req, res) {
 		feed = feed.slice(0, 9);
 		if (num_completed == total) {
 			// save to mongo db
-			mongoClient.open(function(err, mongoClient) {
-				db = mongoClient.db(settings.mongo.db);
-				var social = db.collection('social')
-				social.remove({}, {w:1}, function(err, result) {
-					social.insert(feed, {w:1}, function(err, result) {
-						mongoClient.close();
-						
-						// return feed
-						res.send(feed);
-					});
+			db = mongoClient.db(settings.mongo.db);
+			var social = db.collection('social')
+			social.remove({}, {w:1}, function(err, result) {
+				social.insert(feed, {w:1}, function(err, result) {
+					// return feed
+					res.send(feed);
 				});
 			});
 		}
@@ -264,16 +251,12 @@ app.get('/api/refresh/feed', function(req, res) {
 		feed = feed.slice(0, 9);
 		if (num_completed == total) {
 			// save to mongo db
-			mongoClient.open(function(err, mongoClient) {
-				db = mongoClient.db(settings.mongo.db);
-				var social = db.collection('social')
-				social.remove({}, {w:1}, function(err, result) {
-					social.insert(feed, {w:1}, function(err, result) {
-						mongoClient.close();
-						
-						// return feed
-						res.send(feed);
-					});
+			db = mongoClient.db(settings.mongo.db);
+			var social = db.collection('social')
+			social.remove({}, {w:1}, function(err, result) {
+				social.insert(feed, {w:1}, function(err, result) {
+					// return feed
+					res.send(feed);
 				});
 			});
 		}
@@ -290,5 +273,3 @@ app.get('/blog/auth', Passport.authenticate('evernote'), function(req, res) {
 app.get('*', function(req, res){
 	res.render(__dirname + '/web/404.html');
 });
-
-app.listen(settings.port);
