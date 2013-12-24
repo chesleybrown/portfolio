@@ -107,62 +107,67 @@ app.get('/api/refresh/blog', function(req, res) {
 	
 	var note_store = evernote.getNoteStore();
 	
-	note_store.findNotesMetadata(evernote.token, filter, 0, 10, result_spec, function(results) {
+	note_store.findNotesMetadata(evernote.token, filter, 0, 10, result_spec, function(error1, results) {
 		var notes = [];
 		var num_completed = 0;
 		var availableTags = [];
 		
-		note_store.listTagsByNotebook(evernote.token, settings.evernote.blogNotebookGuid, function(tagResults) {
+		note_store.listTagsByNotebook(evernote.token, settings.evernote.blogNotebookGuid, function(error2, tagResults) {
 			allTags = tagResults;
 			
-			for (note in results.notes) {
-				var key = results.notes[note].title
-					.toLowerCase()
-					.replace(/[^\w ]+/g,'')
-					.replace(/ +/g,'-')
-				;
-				
-				// get presentable tags
-				var tags = _.filter(allTags, function(tag) {
-					if (tag.guid != settings.evernote.publishedTagGuid) {
-						return (results.notes[note].tagGuids.indexOf(tag.guid) >= 0);
-					}
-					return false;
-				});
-				tags = _.pluck(tags, 'name');
-				
-				notes[note] = {
-					key: key,
-					guid: results.notes[note].guid,
-					title: results.notes[note].title,
-					created: new Date(results.notes[note].updated),
-					tags: tags
-				};
-				
-				// get note content
-				(function(note) {
-					note_store.getNote(evernote.token, notes[note].guid, true, true, false, false, function(data) {
-						notes[note].content = data.content;
-						
-						if (data.resources && data.resources.length) {
-							notes[note].thumb = data.resources[0].attributes.fileName;
+			if (!error1 && !error2) {
+				for (note in results.notes) {
+					var key = results.notes[note].title
+						.toLowerCase()
+						.replace(/[^\w ]+/g,'')
+						.replace(/ +/g,'-')
+					;
+					
+					// get presentable tags
+					var tags = _.filter(allTags, function(tag) {
+						if (tag.guid != settings.evernote.publishedTagGuid) {
+							return (results.notes[note].tagGuids.indexOf(tag.guid) >= 0);
 						}
-						num_completed++;
-						
-						if (num_completed == results.totalNotes) {
-							// save to mongo db
-							db = mongoClient.db(settings.mongo.db);
-							var blog = db.collection('blog')
-							blog.remove({}, {w:1}, function(err, result) {
-								blog.insert(notes, {w:1}, function(err, result) {
-									// return notes
-									res.send(notes);
-								});
-							});
-						}
+						return false;
 					});
-				})(note);
+					tags = _.pluck(tags, 'name');
+					
+					notes[note] = {
+						key: key,
+						guid: results.notes[note].guid,
+						title: results.notes[note].title,
+						created: new Date(results.notes[note].updated),
+						tags: tags
+					};
+					
+					// get note content
+					(function(note) {
+						note_store.getNote(evernote.token, notes[note].guid, true, true, false, false, function(error3, data) {
+							if (!error3) {
+								notes[note].content = data.content;
+								
+								if (data.resources && data.resources.length) {
+									notes[note].thumb = data.resources[0].attributes.fileName;
+								}
+								num_completed++;
+								
+								if (num_completed == results.totalNotes) {
+									// save to mongo db
+									db = mongoClient.db(settings.mongo.db);
+									var blog = db.collection('blog')
+									blog.remove({}, {w:1}, function(err, result) {
+										blog.insert(notes, {w:1}, function(err, result) {
+											// return notes
+											res.send(notes);
+										});
+									});
+								}
+							}
+						});
+					})(note);
+				}
 			}
+			
 			if (!notes.length) {
 				// save to mongo db
 				db = mongoClient.db(settings.mongo.db);
