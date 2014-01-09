@@ -2,6 +2,7 @@ var _ = require('underscore');
 var settings = require('./settings.js');
 var express = require('express');
 var app = express();
+var fs = require('fs');
 var MongoClient = require('mongodb').MongoClient;
 var Server = require('mongodb').Server;
 var Evernote = require('evernote').Evernote;
@@ -106,7 +107,6 @@ app.get('/api/refresh/blog', function(req, res) {
 	result_spec.includeTagGuids = true;
 	
 	var note_store = evernote.getNoteStore();
-	
 	note_store.findNotesMetadata(evernote.token, filter, 0, 10, result_spec, function(error1, results) {
 		var notes = [];
 		var num_completed = 0;
@@ -147,6 +147,20 @@ app.get('/api/refresh/blog', function(req, res) {
 								notes[note].content = data.content;
 								
 								if (data.resources && data.resources.length) {
+									
+									// create buffer for blog image
+									var buffer = new Buffer(data.resources[0].data.body.length);
+									for (var i = 0; i < data.resources[0].data.body.length; i++) {
+										buffer[i] = data.resources[0].data.body[i];
+									}
+									
+									// save blog image
+									var file = __dirname + '/web/img/blog/' + data.resources[0].attributes.fileName;
+									fs.writeFile(file, buffer, 'binary', function(err) {
+										if (err) throw err;
+									});
+									
+									// save blog image filename to note
 									notes[note].thumb = data.resources[0].attributes.fileName;
 								}
 								num_completed++;
