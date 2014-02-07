@@ -1,4 +1,4 @@
-var app = angular.module('ngPortfolio', ['ngRoute', 'angulartics', 'angulartics.google.analytics'])
+var app = angular.module('ngPortfolio', ['ngRoute', 'ngSanitize', 'angulartics', 'angulartics.google.analytics'])
 	
 	.config(function ($routeProvider) {
 		$routeProvider
@@ -7,7 +7,7 @@ var app = angular.module('ngPortfolio', ['ngRoute', 'angulartics', 'angulartics.
 		;
 	})
 	
-	.controller('PortfolioCtrl', function ($window, $scope, $routeParams, $http) {
+	.controller('PortfolioCtrl', function ($window, $scope, $routeParams, $http, $sce) {
 		$scope.article = {
 			blog: true,
 			aboutme: true,
@@ -52,6 +52,10 @@ var app = angular.module('ngPortfolio', ['ngRoute', 'angulartics', 'angulartics.
 		$scope.readmore = function(article) {
 			$scope.article[article] = !$scope.article[article];
 		}
+		
+		$scope.parseBlogContent = function(content) {
+			return $sce.trustAsHtml(content);
+		};
 		
 	})
 	
