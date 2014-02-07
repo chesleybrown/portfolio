@@ -223,15 +223,17 @@ app.get('/api/refresh/feed', function(req, res) {
 	facebook.api('/' + settings.facebook.username + '/posts?privacy={"value":"EVERYONE"}&limit=100', function(err, data) {
 		num_completed = num_completed + 1;
 		for (var id in data['data']) {
-			feed.push({
-				'type': 'facebook',
-				'type_url': 'https://facebook.com/' + settings.facebook.username,
-				'title': data['data'][id]['message'],
-				'link': data['data'][id]['link'],
-				'description': data['data'][id]['description'],
-				'thumbnail': data['data'][id]['picture'],
-				'created': new Date(data['data'][id]['created_time']).getTime()
-			});
+			if (data['data'][id]['message'] || data['data'][id]['picture'] || data['data'][id]['description']) {
+				feed.push({
+					'type': 'facebook',
+					'type_url': 'https://facebook.com/' + settings.facebook.username,
+					'title': data['data'][id]['message'],
+					'link': data['data'][id]['link'],
+					'description': data['data'][id]['description'],
+					'thumbnail': data['data'][id]['picture'],
+					'created': new Date(data['data'][id]['created_time']).getTime()
+				});
+			}
 		}
 		feed = feed.sort(function(a, b) {
 			return (b['created'] - a['created']);
@@ -254,15 +256,17 @@ app.get('/api/refresh/feed', function(req, res) {
 	twitter.get('/statuses/user_timeline.json', {screen_name: settings.twitter.screenName, count: 25}, function (err, data) {
 		num_completed = num_completed + 1;
 		for (var id in data) {
-			feed.push({
-				'type': 'twitter',
-				'type_url': 'https://twitter.com/' + settings.twitter.screenName,
-				'title': data[id]['text'],
-				'link': 'https://twitter.com/' + data[id]['user']['screen_name'] + '/status/' + data[id]['id_str'],
-				'description': '',
-				'thumbnail': null,
-				'created': new Date(data[id]['created_at']).getTime()
-			});
+			if (data[id]['text']) {
+				feed.push({
+					'type': 'twitter',
+					'type_url': 'https://twitter.com/' + settings.twitter.screenName,
+					'title': data[id]['text'],
+					'link': 'https://twitter.com/' + data[id]['user']['screen_name'] + '/status/' + data[id]['id_str'],
+					'description': '',
+					'thumbnail': null,
+					'created': new Date(data[id]['created_at']).getTime()
+				});
+			}
 		}
 		feed = feed.sort(function(a, b) {
 			return (b['created'] - a['created']);
