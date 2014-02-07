@@ -1,4 +1,4 @@
-var app = angular.module('ngPortfolio', [])
+var app = angular.module('ngPortfolio', ['ngRoute', 'angulartics', 'angulartics.google.analytics'])
 	
 	.config(function ($routeProvider) {
 		$routeProvider
