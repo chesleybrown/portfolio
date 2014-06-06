@@ -103,7 +103,7 @@ app.get('/api/refresh/blog', function(req, res) {
 	
 	var result_spec = new Evernote.NotesMetadataResultSpec();
 	result_spec.includeTitle = true;
-	result_spec.includeUpdated = true;
+	result_spec.includeCreated = true;
 	result_spec.includeTagGuids = true;
 	
 	var note_store = evernote.getNoteStore();
@@ -136,7 +136,7 @@ app.get('/api/refresh/blog', function(req, res) {
 						key: key,
 						guid: results.notes[note].guid,
 						title: results.notes[note].title,
-						created: new Date(results.notes[note].updated),
+						created: new Date(results.notes[note].created),
 						tags: tags
 					};
 					
