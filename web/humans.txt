@@ -3,13 +3,19 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Chesley Brown -- Coding Enthusiasts -- @Chesley
 
 # THANKS
 
-    <name>
+    html5boilerplate.com
+    facebook.com
+    twitter.com
+    github.com
+    bitbucket.org
+    evernote.come
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
-    jQuery, Modernizr
+    AngularJS
+    NodeJS
