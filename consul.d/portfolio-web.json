@@ -1,0 +1,8 @@
+{
+	"service": {
+		"id": "portfolio-web",
+		"name": "portfolio-web",
+		"tags": ["web", "nginx"],
+		"port": 80
+	}
+}

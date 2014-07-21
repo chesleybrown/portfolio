@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+./node_modules/forever/bin/forever -l /dev/log start app.js
+
+# start consul agent
+if [ $CONSUL_IP ]; then
+	consul agent -join $CONSUL_IP -config-dir /etc/consul.d &
+fi
+
+nginx
