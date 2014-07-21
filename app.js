@@ -7,9 +7,13 @@ var MongoClient = require('mongodb').MongoClient;
 var Server = require('mongodb').Server;
 var Evernote = require('evernote').Evernote;
 var Facebook = require('facebook-node-sdk');
-var Twitter = require('ntwitter');
+var Twitter = require('twit');
 var Passport = require('passport');
 var EvernoteStrategy = require('passport-evernote').Strategy;
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var session = require('express-session');
 
 // log
 if (settings.logger) {
@@ -38,10 +42,10 @@ Passport.use(new EvernoteStrategy(
 	},
 	function(token, tokenSecret, profile, done) {}
 ));
-app.use(express.cookieParser());
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.session({ secret: settings.session.secret }));
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(methodOverride());
+app.use(session({ secret: settings.session.secret }));
 app.use(Passport.initialize());
 app.use(Passport.session());
 // END evernote auth

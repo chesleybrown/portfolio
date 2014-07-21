@@ -16,6 +16,3 @@ chef/chef-stacktrace.out
 # Logs
 output.log
 error.log
-
-# Settings
-settings.js

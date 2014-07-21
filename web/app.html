@@ -11,8 +11,8 @@
 			<h3>Requested article was not found. <a href="#">Load most recent one instead?</a></h3>
 		</section>
 		<section ng-repeat="blog in blogs">
-			<a ng-show="blog.thumb && !requested" href="" ng-click="readmore('blog')"><img class="section-thumb circular" src="img/blog/{{blog.thumb}}" /></a>
-			<span ng-show="requested"><img class="section-thumb circular" src="img/blog/{{blog.thumb}}" /></span>
+			<a ng-show="blog.thumb && !requested" href="" ng-click="readmore('blog')"><img class="section-thumb circular" ng-src="img/blog/{{blog.thumb}}" /></a>
+			<span ng-show="requested"><img class="section-thumb circular" ng-src="img/blog/{{blog.thumb}}" /></span>
 			<h3><a href="#/blog/{{blog.key}}">{{blog.title}}</a></h3>
 			<h4>{{blog.created | date:'longDate'}}</h4>
 			<p ng-bind-html="parseBlogContent(blog.content)"></p>
@@ -199,9 +199,9 @@
 				<h3>Loading...</h3>
 			</section>
 			<section ng-repeat="post in feed">
-				<a ng-hide="post.link" href="{{post.type_url}}"><img class="section-social-logo" src="img/icons/{{post.type}}_16.png" /></a>
-				<a ng-show="post.link" href="{{post.link}}"><img class="section-social-logo" src="img/icons/{{post.type}}_16.png" /></a>
-				<a href="{{post.link}}" class="section-social-thumb circular"><img src="{{post.thumbnail}}" /></a>
+				<a ng-hide="post.link" ng-href="{{post.type_url}}"><img class="section-social-logo" ng-src="img/icons/{{post.type}}_16.png" /></a>
+				<a ng-show="post.link" ng-href="{{post.link}}"><img class="section-social-logo" ng-src="img/icons/{{post.type}}_16.png" /></a>
+				<a href="{{post.link}}" class="section-social-thumb circular"><img ng-src="{{post.thumbnail}}" /></a>
 				<h3 ng-show="post.title">
 					<a ng-show="post.link" class="external" href="{{post.link}}" ng-bind-html="post.title"></a>
 					<span ng-hide="post.link" ng-bind-html="post.title"></span>

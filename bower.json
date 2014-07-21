@@ -1,6 +1,6 @@
 {
 	"name": "portfolio",
-	"version": "0.0.2",
+	"version": "0.1.0",
 	"dependencies": {
 		"angular" : "1.2.11",
 		"angular-route": "1.2.11",
