@@ -2,7 +2,7 @@ var settings = {
 	port: 3000,
 	logger: process.env.APP_LOGGER ? JSON.parse(process.env.APP_LOGGER) : false,
 	session: {
-		secret: process.env.APP_SESSION
+		secret: process.env.APP_SESSION_SECRET
 	},
 	evernote: {
 		consumerKey: process.env.APP_EVERNOTE_CONSUMER_KEY,
