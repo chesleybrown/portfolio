@@ -10,8 +10,8 @@ node_modules
 # Bower Components
 web/components
 
-# Chef
-chef/chef-stacktrace.out
+# Env
+.env
 
 # Logs
 output.log
