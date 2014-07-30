@@ -11,7 +11,7 @@ RUN apt-get update
 RUN apt-get install -y -q nodejs
 
 # Install Consul
-ADD https://dl.bintray.com/mitchellh/consul/0.3.0_linux_amd64.zip /tmp/consul.zip
+ADD https://dl.bintray.com/mitchellh/consul/0.3.1_linux_amd64.zip /tmp/consul.zip
 RUN cd /usr/local/bin && unzip /tmp/consul.zip && chmod +x /usr/local/bin/consul && rm /tmp/consul.zip
 
 # Set Env
