@@ -22,7 +22,7 @@ var settings = {
 		screenName: process.env.APP_TWITTER_SCREEN_NAME,
 		consumerKey: process.env.APP_TWITTER_CONSUMER_KEY,
 		consumerSecret: process.env.APP_TWITTER_CONSUMER_SECRET,
-		accessTokenKey: process.env.APP_TWITTER_ACCESS_TOKEN_KEY,
+		accessToken: process.env.APP_TWITTER_ACCESS_TOKEN,
 		accessTokenSecret: process.env.APP_TWITTER_ACCESS_TOKEN_SECRET
 	},
 	facebook: {
