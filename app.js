@@ -43,9 +43,16 @@ Passport.use(new EvernoteStrategy(
 	function(token, tokenSecret, profile, done) {}
 ));
 app.use(cookieParser());
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+app.use(bodyParser.json());
 app.use(methodOverride());
-app.use(session({ secret: settings.session.secret }));
+app.use(session({
+	secret: settings.session.secret,
+	saveUninitialized: true,
+	resave: true
+}));
 app.use(Passport.initialize());
 app.use(Passport.session());
 // END evernote auth
@@ -219,7 +226,7 @@ app.get('/api/refresh/feed', function(req, res) {
 		rest_base: 'https://api.twitter.com/1.1',
 		consumer_key: settings.twitter.consumerKey,
 		consumer_secret: settings.twitter.consumerSecret,
-		access_token_key: settings.twitter.accessTokenKey,
+		access_token: settings.twitter.accessToken,
 		access_token_secret: settings.twitter.accessTokenSecret
 	});
 	
