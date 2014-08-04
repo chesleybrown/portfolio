@@ -50,4 +50,7 @@ RUN chmod +x /usr/local/bin/start
 # Set server port
 EXPOSE 80
 
+# Add blog image volume
+VOLUME /usr/src/app/web/img/blog
+
 CMD ["start"]
