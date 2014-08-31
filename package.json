@@ -16,7 +16,7 @@
 		"express": "4.6.1",
 		"mongodb": "1.4.7",
 		"evernote": "1.25.1",
-		"twit": "1.1.15",
+		"twit": "1.1.18",
 		"ejs": "1.0.0",
 		"facebook-node-sdk": "0.2.0",
 		"passport": "0.2.0",

@@ -264,7 +264,7 @@ app.get('/api/refresh/feed', function(req, res) {
 	});
 	
 	// get twitter posts
-	twitter.get('/statuses/user_timeline.json', {screen_name: settings.twitter.screenName, count: 25}, function (err, data) {
+	twitter.get('/statuses/user_timeline', {screen_name: settings.twitter.screenName, count: 25}, function (err, data) {
 		num_completed = num_completed + 1;
 		for (var id in data) {
 			if (data[id]['text']) {
