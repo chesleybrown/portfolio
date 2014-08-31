@@ -29,6 +29,11 @@ ADD .bowerrc /usr/src/app/.bowerrc
 ADD bower.json /usr/src/app/bower.json
 RUN ./node_modules/bower/bin/bower --allow-root install
 
+# Add cron for feed refresh
+ADD cron /etc/cron
+RUN chmod +x -R /etc/cron
+RUN cron
+
 # Add app files
 ADD web /usr/src/app/web
 ADD app.js /usr/src/app/app.js
