@@ -25,10 +25,10 @@ app.engine('html', require('ejs').renderFile);
 app.use(express.static(__dirname + '/web'));
 
 // Evernote auth
-Passport.serializeUser(function(user, done) {
+Passport.serializeUser(function (user, done) {
 	done(null, user);
 });
-Passport.deserializeUser(function(obj, done) {
+Passport.deserializeUser(function (obj, done) {
 	done(null, obj);
 });
 Passport.use(new EvernoteStrategy(
@@ -40,7 +40,7 @@ Passport.use(new EvernoteStrategy(
 		consumerSecret: settings.evernote.consumerSecret,
 		callbackURL: settings.evernote.callbackURL
 	},
-	function(token, tokenSecret, profile, done) {}
+	function (token, tokenSecret, profile, done) {}
 ));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
@@ -63,7 +63,7 @@ function getClient() {
 	return new MongoClient(new Server(settings.mongo.host, settings.mongo.port));
 }
 connection = getClient();
-connection.open(function(err, client) {
+connection.open(function (err, client) {
 	if (err) throw err;
 	
 	mongoClient = client;
@@ -73,7 +73,7 @@ connection.open(function(err, client) {
 	console.log('Listening on port ' + settings.port);
 });
 
-app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function(req, res) {
+app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function (req, res) {
 	var notes = [];
 	
 	db = mongoClient.db(settings.mongo.db);
@@ -84,25 +84,25 @@ app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function(req, res) {
 		filter = {key: req.params.key};
 	}
 	
-	blog.find(filter).sort({created: -1}).toArray(function(err, result) {
+	blog.find(filter).sort({created: -1}).toArray(function (err, result) {
 		// return notes
 		res.send(result);
 	});
 });
 
-app.get('/api/feed', function(req, res) {
+app.get('/api/feed', function (req, res) {
 	var feed = [];
 	
 	// get feed from mongo db
 	db = mongoClient.db(settings.mongo.db);
 	var social = db.collection('social');
-	social.find().sort({created: -1}).limit(25).toArray(function(err, result) {
+	social.find().sort({created: -1}).limit(25).toArray(function (err, result) {
 		// return social feed
 		res.send(result);
 	});
 });
 
-app.get('/api/refresh/blog', function(req, res) {
+app.get('/api/refresh/blog', function (req, res) {
 	var evernote = new Evernote.Client({
 		token: settings.evernote.token,
 		sandbox: settings.evernote.sandbox
@@ -118,12 +118,12 @@ app.get('/api/refresh/blog', function(req, res) {
 	result_spec.includeTagGuids = true;
 	
 	var note_store = evernote.getNoteStore();
-	note_store.findNotesMetadata(evernote.token, filter, 0, 10, result_spec, function(error1, results) {
+	note_store.findNotesMetadata(evernote.token, filter, 0, 10, result_spec, function (error1, results) {
 		var notes = [];
 		var num_completed = 0;
 		var availableTags = [];
 		
-		note_store.listTagsByNotebook(evernote.token, settings.evernote.blogNotebookGuid, function(error2, tagResults) {
+		note_store.listTagsByNotebook(evernote.token, settings.evernote.blogNotebookGuid, function (error2, tagResults) {
 			allTags = tagResults;
 			
 			if (!error1 && !error2) {
@@ -135,7 +135,7 @@ app.get('/api/refresh/blog', function(req, res) {
 					;
 					
 					// get presentable tags
-					var tags = _.filter(allTags, function(tag) {
+					var tags = _.filter(allTags, function (tag) {
 						if (tag.guid != settings.evernote.publishedTagGuid) {
 							return (results.notes[note].tagGuids.indexOf(tag.guid) >= 0);
 						}
@@ -152,8 +152,8 @@ app.get('/api/refresh/blog', function(req, res) {
 					};
 					
 					// get note content
-					(function(note) {
-						note_store.getNote(evernote.token, notes[note].guid, true, true, false, false, function(error3, data) {
+					(function (note) {
+						note_store.getNote(evernote.token, notes[note].guid, true, true, false, false, function (error3, data) {
 							if (!error3) {
 								notes[note].content = data.content;
 								
@@ -167,7 +167,7 @@ app.get('/api/refresh/blog', function(req, res) {
 									
 									// save blog image
 									var file = __dirname + '/web/img/blog/' + data.resources[0].attributes.fileName;
-									fs.writeFile(file, buffer, 'binary', function(err) {
+									fs.writeFile(file, buffer, 'binary', function (err) {
 										if (err) throw err;
 									});
 									
@@ -180,8 +180,8 @@ app.get('/api/refresh/blog', function(req, res) {
 									// save to mongo db
 									db = mongoClient.db(settings.mongo.db);
 									var blog = db.collection('blog')
-									blog.remove({}, {w:1}, function(err, result) {
-										blog.insert(notes, {w:1}, function(err, result) {
+									blog.remove({}, {w:1}, function (err, result) {
+										blog.insert(notes, {w:1}, function (err, result) {
 											// return notes
 											res.send(notes);
 										});
@@ -197,8 +197,8 @@ app.get('/api/refresh/blog', function(req, res) {
 				// save to mongo db
 				db = mongoClient.db(settings.mongo.db);
 				var blog = db.collection('blog')
-				blog.remove({}, {w:1}, function(err, result) {
-					blog.insert(notes, {w:1}, function(err, result) {
+				blog.remove({}, {w:1}, function (err, result) {
+					blog.insert(notes, {w:1}, function (err, result) {
 						// return notes
 						res.send(notes);
 					});
@@ -212,7 +212,7 @@ app.get('/api/refresh/blog', function(req, res) {
 	});
 });
 
-app.get('/api/refresh/feed', function(req, res) {
+app.get('/api/refresh/feed', function (req, res) {
 	var feed = [];
 	var num_completed = 0;
 	var total = 2;
@@ -231,7 +231,7 @@ app.get('/api/refresh/feed', function(req, res) {
 	});
 	
 	// get public facebook posts
-	facebook.api('/' + settings.facebook.username + '/posts?privacy={"value":"EVERYONE"}&limit=100', function(err, data) {
+	facebook.api('/' + settings.facebook.username + '/posts?privacy={"value":"EVERYONE"}&limit=100', function (err, data) {
 		num_completed = num_completed + 1;
 		for (var id in data['data']) {
 			if (data['data'][id]['message'] || data['data'][id]['picture'] || data['data'][id]['description']) {
@@ -246,7 +246,7 @@ app.get('/api/refresh/feed', function(req, res) {
 				});
 			}
 		}
-		feed = feed.sort(function(a, b) {
+		feed = feed.sort(function (a, b) {
 			return (b['created'] - a['created']);
 		});
 		feed = feed.slice(0, 9);
@@ -254,8 +254,8 @@ app.get('/api/refresh/feed', function(req, res) {
 			// save to mongo db
 			db = mongoClient.db(settings.mongo.db);
 			var social = db.collection('social')
-			social.remove({}, {w:1}, function(err, result) {
-				social.insert(feed, {w:1}, function(err, result) {
+			social.remove({}, {w:1}, function (err, result) {
+				social.insert(feed, {w:1}, function (err, result) {
 					// return feed
 					res.send(feed);
 				});
@@ -279,7 +279,7 @@ app.get('/api/refresh/feed', function(req, res) {
 				});
 			}
 		}
-		feed = feed.sort(function(a, b) {
+		feed = feed.sort(function (a, b) {
 			return (b['created'] - a['created']);
 		});
 		feed = feed.slice(0, 9);
@@ -287,8 +287,8 @@ app.get('/api/refresh/feed', function(req, res) {
 			// save to mongo db
 			db = mongoClient.db(settings.mongo.db);
 			var social = db.collection('social')
-			social.remove({}, {w:1}, function(err, result) {
-				social.insert(feed, {w:1}, function(err, result) {
+			social.remove({}, {w:1}, function (err, result) {
+				social.insert(feed, {w:1}, function (err, result) {
 					// return feed
 					res.send(feed);
 				});
@@ -298,12 +298,12 @@ app.get('/api/refresh/feed', function(req, res) {
 	
 });
 
-app.get('/blog/auth', Passport.authenticate('evernote'), function(req, res) {
+app.get('/blog/auth', Passport.authenticate('evernote'), function (req, res) {
 	// The request will be redirected to Evernote for authentication, so this
 	// function will not be called.
 });
 
 // 404, not found
-app.get('*', function(req, res){
+app.get('*', function (req, res){
 	res.render(__dirname + '/web/404.html');
 });
