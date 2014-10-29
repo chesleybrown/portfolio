@@ -203,9 +203,6 @@ app.get('/api/refresh/blog', function (req, res) {
 						res.send(notes);
 					});
 				});
-				
-				// return notes
-				res.send(notes);
 			}
 		});
 		
