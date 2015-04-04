@@ -11,8 +11,8 @@
 			<h3>Requested article was not found. <a href="#">Load most recent one instead?</a></h3>
 		</section>
 		<section ng-repeat="blog in blogs">
-			<a ng-show="blog.thumb && !requested" href="" ng-click="readmore('blog')"><img class="section-thumb circular" ng-src="img/blog/{{blog.thumb}}" /></a>
-			<span ng-show="requested"><img class="section-thumb circular" ng-src="img/blog/{{blog.thumb}}" /></span>
+			<a ng-show="blog.thumb && !requested" href="" ng-click="readmore('blog')"><img class="section-thumb circular" ng-src="/img/blog/{{blog.key}}" /></a>
+			<span ng-show="requested"><img class="section-thumb circular" ng-src="/img/blog/{{blog.key}}" /></span>
 			<h3><a href="#/blog/{{blog.key}}">{{blog.title}}</a></h3>
 			<h4>{{blog.created | date:'longDate'}}</h4>
 			<p ng-bind-html="parseBlogContent(blog.content)"></p>

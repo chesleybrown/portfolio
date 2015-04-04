@@ -1,12 +1,13 @@
-var app = angular.module('ngPortfolio', ['ngRoute', 'ngSanitize', 'angulartics', 'angulartics.google.analytics'])
-	
+'use strict';
+
+angular
+	.module('ngPortfolio', ['ngRoute', 'ngSanitize', 'angulartics', 'angulartics.google.analytics'])
 	.config(function ($routeProvider) {
 		$routeProvider
-			.when('/blog/:key', { controller: 'PortfolioCtrl', templateUrl: 'app.html' })
-			.otherwise({ controller: 'PortfolioCtrl', templateUrl: 'app.html' })
+			.when('/blog/:key', {controller: 'PortfolioCtrl', templateUrl: 'app.html'})
+			.otherwise({controller: 'PortfolioCtrl', templateUrl: 'app.html'})
 		;
 	})
-	
 	.controller('PortfolioCtrl', function ($window, $scope, $routeParams, $http, $sce) {
 		$scope.article = {
 			blog: true,
@@ -23,40 +24,36 @@ var app = angular.module('ngPortfolio', ['ngRoute', 'ngSanitize', 'angulartics',
 		
 		$http
 			.get('/api/feed')
-			.success(function(data, status, headers, config){
+			.success(function (data) {
 				$scope.feed = data;
 			})
-			.error(function(data, status, headers, config){})
 		;
 		
 		if (!$routeParams.key) {
 			$routeParams.key = '';
 		}
 		else {
-			// show full article by default if requesting one
-			$scope.article['blog'] = false;
+			// Show full article by default if requesting one
+			$scope.article.blog = false;
 		}
 		
 		$http
 			.get('/api/blog/' + $routeParams.key)
-			.success(function(data, status, headers, config){
+			.success(function (data) {
 				$scope.blogs = data;
 				
 				if ($scope.blogs && $scope.blogs.length > 0) {
 					$window.document.title = 'Chesley - ' + $scope.blogs[0].title;
 				}
 			})
-			.error(function(data, status, headers, config){})
 		;
 		
-		$scope.readmore = function(article) {
+		$scope.readmore = function (article) {
 			$scope.article[article] = !$scope.article[article];
-		}
-		
-		$scope.parseBlogContent = function(content) {
-			return $sce.trustAsHtml(content);
 		};
 		
+		$scope.parseBlogContent = function (content) {
+			return $sce.trustAsHtml(content);
+		};
 	})
-	
 ;

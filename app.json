@@ -1,0 +1,80 @@
+{
+	"name": "portfolio",
+	"description": "My personal portfolio that includes a social feed and a blog powered by Evernote.",
+	"repository": "https://github.com/chesleybrown/portfolio",
+	"keywords": ["node", "express", "portfolio", "mongo"],
+	"env": {
+		"APP_LOGGER": {
+			"description": "Set to true to enable logging.",
+			"value": "false"
+		},
+		"APP_SESSION_SECRET": {
+			"description": "Set to a whatever random and unique secret you want.",
+			"value": ""
+		},
+		"APP_EVERNOTE_CONSUMER_KEY": {
+			"description": "Your Evernote consumer key.",
+			"value": ""
+		},
+		"APP_EVERNOTE_CONSUMER_SECRET": {
+			"description": "Your Evernote consumer secret.",
+			"value": ""
+		},
+		"APP_EVERNOTE_CALLBACK_URL": {
+			"description": "Your Evernote callback URL.",
+			"value": ""
+		},
+		"APP_EVERNOTE_BLOG_NOTEBOOK_GUID": {
+			"description": "Set to the Evernote notebook GUID for your blog notebook.",
+			"value": ""
+		},
+		"APP_EVERNOTE_BLOG_PUBLISHED_TAG_GUID": {
+			"description": "Set to the Evernote tag GUID that you will use to flag notes as published.",
+			"value": ""
+		},
+		"APP_EVERNOTE_TOKEN": {
+			"description": "Set to your Evernote token.",
+			"value": ""
+		},
+		"APP_EVERNOTE_SANDBOX": {
+			"description": "Set if you are using Evernote sandbox or not.",
+			"value": "false"
+		},
+		"APP_MONGO_URL": {
+			"description": "Set to the mongo db connection string.",
+			"value": ""
+		},
+		"APP_TWITTER_SCREEN_NAME": {
+			"description": "Set to your twitter screen name.",
+			"value": ""
+		},
+		"APP_TWITTER_CONSUMER_KEY": {
+			"description": "Set to your twitter consumer key.",
+			"value": ""
+		},
+		"APP_TWITTER_CONSUMER_SECRET": {
+			"description": "Set to your twitter consumer secret.",
+			"value": ""
+		},
+		"APP_TWITTER_ACCESS_TOKEN": {
+			"description": "Set to your twitter access token.",
+			"value": ""
+		},
+		"APP_TWITTER_ACCESS_TOKEN_SECRET": {
+			"description": "Set to your twitter access token secret.",
+			"value": ""
+		},
+		"APP_FACEBOOK_USERNAME": {
+			"description": "Set to your facebook username.",
+			"value": ""
+		},
+		"APP_FACEBOOK_APP_ID": {
+			"description": "Set to your facebook app ID.",
+			"value": ""
+		},
+		"APP_FACEBOOK_SECRET": {
+			"description": "Set to your facebook secret.",
+			"value": ""
+		}
+	}
+}

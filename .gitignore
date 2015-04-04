@@ -16,3 +16,4 @@ web/components
 # Logs
 output.log
 error.log
+npm-debug.log
