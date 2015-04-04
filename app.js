@@ -76,8 +76,7 @@ MongoClient.connect(settings.mongo.url, function (err, client) {
 });
 
 app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function (req, res) {
-	var db = mongoClient.db(settings.mongo.db);
-	var blog = db.collection('blog');
+	var blog = mongoClient.collection('blog');
 	var filter = null;
 	
 	if (req.params.key) {
@@ -92,8 +91,7 @@ app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function (req, res) {
 
 app.get('/api/feed', function (req, res) {
 	// Get feed from mongo db
-	var db = mongoClient.db(settings.mongo.db);
-	var social = db.collection('social');
+	var social = mongoClient.collection('social');
 	social.find().sort({created: -1}).limit(25).toArray(function (err, result) {
 		// Return social feed
 		res.send(result);
@@ -124,7 +122,7 @@ app.get('/api/refresh/blog', function (req, res) {
 			var allTags = tagResults;
 			
 			if (!error1 && !error2) {
-				_.each(results.notes, function (note) {
+				_.each(results.notes, function (content, note) {
 					var key = results.notes[note].title
 						.toLowerCase()
 						.replace(/[^\w ]+/g, '')
@@ -176,8 +174,7 @@ app.get('/api/refresh/blog', function (req, res) {
 								
 								if (numCompleted == results.totalNotes) {
 									// Save to mongo db
-									var db = mongoClient.db(settings.mongo.db);
-									var blog = db.collection('blog');
+									var blog = mongoClient.collection('blog');
 									blog.remove({}, {w:1}, function () {
 										blog.insert(notes, {w:1}, function () {
 											// Return notes
@@ -193,8 +190,7 @@ app.get('/api/refresh/blog', function (req, res) {
 			
 			if (!notes.length) {
 				// Save to mongo db
-				var db = mongoClient.db(settings.mongo.db);
-				var blog = db.collection('blog');
+				var blog = mongoClient.collection('blog');
 				blog.remove({}, {w:1}, function () {
 					blog.insert(notes, {w:1}, function () {
 						// return notes
@@ -246,8 +242,7 @@ app.get('/api/refresh/feed', function (req, res) {
 		feed = feed.slice(0, 9);
 		if (numCompleted == total) {
 			// Save to mongo db
-			var db = mongoClient.db(settings.mongo.db);
-			var social = db.collection('social');
+			var social = mongoClient.collection('social');
 			social.remove({}, {w:1}, function () {
 				social.insert(feed, {w:1}, function () {
 					// Return feed
@@ -279,8 +274,7 @@ app.get('/api/refresh/feed', function (req, res) {
 		feed = feed.slice(0, 9);
 		if (numCompleted == total) {
 			// Save to mongo db
-			var db = mongoClient.db(settings.mongo.db);
-			var social = db.collection('social');
+			var social = mongoClient.collection('social');
 			social.remove({}, {w:1}, function () {
 				social.insert(feed, {w:1}, function () {
 					// Return feed
