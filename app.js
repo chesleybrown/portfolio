@@ -16,6 +16,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var favicon = require('serve-favicon');
 
 // Log
 if (settings.logger) {
@@ -44,6 +45,7 @@ Passport.use(new EvernoteStrategy(
 	},
 	function () {}
 ));
+app.use(favicon(__dirname + '/web/favicon.ico'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
 	extended: true
