@@ -18,6 +18,7 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var favicon = require('serve-favicon');
 var grid = require('gridfs-stream');
+var path = require('path');
 
 // Log
 if (settings.logger) {
@@ -186,7 +187,11 @@ app.get('/api/refresh/blog', function (req, res) {
 									}
 									
 									// Save blog image
-									var file = __dirname + '/.tmp/' + data.resources[0].attributes.fileName;
+									var tmpDir = __dirname + '/.tmp';
+									if (!fs.existsSync(tmpDir)) {
+										fs.mkdirSync(tmpDir);
+									}
+									var file = path.join(tmpDir, data.resources[0].attributes.fileName);
 									fs.writeFile(file, buffer, 'binary', function (err) {
 										if (err) {
 											throw err;

@@ -17,3 +17,6 @@ web/components
 output.log
 error.log
 npm-debug.log
+
+# Tmp
+.tmp
