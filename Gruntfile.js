@@ -45,6 +45,8 @@ module.exports = function (grunt) {
 					}
 				},
 				src: [
+					'.gitignore',
+					'.env.dist',
 					'*.js',
 					'*.json',
 					'Procfile'
