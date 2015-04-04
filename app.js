@@ -7,7 +7,6 @@ var app = express();
 var fs = require('fs');
 var mongo = require('mongodb');
 var MongoClient = mongo.MongoClient;
-var Server = require('mongodb').Server;
 var Evernote = require('evernote').Evernote;
 var Facebook = require('facebook-node-sdk');
 var Twitter = require('twit');
@@ -18,7 +17,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var favicon = require('serve-favicon');
-var Grid = require('gridfs-stream');
+var grid = require('gridfs-stream');
 
 // Log
 if (settings.logger) {
@@ -78,7 +77,7 @@ MongoClient.connect(settings.mongo.url, function (err, client) {
 });
 
 app.get('/img/blog/:key([A-Za-z0-9]*)', function (req, res) {
-	var gfs = Grid(mongoClient, mongo);
+	var gfs = grid(mongoClient, mongo);
 	var blog = mongoClient.collection('blog');
 	
 	blog.find({key: req.params.key}).toArray(function (err, result) {
@@ -193,7 +192,7 @@ app.get('/api/refresh/blog', function (req, res) {
 											throw err;
 										}
 										
-										var gfs = Grid(mongoClient, mongo);
+										var gfs = grid(mongoClient, mongo);
 										var writestream = gfs.createWriteStream({
 											filename: data.resources[0].attributes.fileName
 										});
