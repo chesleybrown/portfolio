@@ -1,7 +1,7 @@
 'use strict';
 
 var settings = {
-	port: 3000,
+	port: process.env.PORT,
 	logger: process.env.APP_LOGGER ? JSON.parse(process.env.APP_LOGGER) : false,
 	session: {
 		secret: process.env.APP_SESSION_SECRET
