@@ -20,6 +20,7 @@
 		"evernote": "1.25.1",
 		"express-session": "1.6.5",
 		"express": "4.6.1",
+		"gridfs-stream": "1.1.1",
 		"method-override": "2.1.1",
 		"mongodb": "1.4.7",
 		"facebook-node-sdk": "0.2.0",

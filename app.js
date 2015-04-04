@@ -5,7 +5,8 @@ var settings = require('./settings.js');
 var express = require('express');
 var app = express();
 var fs = require('fs');
-var MongoClient = require('mongodb').MongoClient;
+var mongo = require('mongodb');
+var MongoClient = mongo.MongoClient;
 var Server = require('mongodb').Server;
 var Evernote = require('evernote').Evernote;
 var Facebook = require('facebook-node-sdk');
@@ -17,6 +18,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var favicon = require('serve-favicon');
+var Grid = require('gridfs-stream');
 
 // Log
 if (settings.logger) {
@@ -75,6 +77,26 @@ MongoClient.connect(settings.mongo.url, function (err, client) {
 	console.log('Listening on port ' + settings.port);
 });
 
+app.get('/img/blog/:key([A-Za-z0-9]*)', function (req, res) {
+	var gfs = Grid(mongoClient, mongo);
+	var blog = mongoClient.collection('blog');
+	
+	blog.find({key: req.params.key}).toArray(function (err, result) {
+		if (err) {
+			throw err;
+		}
+		
+		if (result.length) {
+			var readstream = gfs.createReadStream({
+				filename: result[0].thumb
+			});
+			return readstream.pipe(res);
+		}
+		
+		return res.status(404).end();
+	});
+});
+
 app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function (req, res) {
 	var blog = mongoClient.collection('blog');
 	var filter = null;
@@ -84,6 +106,11 @@ app.get('/api/blog/(:key([A-Za-z0-9]*)|)', function (req, res) {
 	}
 	
 	blog.find(filter).sort({created: -1}).toArray(function (err, result) {
+		// Don't return img file content
+		_.each(result, function (note) {
+			delete note.file;
+		});
+		
 		// Return notes
 		res.send(result);
 	});
@@ -160,11 +187,17 @@ app.get('/api/refresh/blog', function (req, res) {
 									}
 									
 									// Save blog image
-									var file = __dirname + '/web/img/blog/' + data.resources[0].attributes.fileName;
+									var file = __dirname + '/.tmp/' + data.resources[0].attributes.fileName;
 									fs.writeFile(file, buffer, 'binary', function (err) {
 										if (err) {
 											throw err;
 										}
+										
+										var gfs = Grid(mongoClient, mongo);
+										var writestream = gfs.createWriteStream({
+											filename: data.resources[0].attributes.fileName
+										});
+										fs.createReadStream(file).pipe(writestream);
 									});
 									
 									// Save blog image filename to note
