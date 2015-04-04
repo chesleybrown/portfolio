@@ -1,2 +1,0 @@
-#!/bin/bash
-curl -I http://localhost:80/api/refresh/feed
