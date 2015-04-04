@@ -27,9 +27,10 @@
 		"bower": "1.3.9",
 		"grunt": "0.4.2",
 		"grunt-cli": "0.1.13",
-		"load-grunt-tasks": "0.4.0",
+		"grunt-contrib-watch": "0.6.1",
 		"grunt-env": "0.4.1",
 		"grunt-express-server": "0.4.17",
-		"grunt-contrib-watch": "0.6.1"
+		"grunt-tabs4life": "1.0.6",
+		"load-grunt-tasks": "0.4.0"
 	}
 }

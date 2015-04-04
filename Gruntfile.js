@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 	require('load-grunt-tasks')(grunt);
 	
 	grunt.initConfig({
@@ -18,6 +18,36 @@ module.exports = function(grunt) {
 		env: {
 			setup: {
 				src: '.env'
+			}
+		},
+		tabs4life: {
+			web: {
+				options: {
+					jshint: {
+						browser: true,
+						globals: {
+							angular: true
+						}
+					}
+				},
+				src: [
+					'web/js/**/*.js',
+					'web/**/*.html',
+					'web/**/*.txt',
+					'web/css/**/*.css',
+					'!web/components/**/*'
+				]
+			},
+			app: {
+				options: {
+					jshint: {
+						node: true
+					}
+				},
+				src: [
+					'*.js',
+					'*.json'
+				]
 			}
 		},
 		watch: {

@@ -1,3 +1,5 @@
+'use strict';
+
 var settings = {
 	port: 3000,
 	logger: process.env.APP_LOGGER ? JSON.parse(process.env.APP_LOGGER) : false,
@@ -30,6 +32,6 @@ var settings = {
 		appId: process.env.APP_FACEBOOK_APP_ID,
 		secret: process.env.APP_FACEBOOK_SECRET
 	}
-}
+};
 
 module.exports = settings;
