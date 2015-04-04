@@ -6,6 +6,9 @@
 	"engines": {
 		"node": "0.10.29"
 	},
+	"scripts": {
+		"test": "grunt test"
+	},
 	"dependencies": {
 		"underscore": "1.6.0",
 		"connect": "3.0.2",

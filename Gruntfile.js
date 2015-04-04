@@ -62,5 +62,6 @@ module.exports = function (grunt) {
 	});
 	
 	grunt.registerTask('server', ['env:setup', 'express:server', 'watch:node']);
+	grunt.registerTask('test', ['tabs4life']);
 	grunt.registerTask('default', ['server']);
 };
