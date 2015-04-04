@@ -61,11 +61,7 @@ app.use(Passport.session());
 
 // Setup db connection
 var mongoClient;
-function getClient() {
-	return new MongoClient(new Server(settings.mongo.host, settings.mongo.port));
-}
-var connection = getClient();
-connection.open(function (err, client) {
+MongoClient.connect(settings.mongo.url, function (err, client) {
 	if (err) {
 		throw err;
 	}

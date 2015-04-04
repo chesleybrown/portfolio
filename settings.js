@@ -16,9 +16,7 @@ var settings = {
 		sandbox: process.env.APP_EVERNOTE_SANDBOX ? JSON.parse(process.env.APP_EVERNOTE_SANDBOX) : false
 	},
 	mongo: {
-		db: process.env.APP_DB_NAME,
-		host: process.env.DB_PORT_27017_TCP_ADDR,
-		port: process.env.DB_PORT_27017_TCP_PORT ? process.env.DB_PORT_27017_TCP_PORT : 27017
+		url: process.env.APP_MONGO_URL
 	},
 	twitter: {
 		screenName: process.env.APP_TWITTER_SCREEN_NAME,
