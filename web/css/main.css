@@ -231,7 +231,7 @@ section .section-thumb {
 section .section-project-thumb {
 	display: block;
 	width: 100%;
-	height: 200px;
+	height: 260px;
 	overflow: hidden;
 	margin: 0 auto;
 }
@@ -321,6 +321,54 @@ article div.back a {
 	padding: 0 5px;
 }
 
+/* ==========================================================================
+   Browser Frame
+   ========================================================================== */
+.browser-frame {
+	border-top: 2em solid rgba(230, 230, 230, 0.7);
+	box-shadow: 0 0.1em 1em 0 rgba(0, 0, 0, 0.4);
+	position: relative;
+	border-radius: 3px 3px 0 0;
+	width: 80%;
+	margin: 20px 10%;
+}
+
+.browser-frame:before {
+	display: block;
+	position: absolute;
+	content: '';
+	top: -1.25em;
+	left: 1em;
+	width: 0.5em;
+	height: 0.5em;
+	border-radius: 50%;
+	background-color: #f44;
+	box-shadow: 0 0 0 2px #f44, 1.5em 0 0 2px #9b3, 3em 0 0 2px #fb5;
+}
+
+.browser-frame.with-url:after {
+	display: block;
+	position: absolute;
+	content: '';
+	top: -1.6em;
+	left: 5.5em;
+	width: calc(100% - 6em);
+	height: 1.2em;
+	border-radius: 2px;
+	background-color: white;
+}
+
+.browser-frame .content {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.browser-frame .content img {
+	display: block;
+	width: 100%;
+}
+
 
 
 
@@ -403,10 +451,6 @@ article div.back a {
 		width: 256px;
 		height: 256px;
 	}
-	section .section-project-thumb {
-		width: 628px;
-		height: 419px;
-	}
 }
 
 @media only screen and (min-width: 960px) {
@@ -427,10 +471,6 @@ article div.back a {
 		width: 256px;
 		height: 256px;
 	}
-	section .section-project-thumb {
-		width: 628px;
-		height: 419px;
-	}
 }
 
 /* iPad Landscape */
@@ -438,6 +478,12 @@ article div.back a {
 	.wrapper {
 		width: 90%;
 		margin: 0 5%;
+	}
+	
+	.browser-frame {
+		width: 80%;
+		margin-left: 10%;
+		margin-right:10%;
 	}
 }
 
