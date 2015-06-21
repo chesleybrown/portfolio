@@ -333,3 +333,14 @@ app.get('/blog/auth', Passport.authenticate('evernote'), function () {
 app.get('*', function (req, res) {
 	res.render(__dirname + '/web/404.html');
 });
+
+app.use(function (err, req, res, next) {
+	if (!err) {
+		next();
+		return;
+	}
+	
+	console.error(err);
+	res.status(500);
+	res.send('Sorry... error!');
+});
