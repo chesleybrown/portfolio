@@ -26,5 +26,5 @@ on the environment variable `PORT` if set.
 To execute all the tests, just run:
 
 ```
-grunt test
+npm test
 ```
