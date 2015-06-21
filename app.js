@@ -212,8 +212,8 @@ app.get('/api/refresh/blog', function (req, res) {
 								if (numCompleted == results.totalNotes) {
 									// Save to mongo db
 									var blog = mongoClient.collection('blog');
-									blog.remove({}, {w:1}, function () {
-										blog.insert(notes, {w:1}, function () {
+									blog.remove({}, {w: 1}, function () {
+										blog.insert(notes, {w: 1}, function () {
 											// Return notes
 											res.send(notes);
 										});
@@ -228,8 +228,8 @@ app.get('/api/refresh/blog', function (req, res) {
 			if (!notes.length) {
 				// Save to mongo db
 				var blog = mongoClient.collection('blog');
-				blog.remove({}, {w:1}, function () {
-					blog.insert(notes, {w:1}, function () {
+				blog.remove({}, {w: 1}, function () {
+					blog.insert(notes, {w: 1}, function () {
 						// return notes
 						res.send(notes);
 					});
@@ -280,8 +280,8 @@ app.get('/api/refresh/feed', function (req, res) {
 		if (numCompleted == total) {
 			// Save to mongo db
 			var social = mongoClient.collection('social');
-			social.remove({}, {w:1}, function () {
-				social.insert(feed, {w:1}, function () {
+			social.remove({}, {w: 1}, function () {
+				social.insert(feed, {w: 1}, function () {
 					// Return feed
 					res.send(feed);
 				});
@@ -312,8 +312,8 @@ app.get('/api/refresh/feed', function (req, res) {
 		if (numCompleted == total) {
 			// Save to mongo db
 			var social = mongoClient.collection('social');
-			social.remove({}, {w:1}, function () {
-				social.insert(feed, {w:1}, function () {
+			social.remove({}, {w: 1}, function () {
+				social.insert(feed, {w: 1}, function () {
 					// Return feed
 					res.send(feed);
 				});
