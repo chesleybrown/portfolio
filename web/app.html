@@ -2,7 +2,7 @@
 	<header>
 		<h1>Blog</h1>
 	</header>
-	
+
 	<div class="article-sections">
 		<section ng-show="blogs == null">
 			<h3>Loading...</h3>
@@ -22,23 +22,23 @@
 		</section>
 		<div class="fade"></div>
 	</div>
-	
+
 	<div class="readmore" ng-show="article.blog">
 		<a href="" ng-click="readmore('blog')">Show More</a>
 	</div>
 	<div class="back" ng-show="requested">
 		<a href="#">Back</a>
 	</div>
-	
+
 </article>
 
 <div ng-hide="requested">
-	
+
 	<article id="article-aboutme" ng-class="{collapsed: article.aboutme}">
 		<header>
 			<h1>About Me</h1>
 		</header>
-		
+
 		<div class="article-sections">
 			<section class="first">
 				<a href="" ng-click="readmore('aboutme')"><img class="section-thumb circular" src="img/aboutme-thumb.jpg" /></a>
@@ -50,44 +50,48 @@
 			</section>
 			<div class="fade"></div>
 		</div>
-		
+
 		<div class="readmore" ng-show="article.aboutme">
 			<a href="" ng-click="readmore('aboutme')">Show More</a>
 		</div>
 	</article>
-	
+
 	<article id="article-workeducation" ng-class="{collapsed: article.workeducation}">
 		<header>
 			<h1>Work and Education</h1>
 		</header>
-		
+
 		<div class="article-sections">
 			<section>
 				<a href="" ng-click="readmore('workeducation')"><img class="section-thumb circular" src="img/workeducation-thumb.jpg" /></a>
-				<h3>Bluedrop Performance Learning</h3>
-				<p>Lead Programmer &amp; Release Engineer &mdash; Oct 2008 to Present</p>
+				<h3><a class="external" href="http://invisionapp.com">InVision</a></h3>
+				<p>Full-Stack Developer &mdash; Aug 2015 to Present</p>
 			</section>
 			<section>
-				<h3>Statusfirm</h3>
+				<h3><a class="external" href="http://bluedrop.com">Bluedrop Performance Learning</a></h3>
+				<p>Lead Programmer &mdash; Oct 2008 to Aug 2015</p>
+			</section>
+			<section>
+				<h3><a class="external" href="https://www.linkedin.com/company/statusfirm">Statusfirm</a></h3>
 				<p>Web Application Developer &mdash; Jun 2007 to Aug 2008</p>
 			</section>
 			<section>
-				<h3>College of the North Atlantic</h3>
+				<h3><a class="external" href="http://www.cna.nl.ca">College of the North Atlantic</a></h3>
 				<p>Website Administrator &mdash; Class of 2007</p>
 			</section>
 			<div class="fade"></div>
 		</div>
-		
+
 		<div class="readmore" ng-show="article.workeducation">
 			<a href="" ng-click="readmore('workeducation')">Show More</a>
 		</div>
 	</article>
-	
+
 	<article id="article-workeducation" ng-class="{collapsed: article.skills}">
 		<header>
 			<h1>Skills</h1>
 		</header>
-		
+
 		<div class="article-sections">
 			<section>
 				<a href="" ng-click="readmore('skills')"><img class="section-thumb circular" src="img/skills-thumb.jpg" /></a>
@@ -125,7 +129,7 @@
 					<p>It's one of those things you don't realize how important it is until you actually start doing it. And once you start, you won't go back. Every application I develop now is always done with testing in mind. Test first, code second. Being a believer of continuous deployment makes it easy to see the value in unit tests. You won't find me coding without them.</p>
 				</section>
 			</section>
-			
+
 			<section>
 				<h3>Roles</h3>
 				<section>
@@ -147,17 +151,17 @@
 			</section>
 			<div class="fade"></div>
 		</div>
-		
+
 		<div class="readmore" ng-show="article.skills">
 			<a href="" ng-click="readmore('skills')">Show More</a>
 		</div>
 	</article>
-	
+
 	<article id="article-projects" ng-class="{collapsed: article.projects}">
 		<header>
 			<h1>Projects</h1>
 		</header>
-		
+
 		<div class="article-sections">
 			<section>
 				<div class="browser-frame with-url">
@@ -195,17 +199,17 @@
 			</section>
 			<div class="fade"></div>
 		</div>
-		
+
 		<div class="readmore" ng-show="article.projects">
 			<a href="" ng-click="readmore('projects')">Show More</a>
 		</div>
 	</article>
-	
+
 	<article id="article-social" ng-class="{collapsed: article.social}">
 		<header>
 			<h1>Social</h1>
 		</header>
-		
+
 		<div class="article-sections article-social-sections">
 			<section ng-show="feed == null">
 				<h3>Loading...</h3>
@@ -224,17 +228,17 @@
 			</section>
 			<div class="fade"></div>
 		</div>
-		
+
 		<div class="readmore" ng-show="article.social">
 			<a href="" ng-click="readmore('social')">Show More</a>
 		</div>
 	</article>
-	
+
 	<article id="article-contact" ng-class="{collapsed: article.contact}">
 		<header>
 			<h1>Contact</h1>
 		</header>
-		
+
 		<div class="article-sections">
 			<section>
 				<h3>Email</h3>
@@ -270,7 +274,7 @@
 			</section>
 			<div class="fade"></div>
 		</div>
-		
+
 		<div class="readmore" ng-show="article.contact">
 			<a href="" ng-click="readmore('contact')">Show More</a>
 		</div>
