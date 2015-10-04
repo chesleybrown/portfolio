@@ -8,6 +8,7 @@
 	},
 	"scripts": {
 		"start": "node app.js",
+		"grunt": "grunt",
 		"test": "grunt test",
 		"postinstall": "bower install"
 	},

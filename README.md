@@ -9,7 +9,7 @@ My personal portfolio that includes a social feed and a blog powered by Evernote
 # Running on Heroku
 
 You can just deploy a free instance of the app on heroku using the button and
-set the required ENV vars accordingly. 
+set the required ENV vars accordingly.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
@@ -20,7 +20,7 @@ on the environment variable `PORT` if set.
 
 1. Copy `.env.dist` to `.env`
 1. Set all the ENV vars in `.env`
-1. Run `grunt server` to start the server.
+1. Run `npm run grunt server` to start the server.
 
 ## Running Tests
 To execute all the tests, just run:
