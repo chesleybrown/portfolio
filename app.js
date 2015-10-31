@@ -229,10 +229,8 @@ app.get('/api/refresh/blog', function (req, res) {
 				// Save to mongo db
 				var blog = mongoClient.collection('blog');
 				blog.remove({}, {w: 1}, function () {
-					blog.insert(notes, {w: 1}, function () {
-						// return notes
-						res.send(notes);
-					});
+					// return notes
+					res.send(notes);
 				});
 			}
 		});
@@ -260,17 +258,19 @@ app.get('/api/refresh/feed', function (req, res) {
 	// Get public facebook posts
 	facebook.api('/' + settings.facebook.username + '/posts?privacy={"value":"EVERYONE"}&limit=100', function (err, data) {
 		numCompleted = numCompleted + 1;
-		for (var id in data.data) {
-			if (data.data[id].message || data.data[id].picture || data.data[id].description) {
-				feed.push({
-					type: 'facebook',
-					type_url: 'https://facebook.com/' + settings.facebook.username,
-					title: data.data[id].message,
-					link: data.data[id].link,
-					description: data.data[id].description,
-					thumbnail: data.data[id].picture,
-					created: new Date(data.data[id].created_time).getTime()
-				});
+		if (data && data.data) {
+			for (var id in data.data) {
+				if (data.data[id].message || data.data[id].picture || data.data[id].description) {
+					feed.push({
+						type: 'facebook',
+						type_url: 'https://facebook.com/' + settings.facebook.username,
+						title: data.data[id].message,
+						link: data.data[id].link,
+						description: data.data[id].description,
+						thumbnail: data.data[id].picture,
+						created: new Date(data.data[id].created_time).getTime()
+					});
+				}
 			}
 		}
 		feed = feed.sort(function (a, b) {
@@ -281,10 +281,16 @@ app.get('/api/refresh/feed', function (req, res) {
 			// Save to mongo db
 			var social = mongoClient.collection('social');
 			social.remove({}, {w: 1}, function () {
-				social.insert(feed, {w: 1}, function () {
+				if (feed.length) {
+					social.insert(feed, {w: 1}, function () {
+						// Return feed
+						res.send(feed);
+					});
+				}
+				else {
 					// Return feed
 					res.send(feed);
-				});
+				}
 			});
 		}
 	});
@@ -313,10 +319,16 @@ app.get('/api/refresh/feed', function (req, res) {
 			// Save to mongo db
 			var social = mongoClient.collection('social');
 			social.remove({}, {w: 1}, function () {
-				social.insert(feed, {w: 1}, function () {
+				if (feed.length) {
+					social.insert(feed, {w: 1}, function () {
+						// Return feed
+						res.send(feed);
+					});
+				}
+				else {
 					// Return feed
 					res.send(feed);
-				});
+				}
 			});
 		}
 	});
