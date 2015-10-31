@@ -4,7 +4,7 @@
 	"version": "0.1.1",
 	"private": true,
 	"engines": {
-		"node": "0.10.35"
+		"node": "0.12.7"
 	},
 	"scripts": {
 		"start": "node app.js",
