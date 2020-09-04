@@ -23,7 +23,7 @@
 		"express": "4.13.3",
 		"gridfs-stream": "1.1.1",
 		"method-override": "2.3.5",
-		"mongodb": "2.0.47",
+		"mongodb": "3.6.1",
 		"facebook-node-sdk": "0.2.0",
 		"passport": "0.3.0",
 		"passport-evernote": "0.1.1",
