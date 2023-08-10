@@ -1,37 +1,3 @@
-<article id="article-recent" ng-class="{collapsed: article.blog}">
-	<header>
-		<h1>Blog</h1>
-	</header>
-
-	<div class="article-sections">
-		<section ng-show="blogs == null">
-			<h3>Loading...</h3>
-		</section>
-		<section ng-show="blogs && blogs.length == 0">
-			<h3>Requested article was not found. <a href="#">Load most recent one instead?</a></h3>
-		</section>
-		<section ng-repeat="blog in blogs">
-			<a ng-show="blog.thumb && !requested" href="" ng-click="readmore('blog')"><img class="section-thumb circular" ng-src="/img/blog/{{blog.key}}" /></a>
-			<span ng-show="requested"><img class="section-thumb circular" ng-src="/img/blog/{{blog.key}}" /></span>
-			<h3><a href="#/blog/{{blog.key}}">{{blog.title}}</a></h3>
-			<h4>{{blog.created | date:'longDate'}}</h4>
-			<p ng-bind-html="parseBlogContent(blog.content)"></p>
-			<div class="tags" ng-show="blog.tags">
-				<a class="external" ng-repeat="tag in blog.tags" href="http://www.twitter.com/search?q=%23{{tag}}">#{{tag}}</a>
-			</div>
-		</section>
-		<div class="fade"></div>
-	</div>
-
-	<div class="readmore" ng-show="article.blog">
-		<a href="" ng-click="readmore('blog')">Show More</a>
-	</div>
-	<div class="back" ng-show="requested">
-		<a href="#">Back</a>
-	</div>
-
-</article>
-
 <div ng-hide="requested">
 
 	<article id="article-aboutme" ng-class="{collapsed: article.aboutme}">
@@ -201,35 +167,6 @@
 		</div>
 	</article>
 
-	<article id="article-social" ng-class="{collapsed: article.social}">
-		<header>
-			<h1>Social</h1>
-		</header>
-
-		<div class="article-sections article-social-sections">
-			<section ng-show="feed == null">
-				<h3>Loading...</h3>
-			</section>
-			<section ng-repeat="post in feed">
-				<a ng-hide="post.link" ng-href="{{post.type_url}}"><img class="section-social-logo" ng-src="img/icons/{{post.type}}_16.png" /></a>
-				<a ng-show="post.link" ng-href="{{post.link}}"><img class="section-social-logo" ng-src="img/icons/{{post.type}}_16.png" /></a>
-				<a href="{{post.link}}" class="section-social-thumb circular"><img ng-src="{{post.thumbnail}}" /></a>
-				<h3 ng-show="post.title">
-					<a ng-show="post.link" class="external" href="{{post.link}}" ng-bind-html="post.title"></a>
-					<span ng-hide="post.link" ng-bind-html="post.title"></span>
-				</h3>
-				<h3 ng-hide="post.title">&nbsp;</h3>
-				<h4>{{post.created | date:'MMM d, y'}} at {{post.created | date:'h:mm a'}}</h4>
-				<p ng-bind-html="post.description"></p>
-			</section>
-			<div class="fade"></div>
-		</div>
-
-		<div class="readmore" ng-show="article.social">
-			<a href="" ng-click="readmore('social')">Show More</a>
-		</div>
-	</article>
-
 	<article id="article-contact" ng-class="{collapsed: article.contact}">
 		<header>
 			<h1>Contact</h1>
@@ -251,10 +188,6 @@
 			<section>
 				<h3>GitHub</h3>
 				<p><a class="external" href="https://github.com/chesleybrown">chesleybrown</a></p>
-			</section>
-			<section>
-				<h3>Bitbucket</h3>
-				<p><a class="external" href="https://bitbucket.org/chesleybrown">chesleybrown</a></p>
 			</section>
 			<section>
 				<h3>Facebook</h3>
