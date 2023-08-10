@@ -1,17 +1,7 @@
 portfolio
 =========================
-[![Build Status](https://travis-ci.org/chesleybrown/portfolio.svg?branch=master)](https://travis-ci.org/chesleybrown/portfolio)
-[![Dependency Status](https://david-dm.org/chesleybrown/portfolio.svg)](https://david-dm.org/chesleybrown/portfolio)
-[![devDependency Status](https://david-dm.org/chesleybrown/portfolio/dev-status.svg)](https://david-dm.org/chesleybrown/portfolio#info=devDependencies)
 
-My personal portfolio that includes a social feed and a blog powered by Evernote.
-
-# Running on Heroku
-
-You can just deploy a free instance of the app on heroku using the button and
-set the required ENV vars accordingly.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+My personal portfolio to showcase my adventures in web development.
 
 # Running Locally
 

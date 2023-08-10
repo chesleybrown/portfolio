@@ -4,7 +4,7 @@
 	"version": "0.1.1",
 	"private": true,
 	"engines": {
-		"node": "0.12.7"
+		"node": "18.x"
 	},
 	"scripts": {
 		"start": "node app.js",
@@ -13,23 +13,10 @@
 		"postinstall": "bower install"
 	},
 	"dependencies": {
-		"body-parser": "1.14.1",
-		"bower": "1.6.5",
-		"connect": "3.4.0",
-		"cookie-parser": "1.4.0",
-		"ejs": "1.0.0",
-		"evernote": "1.25.82",
-		"express-session": "1.12.1",
-		"express": "4.13.3",
-		"gridfs-stream": "1.1.1",
-		"method-override": "2.3.5",
-		"mongodb": "2.0.47",
-		"facebook-node-sdk": "0.2.0",
-		"passport": "0.3.0",
-		"passport-evernote": "0.1.1",
-		"serve-favicon": "2.3.0",
-		"twit": "1.1.18",
-		"underscore": "1.8.3"
+		"bower": "^1.8.14",
+		"ejs": "^3.1.9",
+		"express": "^4.18.2",
+		"serve-favicon": "2.3.0"
 	},
 	"devDependencies": {
 		"grunt": "0.4.5",
@@ -37,7 +24,6 @@
 		"grunt-contrib-watch": "0.6.1",
 		"grunt-env": "0.4.4",
 		"grunt-express-server": "0.5.1",
-		"grunt-tabs4life": "1.0.11",
 		"load-grunt-tasks": "3.3.0"
 	}
 }
