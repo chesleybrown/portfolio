@@ -4,7 +4,7 @@
 	"version": "0.1.1",
 	"private": true,
 	"engines": {
-		"node": "0.12.7"
+		"node": "18.17.1"
 	},
 	"scripts": {
 		"start": "node app.js",
@@ -13,10 +13,9 @@
 		"postinstall": "bower install"
 	},
 	"dependencies": {
-		"body-parser": "1.14.1",
-		"bower": "1.6.5",
-		"ejs": "1.0.0",
-		"express": "4.13.3",
+		"bower": "^1.8.14",
+		"ejs": "^3.1.9",
+		"express": "^4.18.2",
 		"serve-favicon": "2.3.0"
 	},
 	"devDependencies": {
@@ -25,7 +24,6 @@
 		"grunt-contrib-watch": "0.6.1",
 		"grunt-env": "0.4.4",
 		"grunt-express-server": "0.5.1",
-		"grunt-tabs4life": "1.0.11",
 		"load-grunt-tasks": "3.3.0"
 	}
 }

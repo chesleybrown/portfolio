@@ -3,7 +3,6 @@
 var settings = require('./settings.js');
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 
 // Log
@@ -16,10 +15,6 @@ app.engine('html', require('ejs').renderFile);
 app.use(express.static(__dirname + '/web'));
 
 app.use(favicon(__dirname + '/web/favicon.ico'));
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-app.use(bodyParser.json());
 
 // 404, not found
 app.get('*', function (req, res) {
