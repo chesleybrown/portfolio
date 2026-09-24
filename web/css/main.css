@@ -359,6 +359,42 @@ article div.back a {
 	width: 100%;
 }
 
+.phone-frames {
+	display: flex;
+	justify-content: center;
+	gap: 4%;
+	width: 80%;
+	margin: 20px 10%;
+}
+
+.phone-frame {
+	flex: 1 1 0;
+	height: 260px;
+	overflow: hidden;
+	border: 3px solid #2b2b2e;
+	border-bottom: 0;
+	border-radius: 28px 28px 0 0;
+	background-color: #111;
+	box-shadow: 0 0.1em 1em 0 rgba(0, 0, 0, 0.4);
+}
+
+.phone-frame.landscape {
+	flex: none;
+	width: 100%;
+	height: auto;
+	border-bottom: 3px solid #2b2b2e;
+	border-radius: 22px;
+}
+
+.phone-frame img {
+	display: block;
+	width: 100%;
+}
+
+.phone-frame a {
+	display: block;
+}
+
 
 
 
@@ -470,7 +506,8 @@ article div.back a {
 		margin: 0 5%;
 	}
 	
-	.browser-frame {
+	.browser-frame,
+	.phone-frames {
 		width: 80%;
 		margin-left: 10%;
 		margin-right:10%;
