@@ -528,6 +528,13 @@
 
 	/* ---------------- Reveal, count-ups, timeline ---------------- */
 	$$('.card, .stat, .stop, .story, .polaroid, .earlier li').forEach(function (el) { el.classList.add('rv'); });
+	// Tiles that count years since a date stay current on their own
+	$$('[data-since]').forEach(function (el) {
+		var d = new Date(el.getAttribute('data-since') + 'T00:00:00'), now = new Date();
+		var y = now.getFullYear() - d.getFullYear();
+		if (now.getMonth() < d.getMonth() || (now.getMonth() === d.getMonth() && now.getDate() < d.getDate())) y--;
+		el.setAttribute('data-count', y); el.textContent = y;
+	});
 	var counters = $$('[data-count]');
 	function countUp(el) {
 		var end = +el.getAttribute('data-count'), suf = el.getAttribute('data-suffix') || '';

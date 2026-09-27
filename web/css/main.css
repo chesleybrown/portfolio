@@ -518,10 +518,10 @@ section { position: relative; }
 	letter-spacing: -0.04em;
 	font-variant-numeric: tabular-nums;
 }
-.stat:nth-child(1) b { color: var(--cyan); }
-.stat:nth-child(2) b { color: var(--pink); }
-.stat:nth-child(3) b { color: var(--yellow); }
-.stat:nth-child(4) b { color: var(--orange); }
+.stat:nth-child(4n+1) b { color: var(--cyan); }
+.stat:nth-child(4n+2) b { color: var(--pink); }
+.stat:nth-child(4n+3) b { color: var(--yellow); }
+.stat:nth-child(4n+4) b { color: var(--orange); }
 .stat span { display: block; margin-top: 10px; color: var(--ink-2); font-size: 15px; line-height: 1.45; }
 
 /* ---------- Path ---------- */
@@ -685,7 +685,8 @@ kbd, .sink-btn { font: inherit; color: var(--yellow); border: 1px solid var(--ni
 	.thumb { grid-column: 1; grid-row: 1 / span 3; width: 104px; align-self: start; margin-top: 4px; }
 	.stop { grid-template-columns: 48px 1fr; column-gap: 14px; }
 	.logo { width: 48px; height: 48px; border-radius: 12px; }
-	.numbers { grid-template-columns: 1fr 1fr; gap: 10px; }
+	.numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+	.stat b { font-size: min(48px, 11vw); }
 	.stat { padding: 18px 16px; }
 	.stat span { font-size: 13px; }
 	.marquee { margin: 24px 0; padding: 20px 0; }
