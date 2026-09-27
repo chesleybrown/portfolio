@@ -641,6 +641,10 @@ kbd, .sink-btn { font: inherit; color: var(--yellow); border: 1px solid var(--ni
 	.polaroid { max-width: 380px; }
 }
 @media (max-width: 640px) {
+	/* Badge above the title so the title gets the full width and stays on one line. */
+	.sec-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+	.sec-head .num { margin: 0; }
+	.sec-title { font-size: min(48px, 13.4vw); }
 	body { font-size: 16px; }
 	.top nav a:not(.nav-cta) { display: none; }
 	.hero-copy { padding-top: 92px; }
