@@ -49,6 +49,11 @@ a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 4px; }
 ::selection { background: var(--pink); color: var(--night); }
 
+.sr-only {
+	position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+	overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
 .pixel { font-family: var(--pixel); font-weight: 400; letter-spacing: .04em; text-transform: uppercase; }
 
 .skip { position: absolute; left: -999px; top: 8px; z-index: 200; background: var(--yellow); color: var(--night); padding: 8px 12px; }
@@ -130,12 +135,19 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 
 /* ---------- Hero ---------- */
 
+/* The ocean sits in its own layer outside the article (so reader modes don't
+   see a big empty canvas) and is stretched to the hero's height by script. */
+.sea-layer {
+	position: absolute; top: 0; left: 0; right: 0; z-index: 0;
+	height: var(--hero-h, 100svh);
+	overflow: hidden;
+	background: linear-gradient(180deg, #0d1330 0%, #2a2358 38%, #6a3a6e 56%, #c65a5a 64%, #0b3a5c 64.2%, #06142b 100%);
+}
 .hero {
-	position: relative;
+	position: relative; z-index: 1;
 	min-height: 100svh;
 	display: flex; align-items: flex-start;
 	overflow: hidden;
-	background: linear-gradient(180deg, #0d1330 0%, #2a2358 38%, #6a3a6e 56%, #c65a5a 64%, #0b3a5c 64.2%, #06142b 100%);
 }
 .sea {
 	position: absolute; inset: 0;
@@ -175,7 +187,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 	display: block;
 	white-space: nowrap;
 	height: 1.05em;
-	margin-top: 14px;
+	margin: 14px 0 0;
 	font-size: clamp(28px, 5vw, 64px);
 	line-height: 1.05;
 	letter-spacing: -0.02em;
@@ -191,6 +203,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 	white-space: nowrap;
 	vertical-align: baseline;
 }
+.rot-word::before { content: attr(data-word); }
+.builds::before { content: "builds\00a0"; }
 .rot-word.out { animation: rotOut .35s forwards; }
 .rot-word.in { animation: rotIn .5s cubic-bezier(.2, 1.4, .4, 1); }
 @keyframes rotOut { to { transform: translateY(-60%) rotateX(80deg); opacity: 0; } }
@@ -259,6 +273,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 	background: var(--night); box-shadow: 0 1px 0 rgba(255, 255, 255, .06);
 }
 .flap b { font-weight: 700; }
+.flap b::before { content: attr(data-d); }
+.flap-label::before { content: attr(data-l); }
 .flap.flip b { animation: flip .45s cubic-bezier(.4, 1.6, .5, 1); }
 @keyframes flip {
 	0% { transform: rotateX(90deg); filter: brightness(1.8); }
@@ -285,6 +301,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 	will-change: transform;
 }
 .track span { padding: 0 .35em; }
+.track span::before, .track i::before { content: attr(data-t); }
 .track i { font-style: normal; color: var(--pink); }
 .track.alt {
 	font-size: clamp(20px, 3vw, 34px);
@@ -298,6 +315,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 section { position: relative; }
 .work, .path, .about { padding: clamp(88px, 12vw, 150px) var(--gutter) 0; max-width: var(--max); margin: 0 auto; }
 .sec-head { display: flex; align-items: flex-end; gap: 18px; margin-bottom: clamp(36px, 6vw, 72px); }
+.num::before { content: attr(data-n); }
 .num {
 	color: var(--night); background: var(--cyan);
 	font-size: 14px; margin: 0 0 .9em; padding: 6px 8px; border-radius: 4px;
@@ -338,6 +356,11 @@ section { position: relative; }
 	position: absolute; inset: 0; z-index: -1; pointer-events: none;
 	background: radial-gradient(600px circle at var(--gx) var(--gy), rgba(255, 255, 255, .16), transparent 40%);
 }
+.card-copy { display: flex; flex-direction: column; align-items: flex-start; }
+.card-copy .tag { order: -1; }
+.card-art { margin: 0; }
+.card .btns { margin: 20px 0 0; padding: 0; list-style: none; }
+.btns li { display: contents; }
 .card h3 {
 	margin: 6px 0 10px;
 	font: 800 clamp(52px, 8vw, 104px)/.9 var(--display);
@@ -347,6 +370,7 @@ section { position: relative; }
 .card .pitch { font-size: clamp(20px, 2.4vw, 28px); line-height: 1.2; font-weight: 600; margin: 0 0 16px; }
 .card p { margin: 0 0 14px; max-width: 48ch; }
 .card .hint { font-size: 11px; opacity: .8; }
+.card .hint::before { content: attr(data-text); }
 .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 .btn {
 	display: inline-flex; align-items: center; gap: 10px;
@@ -372,10 +396,10 @@ section { position: relative; }
 .card.gemel h3 { text-shadow: 4px 4px 0 rgba(0, 0, 0, .25); }
 .card.rentchek { background: linear-gradient(145deg, #3a9ad9, #1e6fb0 60%, #164c80); }
 .card.rentchek h3 { text-shadow: 4px 4px 0 rgba(0, 0, 0, .2); }
-.card.rentchek .card-media { order: -1; }
+.card.rentchek .card-art { order: -1; }
 .card.gemel p, .card.rentchek p { color: rgba(255, 255, 255, .88); }
 
-.card-media { position: relative; }
+.card-art { position: relative; }
 .phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.5vw, 16px); align-items: end; }
 .device {
 	background: #0a0a0c;
@@ -384,6 +408,15 @@ section { position: relative; }
 	aspect-ratio: 9 / 16;
 	overflow: hidden;
 	box-shadow: 0 30px 50px -24px rgba(0, 0, 0, .6);
+}
+/* Phone screenshots are backgrounds, not <img>s: reader modes show every
+   image full width, and six tall phone screens made long empty stretches. */
+.device.shot { position: relative; }
+.device.shot::before {
+	content: ""; position: absolute;
+	top: clamp(4px, .6vw, 7px); left: clamp(4px, .6vw, 7px); right: clamp(4px, .6vw, 7px); bottom: 0;
+	background: var(--img) center top / cover no-repeat;
+	border-radius: clamp(14px, 2.1vw, 26px) clamp(14px, 2.1vw, 26px) 0 0;
 }
 .device img { width: 100%; border-radius: clamp(14px, 2.1vw, 26px) clamp(14px, 2.1vw, 26px) 0 0; }
 .device.landscape {
@@ -439,6 +472,7 @@ section { position: relative; }
 	transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), background .3s;
 }
 .stat:hover { transform: translateY(-6px) rotate(-1.5deg); background: var(--night-3); }
+.stat { margin: 0; }
 .stat b {
 	display: block;
 	font: 800 clamp(48px, 6.5vw, 84px)/1 var(--display);
@@ -463,7 +497,8 @@ section { position: relative; }
 	background: linear-gradient(180deg, var(--yellow), var(--orange), var(--pink), var(--cyan));
 	transform-origin: top; transform: scaleY(var(--fill, 0));
 }
-.stop { position: relative; padding: 0 0 52px; }
+.stop { position: relative; padding: 0 0 52px; display: flex; flex-direction: column; }
+.stop .year { order: -1; }
 .stop::before {
 	content: ""; position: absolute; left: -41px; top: 8px;
 	width: 22px; height: 22px; border-radius: 6px;
@@ -496,6 +531,8 @@ section { position: relative; }
 .polaroid img { aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
 .polaroid figcaption { text-align: center; margin-top: 14px; font-size: 14px; }
 .story p { color: var(--ink-2); margin: 0 0 18px; max-width: 54ch; }
+.story a { color: var(--ink); text-decoration-color: var(--orange); text-underline-offset: .2em; }
+.story a:hover { color: var(--yellow); }
 .story .big { font: 700 clamp(26px, 3.4vw, 42px)/1.15 var(--display); letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; }
 .hl {
 	background: linear-gradient(90deg, var(--pink), var(--orange));
@@ -505,7 +542,7 @@ section { position: relative; }
 
 /* ---------- Contact ---------- */
 
-.contact {
+.hello {
 	position: relative;
 	margin-top: clamp(100px, 14vw, 180px);
 	padding: clamp(72px, 10vw, 120px) var(--gutter) 40px;
@@ -513,8 +550,9 @@ section { position: relative; }
 	background: radial-gradient(120% 90% at 50% 100%, #4a2466 0%, #1a1845 45%, var(--night) 75%);
 	overflow: hidden;
 }
-.contact .num { display: inline-block; }
+.hello .num { display: inline-block; }
 .shout { margin: 10px 0 18px; font: 800 clamp(64px, 16vw, 220px)/.85 var(--display); letter-spacing: -0.05em; }
+.email-line { margin: 0; }
 .email {
 	display: inline-block;
 	font: 700 clamp(20px, 4.4vw, 52px)/1.1 var(--mono);
@@ -526,7 +564,7 @@ section { position: relative; }
 	transition: background .2s, color .2s, transform .2s;
 }
 .email:hover { background: var(--yellow); color: var(--night); transform: rotate(-1.5deg) scale(1.03); }
-.socials { list-style: none; padding: 0; margin: 40px 0 72px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.socials { list-style: none; padding: 0; margin: 40px 0 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .socials a {
 	display: inline-block; padding: 12px 20px; border-radius: 999px;
 	font: 700 14px/1 var(--mono); text-decoration: none;
@@ -538,6 +576,10 @@ section { position: relative; }
 .socials li:nth-child(3) a:hover { background: var(--orange); }
 .socials li:nth-child(4) a:hover { background: var(--yellow); }
 .socials a:hover { color: var(--night); box-shadow: none; transform: translateY(-4px) rotate(-3deg); }
+.hello { padding-bottom: 150px; }
+/* The fine print sits outside the article (so reader mode skips it) but is
+   pulled up into the say-hi section's glow. */
+.site-foot { position: relative; margin-top: -70px; padding: 0 var(--gutter) 40px; text-align: center; }
 .fine { color: var(--ink-3); font-size: 11px; margin: 0; }
 kbd, .sink-btn { font: inherit; color: var(--yellow); border: 1px solid var(--night-3); padding: 1px 6px; border-radius: 4px; background: none; cursor: pointer; text-transform: inherit; }
 .sink-btn:hover { background: var(--yellow); color: var(--night); }
@@ -565,7 +607,7 @@ kbd, .sink-btn { font: inherit; color: var(--yellow); border: 1px solid var(--ni
 
 @media (max-width: 980px) {
 	.card { grid-template-columns: 1fr; }
-	.card.rentchek .card-media { order: 0; }
+	.card.rentchek .card-art { order: 0; }
 	.numbers { grid-template-columns: repeat(2, 1fr); }
 	.about-grid { grid-template-columns: 1fr; }
 	.polaroid { max-width: 380px; }
