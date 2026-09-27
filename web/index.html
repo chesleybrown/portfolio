@@ -6,17 +6,40 @@
 	<title>Chesley Brown</title>
 	<meta name="description" content="Chesley Brown is a software engineer at Fountain and the founder of Gemel and RentChek. Shipping software since 2007.">
 	<meta name="theme-color" content="#0b1026">
-	<meta property="og:title" content="Chesley Brown">
-	<meta property="og:description" content="Software engineer at Fountain. Founder of Gemel and RentChek. Shipping software since 2007.">
-	<meta property="og:url" content="https://chesleybrown.ca">
+	<link rel="canonical" href="https://chesleybrown.ca/">
+
+	<!-- Link previews: iMessage, Messenger, Slack, LinkedIn, X and friends -->
 	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Chesley Brown">
+	<meta property="og:locale" content="en_CA">
+	<meta property="og:url" content="https://chesleybrown.ca/">
+	<meta property="og:title" content="Chesley Brown builds things people enjoy">
+	<meta property="og:description" content="Engineer at Fountain. Founder of Gemel and RentChek. Shipping software since 2007.">
+	<meta property="og:image" content="https://chesleybrown.ca/og-image.png">
+	<meta property="og:image:secure_url" content="https://chesleybrown.ca/og-image.png">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Chesley Brown builds things people enjoy, over a pixel-art sunset sea with a sailboat and a rubber duck">
+	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@Chesley">
+	<meta name="twitter:creator" content="@Chesley">
+	<meta name="twitter:title" content="Chesley Brown builds things people enjoy">
+	<meta name="twitter:description" content="Engineer at Fountain. Founder of Gemel and RentChek. Shipping software since 2007.">
+	<meta name="twitter:image" content="https://chesleybrown.ca/og-image.png">
+	<meta name="twitter:image:alt" content="Chesley Brown builds things people enjoy, over a pixel-art sunset sea">
+
+	<!-- Icons -->
+	<link rel="icon" href="/favicon.ico" sizes="48x48">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="manifest" href="/site.webmanifest">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Silkscreen&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/main.css">
-	<link rel="apple-touch-icon" href="img/ios/apple-touch-icon.png">
 	<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -90,7 +113,11 @@
 					<p class="pitch">Pick a boat. Drop it in the sea. See what it takes to sink it.</p>
 					<p>A pixel-art physics sandbox with over 40 hulls that flood, burn, split and capsize. Swift and SwiftUI, with water and sprites drawn on the GPU in Metal and rigid body physics from Box2D. No network, no accounts, no analytics.</p>
 					<p class="hint pixel">The sea at the top of this page is a tiny tribute.</p>
-					<a class="btn" href="https://apps.apple.com/app/id6814644019" data-hover>Get it on the App Store</a>
+					<div class="btns">
+						<a class="btn" href="https://apps.apple.com/app/id6814644019" data-hover>Get it on the App Store</a>
+						<a class="btn ghost local" href="/scuttle/" data-hover>Support</a>
+						<a class="btn ghost local" href="/scuttle/privacy.html" data-hover>Privacy</a>
+					</div>
 				</div>
 				<div class="card-media">
 					<div class="device landscape float"><img src="img/projects/scuttle.png" alt="Scuttle gameplay: a burning ocean liner split in two and sinking at dusk" loading="lazy"></div>
