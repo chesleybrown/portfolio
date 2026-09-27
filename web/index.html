@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<title>Chesley Brown</title>
 	<meta name="description" content="Chesley Brown is a software engineer at Fountain and the founder of Gemel and RentChek. Shipping software since 2007.">
+	<meta name="author" content="Chesley Brown">
 	<meta name="theme-color" content="#0b1026">
 	<link rel="canonical" href="https://chesleybrown.ca/">
 
@@ -58,18 +59,14 @@
 	</header>
 
 	<main id="top">
+	<article class="page">
 		<!-- Hero: a live pixel ocean -->
 		<section class="hero" aria-label="Introduction">
 			<canvas class="sea" aria-hidden="true"></canvas>
 			<div class="hero-copy">
 				<p class="kicker pixel">Nova Scotia, Canada</p>
-				<h1>
-					<span class="name">
-						<span class="w">Chesley</span>
-						<span class="w">Brown</span>
-					</span>
-					<span class="builds">builds <span class="rotator"><span class="rot-word">iPhone apps</span></span></span>
-				</h1>
+				<h1 class="name"><span class="w">Chesley</span> <span class="w">Brown</span></h1>
+				<p class="builds" aria-hidden="true">builds <span class="rotator"><span class="rot-word">things people enjoy</span></span></p>
 				<p class="bio">Senior software engineer at <a href="https://www.fountain.com" data-hover>Fountain</a>. Founder of <a href="https://getgemel.com" data-hover>Gemel</a> and <a href="https://rentchek.com" data-hover>RentChek</a>. Coding enthusiast, husband and father.</p>
 			</div>
 			<p class="sea-hint pixel" aria-hidden="true"><span class="blink">▼</span> tap the sea to drop something in</p>
@@ -79,13 +76,14 @@
 		<!-- Split-flap board -->
 		<section class="board-wrap" aria-labelledby="board-h">
 			<h2 id="board-h" class="pixel board-cap"><span class="led"></span>Shipping software since June 2007</h2>
-			<div class="board" data-since="2007-06-01" role="timer" aria-label="About 19 years">
+			<div class="board" data-since="2007-06-01" aria-hidden="true">
 				<div class="flap-group"><div class="flaps" data-u="y"></div><span class="pixel">years</span></div>
 				<div class="flap-group"><div class="flaps" data-u="d"></div><span class="pixel">days</span></div>
 				<div class="flap-group"><div class="flaps" data-u="h"></div><span class="pixel">hrs</span></div>
 				<div class="flap-group"><div class="flaps" data-u="m"></div><span class="pixel">min</span></div>
 				<div class="flap-group hot"><div class="flaps" data-u="s"></div><span class="pixel">sec</span></div>
 			</div>
+			<p class="sr-only" data-board-say>That is 19 years of shipping software.</p>
 		</section>
 
 		<!-- Marquee -->
@@ -101,90 +99,90 @@
 		<!-- Work -->
 		<section id="work" class="work" aria-labelledby="work-h">
 			<header class="sec-head">
-				<p class="pixel num">01</p>
+				<p class="pixel num" aria-hidden="true">01</p>
 				<h2 id="work-h" class="sec-title split">Things I ship</h2>
 			</header>
 
-			<article class="card scuttle" data-tilt>
+			<section class="card scuttle" data-tilt>
 				<div class="card-glare" aria-hidden="true"></div>
 				<div class="card-copy">
-					<p class="tag pixel">2026 · iPhone game · new</p>
 					<h3>Scuttle</h3>
+					<p class="tag pixel">2026 · iPhone game · new</p>
 					<p class="pitch">Pick a boat. Drop it in the sea. See what it takes to sink it.</p>
 					<p>A pixel-art physics sandbox with over 40 hulls that flood, burn, split and capsize. Swift and SwiftUI, with water and sprites drawn on the GPU in Metal and rigid body physics from Box2D. No network, no accounts, no analytics.</p>
-					<p class="hint pixel">The sea at the top of this page is a tiny tribute.</p>
-					<div class="btns">
+					<p class="hint pixel" aria-hidden="true">The sea at the top of this page is a tiny tribute.</p>
+					<p class="btns">
 						<a class="btn" href="https://apps.apple.com/app/id6814644019" data-hover>Get it on the App Store</a>
 						<a class="btn ghost local" href="/scuttle/" data-hover>Support</a>
 						<a class="btn ghost local" href="/scuttle/privacy.html" data-hover>Privacy</a>
-					</div>
+					</p>
 				</div>
-				<div class="card-media">
+				<figure class="card-media">
 					<div class="device landscape float"><img src="img/projects/scuttle.png" alt="Scuttle gameplay: a burning ocean liner split in two and sinking at dusk" loading="lazy"></div>
-				</div>
-			</article>
+				</figure>
+			</section>
 
-			<article class="card gemel" data-tilt>
+			<section class="card gemel" data-tilt>
 				<div class="card-glare" aria-hidden="true"></div>
 				<div class="card-copy">
-					<p class="tag pixel">2026 · iPhone and Apple Watch · founder</p>
 					<h3>Gemel</h3>
+					<p class="tag pixel">2026 · iPhone and Apple Watch · founder</p>
 					<p class="pitch">Calories and protein. Zero AI. On purpose.</p>
 					<p>No food database, no barcodes, no feed. Type a number and Gemel paces it across your day, so you know you're off track while there's still time to fix it. Pair with a friend for a streak that only grows when you both hit your goals.</p>
 					<p>SwiftUI with widgets, a watchOS app and complications, Siri, Apple Health and StoreKit. GRDB for storage and CloudKit sharing for pairing, so no accounts.</p>
-					<div class="btns">
+					<p class="btns">
 						<a class="btn" href="https://apps.apple.com/app/id6804359754" data-hover>App Store</a>
 						<a class="btn ghost" href="https://getgemel.com" data-hover>getgemel.com</a>
-					</div>
+					</p>
 				</div>
-				<div class="card-media phones">
+				<figure class="card-media phones">
 					<div class="device float" style="--f:0"><img src="img/projects/gemel-1.png" alt="Gemel Today screen" loading="lazy"></div>
 					<div class="device float" style="--f:1"><img src="img/projects/gemel-2.png" alt="Gemel quick add sheet" loading="lazy"></div>
 					<div class="device float" style="--f:2"><img src="img/projects/gemel-3.png" alt="Gemel Pairs screen" loading="lazy"></div>
-				</div>
-			</article>
+				</figure>
+			</section>
 
-			<article class="card rentchek" data-tilt>
+			<section class="card rentchek" data-tilt>
 				<div class="card-glare" aria-hidden="true"></div>
 				<div class="card-copy">
-					<p class="tag pixel">2014 → 2026 · web and iPhone · founder</p>
 					<h3>RentChek</h3>
+					<p class="tag pixel">2014 → 2026 · web and iPhone · founder</p>
 					<p class="pitch">Property management for landlords, running since 2014.</p>
 					<p>Rent, receipts and expenses across every property. I built it to manage my own rentals and I've run it ever since. The original is AngularJS, NodeJS and MongoDB. In 2026 I rebuilt the front end as one React Native and Expo codebase in TypeScript that ships to iPhone and the web.</p>
-					<div class="btns">
+					<p class="btns">
 						<a class="btn" href="https://apps.apple.com/app/id6806373725" data-hover>App Store</a>
 						<a class="btn ghost" href="https://rentchek.com" data-hover>rentchek.com</a>
-					</div>
+					</p>
 				</div>
-				<div class="card-media phones">
+				<figure class="card-media phones">
 					<div class="device float" style="--f:0"><img src="img/projects/rentchek-ios-1.png" alt="RentChek properties" loading="lazy"></div>
 					<div class="device float" style="--f:1"><img src="img/projects/rentchek-ios-2.png" alt="RentChek finances" loading="lazy"></div>
 					<div class="device float" style="--f:2"><img src="img/projects/rentchek-ios-3.png" alt="RentChek expenses" loading="lazy"></div>
-				</div>
-			</article>
+				</figure>
+			</section>
 
 			<h3 class="earlier-h pixel">Earlier hits</h3>
 			<ul class="earlier">
-				<li><a href="https://www.invisionapp.com" data-hover data-peek="img/projects/freehand.png"><span class="pixel">2023</span><strong>Freehand</strong><em>InVision's whiteboard. Bug hunting across a huge canvas codebase.</em></a></li>
-				<li><a href="https://www.invisionapp.com" data-hover data-peek="img/projects/prototypes.png"><span class="pixel">2017</span><strong>InVision v7</strong><em>100+ microservices, Kubernetes deploys, a release Slack bot.</em></a></li>
-				<li><a href="https://github.com/chesleybrown/synapsie" data-hover data-peek="img/projects/synapsie.png"><span class="pixel">2011</span><strong>Synapsie</strong><em>Learning Python with Django and Facebook Connect.</em></a></li>
-				<li><a href="https://www.bluedrop.com" data-hover data-peek="img/projects/coursepark.png"><span class="pixel">2008</span><strong>CoursePark</strong><em>eLearning from a sketch to tens of thousands of users.</em></a></li>
+				<li><a href="https://www.invisionapp.com" data-hover data-peek="img/projects/freehand.png"><span class="pixel">2023</span><span class="sr-only">: </span><strong>Freehand</strong><span class="sr-only">. </span><em>InVision's whiteboard. Bug hunting across a huge canvas codebase.</em></a></li>
+				<li><a href="https://www.invisionapp.com" data-hover data-peek="img/projects/prototypes.png"><span class="pixel">2017</span><span class="sr-only">: </span><strong>InVision v7</strong><span class="sr-only">. </span><em>100+ microservices, Kubernetes deploys, a release Slack bot.</em></a></li>
+				<li><a href="https://github.com/chesleybrown/synapsie" data-hover data-peek="img/projects/synapsie.png"><span class="pixel">2011</span><span class="sr-only">: </span><strong>Synapsie</strong><span class="sr-only">. </span><em>Learning Python with Django and Facebook Connect.</em></a></li>
+				<li><a href="https://www.bluedrop.com" data-hover data-peek="img/projects/coursepark.png"><span class="pixel">2008</span><span class="sr-only">: </span><strong>CoursePark</strong><span class="sr-only">. </span><em>eLearning from a sketch to tens of thousands of users.</em></a></li>
 			</ul>
 			<div class="peek" aria-hidden="true"><img alt=""></div>
 		</section>
 
 		<!-- Numbers -->
 		<section class="numbers" aria-label="By the numbers">
-			<div class="stat"><b data-count="300" data-suffix="M+">300M+</b><span>assets migrated from MySQL to DynamoDB with zero downtime</span></div>
-			<div class="stat"><b data-count="100" data-suffix="+">100+</b><span>services I managed build and deploy for</span></div>
-			<div class="stat"><b data-count="3">3</b><span>apps of my own on the App Store</span></div>
-			<div class="stat"><b data-count="16">16</b><span>my age when I released my first game, Time Trigger</span></div>
+			<p class="stat"><b data-count="300" data-suffix="M+">300M+</b> <span>assets migrated from MySQL to DynamoDB with zero downtime</span></p>
+			<p class="stat"><b data-count="100" data-suffix="+">100+</b> <span>services I managed build and deploy for</span></p>
+			<p class="stat"><b data-count="3">3</b> <span>apps of my own on the App Store</span></p>
+			<p class="stat"><b data-count="16">16</b> <span>years old when I released my first game, Time Trigger</span></p>
 		</section>
 
 		<!-- Path -->
 		<section id="path" class="path" aria-labelledby="path-h">
 			<header class="sec-head">
-				<p class="pixel num">02</p>
+				<p class="pixel num" aria-hidden="true">02</p>
 				<h2 id="path-h" class="sec-title split">The path so far</h2>
 			</header>
 			<ol class="rail">
@@ -229,7 +227,7 @@
 		<!-- About -->
 		<section id="about" class="about" aria-labelledby="about-h">
 			<header class="sec-head">
-				<p class="pixel num">03</p>
+				<p class="pixel num" aria-hidden="true">03</p>
 				<h2 id="about-h" class="sec-title split">Player one</h2>
 			</header>
 			<div class="about-grid">
@@ -245,21 +243,26 @@
 				</div>
 			</div>
 		</section>
+
+		<!-- Contact -->
+		<section id="contact" class="contact">
+			<p class="pixel num" aria-hidden="true">04</p>
+			<h2 class="shout split">Let's talk</h2>
+			<p class="email-line"><a class="email" href="mailto:me@chesleybrown.ca" data-hover data-scramble>me@chesleybrown.ca</a></p>
+			<ul class="socials">
+				<li><a href="https://x.com/Chesley" data-hover>X</a></li>
+				<li><a href="https://www.linkedin.com/in/chesleybrown" data-hover>LinkedIn</a></li>
+				<li><a href="https://github.com/chesleybrown" data-hover>GitHub</a></li>
+				<li><a href="https://chesleybrown.github.io/resume" data-hover>Résumé</a></li>
+			</ul>
+		</section>
+	</article>
 	</main>
 
-	<!-- Contact -->
-	<footer id="contact" class="contact">
-		<p class="pixel num">04</p>
-		<h2 class="shout split">Let's talk</h2>
-		<a class="email" href="mailto:me@chesleybrown.ca" data-hover data-scramble>me@chesleybrown.ca</a>
-		<ul class="socials">
-			<li><a href="https://x.com/Chesley" data-hover>X</a></li>
-			<li><a href="https://www.linkedin.com/in/chesleybrown" data-hover>LinkedIn</a></li>
-			<li><a href="https://github.com/chesleybrown" data-hover>GitHub</a></li>
-			<li><a href="https://chesleybrown.github.io/resume" data-hover>Résumé</a></li>
-		</ul>
+	<footer class="site-foot">
 		<p class="fine pixel">© <span id="year">2026</span> Chesley Brown · psst, type <kbd>sink</kbd> or <button class="sink-btn" type="button" data-sink data-hover>tap here</button></p>
 	</footer>
+
 
 	<div class="toast pixel" role="status" aria-live="polite"></div>
 	<script src="js/portfolio.js"></script>

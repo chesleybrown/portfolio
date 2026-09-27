@@ -19,16 +19,17 @@
 	}
 
 	/* ---------------- Split text into letters ---------------- */
+	// Wrap each letter for the drop-in animation. The letters stay in the
+	// accessibility tree and in reader mode, grouped by word so they read
+	// (and wrap) as normal words.
 	function splitLetters(el, offset) {
-		var text = el.textContent.trim();
-		el.setAttribute('aria-label', text);
-		el.textContent = '';
 		var i = offset || 0;
+		var text = el.textContent.trim();
+		el.textContent = '';
 		text.split(' ').forEach(function (word, wi) {
 			if (wi > 0) el.appendChild(document.createTextNode(' '));
 			var w = document.createElement('span');
 			w.className = 'word';
-			w.setAttribute('aria-hidden', 'true');
 			word.split('').forEach(function (c) {
 				var s = document.createElement('span');
 				s.className = 'ch'; s.textContent = c; s.style.setProperty('--i', i++);
@@ -464,6 +465,7 @@
 				if (!reduced) { f.classList.remove('flip'); void f.offsetWidth; f.classList.add('flip'); }
 			});
 		};
+		var say = $('[data-board-say]'), lastDays = -1;
 		var tickBoard = function () {
 			var now = new Date();
 			var years = now.getFullYear() - since.getFullYear();
@@ -471,7 +473,10 @@
 			if (ann > now) { years--; ann.setFullYear(ann.getFullYear() - 1); }
 			var days = Math.floor((now - ann) / 86400000);
 			setU('y', years); setU('d', days); setU('h', now.getHours()); setU('m', now.getMinutes()); setU('s', now.getSeconds());
-			board.setAttribute('aria-label', years + ' years and ' + days + ' days');
+			if (say && lastDays !== days) {
+				lastDays = days;
+				say.textContent = 'That is ' + years + ' years and ' + days + ' days of shipping software.';
+			}
 		};
 		tickBoard();
 		if (!reduced) setInterval(tickBoard, 1000);
@@ -543,7 +548,6 @@
 		})(t0);
 	}
 	if ('IntersectionObserver' in window && !reduced) {
-		counters.forEach(function (c) { c.textContent = '0' + (c.getAttribute('data-suffix') || ''); });
 		var io = new IntersectionObserver(function (es) {
 			es.forEach(function (e) {
 				if (!e.isIntersecting) return;
