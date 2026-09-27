@@ -55,24 +55,41 @@
 		'Metal shaders', 'local dev environments'
 	];
 	var rot = $('.rot-word');
-	var bag = [];
-	function nextWord(current) {
-		if (!bag.length) {
-			bag = words.slice();
-			for (var i = bag.length - 1; i > 0; i--) {
-				var j = Math.floor(Math.random() * (i + 1));
-				var tmp = bag[i]; bag[i] = bag[j]; bag[j] = tmp;
-			}
-			if (bag[bag.length - 1] === current) bag.unshift(bag.pop());
-		}
-		return bag.pop();
+	var builds = $('.builds');
+
+	// Shuffle once per visit, then walk that order in a loop. Every phrase is
+	// shown exactly once before any phrase comes around again.
+	var order = words.slice();
+	for (var oi = order.length - 1; oi > 0; oi--) {
+		var oj = Math.floor(Math.random() * (oi + 1));
+		var ot = order[oi]; order[oi] = order[oj]; order[oj] = ot;
+	}
+	var pos = 0;
+
+	// Keep "builds ..." on one line: if a phrase is wider than the space left
+	// on the line, shrink just the phrase. The line itself never changes height.
+	function fitWord() {
+		if (!rot || !builds) return;
+		rot.style.fontSize = '';
+		var room = builds.clientWidth - (rot.parentNode.offsetLeft - builds.offsetLeft);
+		var need = rot.scrollWidth;
+		if (need > room && room > 0) rot.style.fontSize = (Math.floor((room / need) * 1000) / 1000) + 'em';
+	}
+
+	if (rot) {
+		rot.textContent = order[0];
+		fitWord();
+		if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWord);
+		window.addEventListener('resize', fitWord);
 	}
 	if (rot && !reduced) {
 		setInterval(function () {
 			rot.classList.remove('in');
 			rot.classList.add('out');
 			setTimeout(function () {
-				rot.textContent = nextWord(rot.textContent);
+				pos = (pos + 1) % order.length;
+				rot.textContent = order[pos];
+				fitWord();
 				rot.classList.remove('out');
 				rot.classList.add('in');
 			}, 330);

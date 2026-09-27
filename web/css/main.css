@@ -173,6 +173,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 @keyframes drop { to { transform: none; opacity: 1; } }
 .builds {
 	display: block;
+	white-space: nowrap;
+	height: 1.05em;
 	margin-top: 14px;
 	font-size: clamp(28px, 5vw, 64px);
 	line-height: 1.05;
@@ -180,12 +182,14 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 	font-weight: 600;
 	color: var(--ink-2);
 }
-.rotator { display: inline-block; position: relative; vertical-align: bottom; }
+.rotator { display: inline-block; position: relative; vertical-align: baseline; }
 .rot-word {
 	display: inline-block;
 	background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink));
 	-webkit-background-clip: text; background-clip: text; color: transparent;
 	padding-right: .08em;
+	white-space: nowrap;
+	vertical-align: baseline;
 }
 .rot-word.out { animation: rotOut .35s forwards; }
 .rot-word.in { animation: rotIn .5s cubic-bezier(.2, 1.4, .4, 1); }
