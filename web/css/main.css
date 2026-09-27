@@ -397,7 +397,9 @@ section { position: relative; }
 .card.rentchek { background: linear-gradient(145deg, #3a9ad9, #1e6fb0 60%, #164c80); }
 .card.rentchek h3 { text-shadow: 4px 4px 0 rgba(0, 0, 0, .2); }
 .card.rentchek .card-art { order: -1; }
-.card.gemel p, .card.rentchek p { color: rgba(255, 255, 255, .88); }
+.card.cue { background: linear-gradient(145deg, #2f6bff, #1b3fc2 55%, #3a1f9e); }
+.card.cue h3 { text-shadow: 4px 4px 0 rgba(0, 0, 0, .22); }
+.card.gemel p, .card.rentchek p, .card.cue p { color: rgba(255, 255, 255, .88); }
 
 .card-art { position: relative; }
 .phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.5vw, 16px); align-items: end; }
@@ -426,6 +428,39 @@ section { position: relative; }
 	transform: rotate(-3deg);
 }
 .device.landscape img { border-radius: clamp(17px, 2.4vw, 32px); }
+/* Cue is a web app: a browser window with the hiring plan floating over it.
+   Backgrounds, not <img>s, for the same reader mode reason as the phones. */
+.web { padding: 0 0 clamp(40px, 6vw, 72px) 0; }
+.window {
+	position: relative;
+	aspect-ratio: 16 / 11;
+	background: #f4f6fb;
+	border-radius: clamp(10px, 1.4vw, 16px);
+	overflow: hidden;
+	box-shadow: 0 30px 50px -24px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .15);
+}
+.window .bar {
+	position: absolute; top: 0; left: 0; right: 0; height: clamp(18px, 2.2vw, 28px);
+	background: #e3e7f0;
+}
+.window .bar::before {
+	content: ""; position: absolute; top: 50%; left: 12px;
+	width: 8px; height: 8px; margin-top: -4px; border-radius: 50%;
+	background: #ff5f57; box-shadow: 14px 0 0 #febc2e, 28px 0 0 #28c840;
+}
+.window .screen {
+	position: absolute; top: clamp(18px, 2.2vw, 28px); left: 0; right: 0; bottom: 0;
+	background-position: left top; background-size: cover; background-repeat: no-repeat;
+}
+.panel {
+	position: absolute; left: -3%; bottom: 0;
+	width: 36%; aspect-ratio: 784 / 972;
+	border-radius: clamp(10px, 1.4vw, 16px);
+	overflow: hidden;
+	box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .55);
+	rotate: -3deg;
+}
+.panel .screen { position: absolute; inset: 0; background-size: cover; }
 .float { animation: bob 5s ease-in-out infinite; animation-delay: calc(var(--f, 0) * -1.3s); }
 .phones .float:nth-child(2) { margin-bottom: 30px; }
 @keyframes bob { 50% { translate: 0 -10px; } }
