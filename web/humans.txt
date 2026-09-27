@@ -7,5 +7,5 @@
 # TECHNOLOGY COLOPHON
 
 	HTML, CSS and a little JavaScript. No framework.
-	Type: Instrument Serif, Inter, JetBrains Mono
+	Type: Bricolage Grotesque, Silkscreen, Space Mono
 	Served by Node and Express, deployed on Vercel
