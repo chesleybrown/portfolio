@@ -541,7 +541,7 @@
 	}
 
 	/* ---------------- Reveal, count-ups, timeline ---------------- */
-	$$('.card, .stat, .stop, .story, .polaroid, .earlier li, .socials').forEach(function (el) { el.classList.add('rv'); });
+	$$('.card, .stat, .stop, .story, .polaroid, .earlier li').forEach(function (el) { el.classList.add('rv'); });
 	var counters = $$('[data-count]');
 	function countUp(el) {
 		var end = +el.getAttribute('data-count'), suf = el.getAttribute('data-suffix') || '';
