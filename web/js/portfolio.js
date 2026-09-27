@@ -526,20 +526,6 @@
 		});
 	}
 
-	/* ---------------- Peek at older projects ---------------- */
-	var peek = $('.peek'), peekImg = null;
-	if (peek) { peekImg = document.createElement('img'); peekImg.alt = ''; peek.appendChild(peekImg); }
-	if (peek && finePointer) {
-		$$('[data-peek]').forEach(function (a) {
-			a.addEventListener('pointerenter', function () { peekImg.src = a.getAttribute('data-peek'); peek.classList.add('on'); });
-			a.addEventListener('pointerleave', function () { peek.classList.remove('on'); });
-			a.addEventListener('pointermove', function (e) {
-				peek.style.setProperty('--px', (e.clientX + 24) + 'px');
-				peek.style.setProperty('--py', (e.clientY - 140) + 'px');
-			});
-		});
-	}
-
 	/* ---------------- Reveal, count-ups, timeline ---------------- */
 	$$('.card, .stat, .stop, .story, .polaroid, .earlier li').forEach(function (el) { el.classList.add('rv'); });
 	var counters = $$('[data-count]');

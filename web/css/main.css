@@ -461,15 +461,6 @@ section { position: relative; }
 .earlier strong { font: 800 clamp(26px, 3.4vw, 42px)/1 var(--display); letter-spacing: -0.03em; }
 .earlier em { font-style: normal; color: var(--ink-2); }
 .earlier a:hover em { color: var(--night); }
-.peek {
-	position: fixed; left: 0; top: 0; z-index: 40;
-	width: 280px; pointer-events: none;
-	border-radius: 14px; overflow: hidden;
-	box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7);
-	opacity: 0; transform: translate(var(--px, 0), var(--py, 0)) scale(.85) rotate(-4deg);
-	transition: opacity .2s, transform .2s ease-out;
-}
-.peek.on { opacity: 1; transform: translate(var(--px, 0), var(--py, 0)) scale(1) rotate(-4deg); }
 
 /* ---------- Numbers ---------- */
 
@@ -663,7 +654,6 @@ kbd, .sink-btn { font: inherit; color: var(--yellow); border: 1px solid var(--ni
 	.stat { padding: 18px 16px; }
 	.stat span { font-size: 13px; }
 	.marquee { margin: 24px 0; padding: 20px 0; }
-	.peek { display: none; }
 }
 
 /* ---------- Reduced motion ---------- */
