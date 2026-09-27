@@ -43,20 +43,40 @@
 	$$('.split').forEach(function (el) { splitLetters(el); });
 
 	/* ---------------- Rotating words ---------------- */
-	var words = ['iPhone apps', 'games', 'distributed systems', 'things people use'];
+	var words = [
+		'things people enjoy', 'things people use', 'iPhone apps', 'games',
+		'Apple Watch apps', 'widgets', 'pixel-art boats', 'water physics',
+		'things that float', 'things that sink', 'distributed systems',
+		'Rails apps', 'React apps', 'Go services', 'Slack bots',
+		'deploy pipelines', 'zero downtime migrations', 'developer tools',
+		'custom CLIs', 'dashboards', 'microservices', 'streaks worth keeping',
+		'tools for landlords', 'calorie trackers', 'Siri shortcuts',
+		'well tested code', 'side projects', 'App Store apps',
+		'Metal shaders', 'local dev environments'
+	];
 	var rot = $('.rot-word');
-	var wi = 0;
+	var bag = [];
+	function nextWord(current) {
+		if (!bag.length) {
+			bag = words.slice();
+			for (var i = bag.length - 1; i > 0; i--) {
+				var j = Math.floor(Math.random() * (i + 1));
+				var tmp = bag[i]; bag[i] = bag[j]; bag[j] = tmp;
+			}
+			if (bag[bag.length - 1] === current) bag.unshift(bag.pop());
+		}
+		return bag.pop();
+	}
 	if (rot && !reduced) {
 		setInterval(function () {
 			rot.classList.remove('in');
 			rot.classList.add('out');
 			setTimeout(function () {
-				wi = (wi + 1) % words.length;
-				rot.textContent = words[wi];
+				rot.textContent = nextWord(rot.textContent);
 				rot.classList.remove('out');
 				rot.classList.add('in');
 			}, 330);
-		}, 2600);
+		}, 2400);
 	}
 
 	/* ---------------- The sea ---------------- */
@@ -122,25 +142,35 @@
 		}
 
 		function paintSky() {
-			sky.width = W; sky.height = WL + 4;
+			// Paint the whole hero, not just down to the waterline, so a dipping
+			// wave always reveals more horizon instead of a hole.
+			sky.width = W; sky.height = H;
 			var s = sky.getContext('2d');
 			var g = s.createLinearGradient(0, 0, 0, WL);
 			g.addColorStop(0, '#0b1026');
 			g.addColorStop(0.45, '#2a2358');
 			g.addColorStop(0.78, '#6a3a6e');
 			g.addColorStop(1, '#d9685a');
-			s.fillStyle = g; s.fillRect(0, 0, W, WL + 4);
+			s.fillStyle = g; s.fillRect(0, 0, W, WL);
+			s.fillStyle = '#d9685a'; s.fillRect(0, WL, W, H - WL);
 			// dithered bands for a pixel-art feel
 			s.fillStyle = 'rgba(0,0,0,0.12)';
 			for (var y = 0; y < WL; y += 3) for (var x = (y % 2) * 2; x < W; x += 4) s.fillRect(x, y, 1, 1);
-			// sun sinking into the sea
-			var sx = Math.round(W * 0.78), sy = WL - 2, sr = Math.max(7, Math.round(W * 0.035));
-			for (var yy = -sr; yy <= 0; yy++) {
+			// A full sun centred on the horizon. The water is drawn over it every
+			// frame, so it sinks and resurfaces with the waves and never clips.
+			var sx = Math.round(W * 0.78), sy = WL + 1, sr = Math.max(8, Math.round(W * 0.04));
+			for (var yy = -sr; yy <= sr; yy++) {
 				var half = Math.round(Math.sqrt(sr * sr - yy * yy));
-				if ((yy % 3 === 0) && yy > -sr * 0.6) continue;
-				s.fillStyle = yy > -sr * 0.5 ? '#ff8a3d' : '#ffd23f';
+				if (yy > -sr * 0.55 && yy < 0 && (yy % 3 === 0)) continue;
+				s.fillStyle = yy < -sr * 0.5 ? '#ffd23f' : '#ff8a3d';
 				s.fillRect(sx - half, sy + yy, half * 2, 1);
 			}
+			// soft glow
+			var glow = s.createRadialGradient(sx, sy, sr * 0.8, sx, sy, sr * 4);
+			glow.addColorStop(0, 'rgba(255,170,90,0.35)');
+			glow.addColorStop(1, 'rgba(255,170,90,0)');
+			s.fillStyle = glow;
+			s.fillRect(sx - sr * 4, sy - sr * 4, sr * 8, sr * 4);
 			stars = [];
 			for (var i = 0; i < W * 0.5; i++) stars.push({x: Math.floor(Math.random() * W), y: Math.floor(Math.random() * WL * 0.6), p: Math.random() * 6.28, big: Math.random() < 0.08});
 		}
