@@ -528,7 +528,7 @@ section { position: relative; }
 }
 .logo.wide { background-size: 78% auto; }
 .logo.xwide { background-size: 88% auto; }
-.logo.full { background-size: cover; background-color: #27292d; }
+.logo.full { background-size: cover; background-color: transparent; }
 .stop:hover .logo { transform: rotate(-6deg) scale(1.06); }
 .stop::before {
 	content: ""; position: absolute; left: -41px; top: 8px;
