@@ -39,20 +39,38 @@
 	}, {passive: true});
 	progress();
 
-	// Live "shipping since" counter.
-	var count = document.querySelector('.uptime .count');
-	if (count) {
-		var since = new Date(count.getAttribute('data-since') + 'T00:00:00');
-		var pad = function (n) { return n < 10 ? '0' + n : String(n); };
+	// Live "shipping since" readout.
+	var uptime = document.querySelector('.uptime');
+	if (uptime) {
+		var since = new Date(uptime.getAttribute('data-since') + 'T00:00:00');
+		var odo = uptime.querySelector('.odo');
+		var cells = {};
+		uptime.querySelectorAll('[data-u]').forEach(function (el) { cells[el.getAttribute('data-u')] = el; });
+		var pad = function (n, w) { n = String(n); while (n.length < w) n = '0' + n; return n; };
+		var set = function (u, v) {
+			var el = cells[u];
+			if (el.textContent === v) return;
+			el.textContent = v;
+			if (!reduced) {
+				el.classList.remove('tick');
+				void el.offsetWidth;
+				el.classList.add('tick');
+			}
+		};
 		var tick = function () {
 			var now = new Date();
 			var years = now.getFullYear() - since.getFullYear();
 			var anniversary = new Date(since);
 			anniversary.setFullYear(since.getFullYear() + years);
 			if (anniversary > now) { years -= 1; anniversary.setFullYear(anniversary.getFullYear() - 1); }
-			var days = Math.floor((now - anniversary) / 86400000);
-			count.textContent = years + 'y ' + days + 'd ' +
-				pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+			var ms = now - anniversary;
+			var days = Math.floor(ms / 86400000);
+			set('y', String(years));
+			set('d', pad(days, 3));
+			set('h', pad(now.getHours(), 2));
+			set('m', pad(now.getMinutes(), 2));
+			set('s', pad(now.getSeconds(), 2));
+			odo.setAttribute('aria-label', years + ' years and ' + days + ' days');
 		};
 		tick();
 		if (!reduced) setInterval(tick, 1000);

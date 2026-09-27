@@ -139,16 +139,49 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
 .lede a { color: var(--ink); }
 
 .uptime {
-	display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
-	margin-top: 48px;
-	padding: 10px 16px;
-	border: 1px solid var(--rule);
-	border-radius: 999px;
-	align-self: flex-start;
-	color: var(--ink-2);
+	margin-top: 56px;
+	max-width: 560px;
 }
-.uptime .mono { font-size: 12.5px; }
-.uptime .count { color: var(--ink); font-variant-numeric: tabular-nums; }
+.uptime-cap {
+	display: flex; align-items: center; gap: 10px;
+	margin: 0 0 14px;
+	font-size: 12.5px;
+	color: var(--ink-3);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+.odo {
+	display: grid;
+	grid-template-columns: 1.1fr 1.25fr 1fr 1fr 1fr;
+	border-top: 1px solid var(--rule);
+	border-bottom: 1px solid var(--rule);
+}
+.odo .cell {
+	display: flex; flex-direction: column; gap: 6px;
+	padding: 14px 0 12px 14px;
+	border-left: 1px solid var(--rule);
+	overflow: hidden;
+}
+.odo .cell:first-child { padding-left: 0; border-left: 0; }
+.odo b {
+	display: block;
+	font: 400 clamp(30px, 5vw, 48px)/1 var(--serif);
+	letter-spacing: -0.01em;
+	font-variant-numeric: tabular-nums lining-nums;
+	color: var(--ink);
+}
+.odo i {
+	font: normal 400 11px/1 var(--mono);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+.odo .sec b { color: var(--accent); }
+.odo b.tick { animation: tick .45s cubic-bezier(.2, .7, .2, 1); }
+@keyframes tick {
+	from { transform: translateY(-40%); opacity: 0; }
+	to { transform: none; opacity: 1; }
+}
 .dot {
 	width: 8px; height: 8px; border-radius: 50%;
 	background: #2fbf71;
@@ -391,6 +424,7 @@ section { padding-top: clamp(72px, 12vw, 140px); }
 	html { scroll-behavior: auto; }
 	.js .reveal { opacity: 1; transform: none; transition: none; }
 	.dot { animation: none; }
+	.odo b.tick { animation: none; }
 	.js .hero .reveal { animation: none; opacity: 1; transform: none; }
 	.archive figure img, .cta { transition: none; }
 }
@@ -430,3 +464,5 @@ section { padding-top: clamp(72px, 12vw, 140px); }
 	.archive figure img { filter: none; opacity: 1; }
 	.archive strong { font-size: 24px; margin: 0 0 4px; }
 }
+
+.nowrap { white-space: nowrap; }
