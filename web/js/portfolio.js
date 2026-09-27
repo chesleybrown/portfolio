@@ -78,7 +78,7 @@
 	}
 
 	if (rot) {
-		rot.textContent = order[0];
+		rot.setAttribute('data-word', order[0]);
 		fitWord();
 		if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWord);
 		window.addEventListener('resize', fitWord);
@@ -89,7 +89,7 @@
 			rot.classList.add('out');
 			setTimeout(function () {
 				pos = (pos + 1) % order.length;
-				rot.textContent = order[pos];
+				rot.setAttribute('data-word', order[pos]);
 				fitWord();
 				rot.classList.remove('out');
 				rot.classList.add('in');
@@ -101,6 +101,7 @@
 	var sea = (function () {
 		var canvas = $('.sea');
 		var hero = $('.hero');
+		var layer = $('.sea-layer');
 		if (!canvas || !canvas.getContext) return null;
 		var ctx = canvas.getContext('2d');
 		var PX = 4;
@@ -146,6 +147,8 @@
 		});
 
 		function resize() {
+			if (!hero.offsetWidth || !hero.offsetHeight) return;
+			if (layer) layer.style.setProperty('--hero-h', hero.offsetHeight + 'px');
 			var r = hero.getBoundingClientRect();
 			PX = r.width >= 1100 ? 6 : r.width >= 700 ? 5 : 4;
 			var nw = Math.ceil(r.width / PX), nh = Math.ceil(r.height / PX);
@@ -218,6 +221,7 @@
 		}
 
 		function step() {
+			if (!W) return;
 			t++;
 			// water springs
 			for (var i = 0; i < W; i++) {
@@ -318,6 +322,7 @@
 		}
 
 		function draw() {
+			if (!W || !H || !sky.width || !sky.height) return;
 			ctx.clearRect(0, 0, W, H);
 			ctx.drawImage(sky, 0, 0);
 			// twinkling stars
@@ -449,7 +454,7 @@
 				var f = document.createElement('span');
 				f.className = 'flap';
 				var b = document.createElement('b');
-				b.textContent = '0';
+				b.setAttribute('data-d', '0');
 				f.appendChild(b);
 				box.appendChild(f);
 				cells[u].push(f);
@@ -460,8 +465,8 @@
 			var s = pad(val, widths[u]);
 			cells[u].forEach(function (f, i) {
 				var b = f.firstChild;
-				if (b.textContent === s[i]) return;
-				b.textContent = s[i];
+				if (b.getAttribute('data-d') === s[i]) return;
+				b.setAttribute('data-d', s[i]);
 				if (!reduced) { f.classList.remove('flip'); void f.offsetWidth; f.classList.add('flip'); }
 			});
 		};
@@ -522,7 +527,8 @@
 	}
 
 	/* ---------------- Peek at older projects ---------------- */
-	var peek = $('.peek'), peekImg = peek && $('img', peek);
+	var peek = $('.peek'), peekImg = null;
+	if (peek) { peekImg = document.createElement('img'); peekImg.alt = ''; peek.appendChild(peekImg); }
 	if (peek && finePointer) {
 		$$('[data-peek]').forEach(function (a) {
 			a.addEventListener('pointerenter', function () { peekImg.src = a.getAttribute('data-peek'); peek.classList.add('on'); });
