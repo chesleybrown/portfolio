@@ -412,10 +412,10 @@ section { position: relative; }
 /* Phone screenshots are backgrounds, not <img>s: reader modes show every
    image full width, and six tall phone screens made long empty stretches. */
 .device.shot { position: relative; }
-.device.shot::before {
-	content: ""; position: absolute;
+.device.shot .screen {
+	position: absolute;
 	top: clamp(4px, .6vw, 7px); left: clamp(4px, .6vw, 7px); right: clamp(4px, .6vw, 7px); bottom: 0;
-	background: var(--img) center top / cover no-repeat;
+	background-position: center top; background-size: cover; background-repeat: no-repeat;
 	border-radius: clamp(14px, 2.1vw, 26px) clamp(14px, 2.1vw, 26px) 0 0;
 }
 .device img { width: 100%; border-radius: clamp(14px, 2.1vw, 26px) clamp(14px, 2.1vw, 26px) 0 0; }
@@ -446,7 +446,10 @@ section { position: relative; }
 	display: block; align-self: center;
 	width: 120px; aspect-ratio: 16 / 10;
 	border-radius: 10px;
-	background: var(--night-2) var(--img) center top / cover no-repeat;
+	background-color: var(--night-2);
+	background-position: center top;
+	background-size: cover;
+	background-repeat: no-repeat;
 	box-shadow: 0 10px 22px -12px rgba(0, 0, 0, .8), inset 0 0 0 1px rgba(255, 255, 255, .06);
 	filter: saturate(.8);
 	transition: transform .35s cubic-bezier(.3, 1.6, .5, 1), filter .3s;
@@ -522,7 +525,10 @@ section { position: relative; }
 	grid-column: 1 !important; grid-row: 1 / span 3;
 	width: 64px; height: 64px; margin-top: 4px;
 	border-radius: 16px;
-	background: #fff var(--logo) center / 62% auto no-repeat;
+	background-color: #fff;
+	background-position: center;
+	background-size: 62% auto;
+	background-repeat: no-repeat;
 	box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(11, 16, 38, .06);
 	transition: transform .35s cubic-bezier(.3, 1.8, .5, 1);
 }
@@ -548,7 +554,14 @@ section { position: relative; }
 
 /* ---------- About ---------- */
 
-.about-grid { display: grid; grid-template-columns: .9fr 1.2fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+/* .story is flattened so its paragraphs sit in the grid's second column and
+   the "Let's talk" block (kept inside .story so Safari Reader includes it)
+   can span the full width underneath. */
+.about-grid { display: grid; grid-template-columns: .9fr 1.2fr; column-gap: clamp(32px, 6vw, 80px); align-items: start; }
+.about-grid .story { display: contents; }
+.about-grid .story > p { grid-column: 2; }
+.about-grid .polaroid { grid-column: 1; grid-row: 1 / span 5; align-self: center; }
+.about-grid .hello { grid-column: 1 / -1; }
 .polaroid {
 	--rx: 0deg; --ry: 0deg;
 	margin: 0; padding: 14px 14px 18px;
@@ -561,10 +574,10 @@ section { position: relative; }
 .polaroid.live { transition: transform .08s linear; }
 .polaroid img { aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
 .polaroid figcaption { text-align: center; margin-top: 14px; font-size: 14px; }
-.story p { color: var(--ink-2); margin: 0 0 18px; max-width: 54ch; }
+.story > p { color: var(--ink-2); margin: 0 0 18px; max-width: 54ch; }
 .story a { color: var(--ink); text-decoration-color: var(--orange); text-underline-offset: .2em; }
 .story a:hover { color: var(--yellow); }
-.story .big { font: 700 clamp(26px, 3.4vw, 42px)/1.15 var(--display); letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; }
+.story > .big { font: 700 clamp(26px, 3.4vw, 42px)/1.15 var(--display); letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; }
 .hl {
 	background: linear-gradient(90deg, var(--pink), var(--orange));
 	color: var(--night); padding: 0 .2em; border-radius: .15em;
@@ -575,6 +588,7 @@ section { position: relative; }
 
 .hello {
 	position: relative;
+	width: 100vw; margin-left: calc(50% - 50vw); margin-bottom: 0;
 	margin-top: clamp(100px, 14vw, 180px);
 	padding: clamp(72px, 10vw, 120px) var(--gutter) 40px;
 	text-align: center;
@@ -583,30 +597,11 @@ section { position: relative; }
 }
 .hello .num { display: inline-block; }
 .shout { margin: 10px 0 18px; font: 800 clamp(64px, 16vw, 220px)/.85 var(--display); letter-spacing: -0.05em; }
-.email-line { margin: 0; }
-.email {
-	display: inline-block;
-	font: 700 clamp(20px, 4.4vw, 52px)/1.1 var(--mono);
-	color: var(--yellow);
-	text-decoration: none;
-	padding: 10px 14px;
-	border-radius: 12px;
-	word-break: break-all;
-	transition: background .2s, color .2s, transform .2s;
-}
-.email:hover { background: var(--yellow); color: var(--night); transform: rotate(-1.5deg) scale(1.03); }
-.socials { list-style: none; padding: 0; margin: 40px 0 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.socials a {
-	display: inline-block; padding: 12px 20px; border-radius: 999px;
-	font: 700 14px/1 var(--mono); text-decoration: none;
-	box-shadow: inset 0 0 0 2px var(--night-3);
-	transition: background .2s, color .2s, transform .25s cubic-bezier(.3, 1.8, .5, 1), box-shadow .2s;
-}
-.socials li:nth-child(1) a:hover { background: var(--cyan); }
-.socials li:nth-child(2) a:hover { background: var(--pink); }
-.socials li:nth-child(3) a:hover { background: var(--orange); }
-.socials li:nth-child(4) a:hover { background: var(--yellow); }
-.socials a:hover { color: var(--night); box-shadow: none; transform: translateY(-4px) rotate(-3deg); }
+.hello { padding-left: max(var(--gutter), calc(50vw - 340px)); padding-right: max(var(--gutter), calc(50vw - 340px)); }
+.hello .shout { margin-left: calc(var(--gutter) - max(var(--gutter), calc(50vw - 340px))); margin-right: calc(var(--gutter) - max(var(--gutter), calc(50vw - 340px))); }
+.hello a { color: var(--ink); text-decoration-color: var(--pink); text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.hello a.addr { color: var(--yellow); text-decoration-color: var(--yellow); font-weight: 700; }
+.hello a:hover { color: var(--cyan); text-decoration-color: var(--cyan); }
 .hello { padding-bottom: 150px; }
 /* The fine print sits outside the article (so reader mode skips it) but is
    pulled up into the say-hi section's glow. */
@@ -641,6 +636,8 @@ kbd, .sink-btn { font: inherit; color: var(--yellow); border: 1px solid var(--ni
 	.card.rentchek .card-art { order: 0; }
 	.numbers { grid-template-columns: repeat(2, 1fr); }
 	.about-grid { grid-template-columns: 1fr; }
+	.about-grid .story > p, .about-grid .polaroid { grid-column: 1; grid-row: auto; }
+	.about-grid .polaroid { margin-bottom: 32px; }
 	.polaroid { max-width: 380px; }
 }
 @media (max-width: 640px) {
