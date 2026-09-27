@@ -1,21 +1,11 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
+# humanstxt.org
 
 # TEAM
 
-	Chesley Brown -- Coding Enthusiasts -- @Chesley
-
-# THANKS
-
-	html5boilerplate.com
-	facebook.com
-	twitter.com
-	github.com
-	bitbucket.org
-	evernote.come
+	Chesley Brown -- Software engineer -- @Chesley
 
 # TECHNOLOGY COLOPHON
 
-	HTML5, CSS3
-	AngularJS
-	NodeJS
+	HTML, CSS and a little JavaScript. No framework.
+	Type: Instrument Serif, Inter, JetBrains Mono
+	Served by Node and Express, deployed on Vercel
