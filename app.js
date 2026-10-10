@@ -18,7 +18,7 @@ app.use(favicon(__dirname + '/web/favicon.ico'));
 
 // 404, not found
 app.get('*', function (req, res) {
-	res.render(__dirname + '/web/404.html');
+	res.status(404).render(__dirname + '/web/404.html');
 });
 
 app.use(function (err, req, res, next) {
