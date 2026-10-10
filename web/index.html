@@ -3,14 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-	<title>Chesley Brown</title>
-	<meta name="description" content="Chesley Brown is a software engineer at Fountain and the founder of Gemel and RentChek. Shipping software since 2007.">
+	<title>Chesley Brown · Senior Software Engineer and iOS App Maker</title>
+	<meta name="description" content="Chesley Brown is a senior software engineer at Fountain in Nova Scotia, Canada, and the founder of Gemel and RentChek. Ruby on Rails, TypeScript, Go and Swift. Shipping software since 2007.">
 	<meta name="author" content="Chesley Brown">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 	<meta name="theme-color" content="#0b1026">
 	<link rel="canonical" href="https://chesleybrown.ca/">
 
 	<!-- Link previews: iMessage, Messenger, Slack, LinkedIn, X and friends -->
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="profile">
+	<meta property="profile:first_name" content="Chesley">
+	<meta property="profile:last_name" content="Brown">
+	<meta property="profile:username" content="chesleybrown">
 	<meta property="og:site_name" content="Chesley Brown">
 	<meta property="og:locale" content="en_CA">
 	<meta property="og:url" content="https://chesleybrown.ca/">
@@ -36,6 +40,57 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="manifest" href="/site.webmanifest">
+
+	<!-- Structured data for search engines -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "WebSite",
+				"@id": "https://chesleybrown.ca/#website",
+				"url": "https://chesleybrown.ca/",
+				"name": "Chesley Brown",
+				"inLanguage": "en-CA",
+				"publisher": {"@id": "https://chesleybrown.ca/#person"}
+			},
+			{
+				"@type": "ProfilePage",
+				"@id": "https://chesleybrown.ca/#profile",
+				"url": "https://chesleybrown.ca/",
+				"name": "Chesley Brown · Senior Software Engineer and iOS App Maker",
+				"isPartOf": {"@id": "https://chesleybrown.ca/#website"},
+				"mainEntity": {"@id": "https://chesleybrown.ca/#person"},
+				"primaryImageOfPage": "https://chesleybrown.ca/og-image.png"
+			},
+			{
+				"@type": "Person",
+				"@id": "https://chesleybrown.ca/#person",
+				"name": "Chesley Brown",
+				"givenName": "Chesley",
+				"familyName": "Brown",
+				"url": "https://chesleybrown.ca/",
+				"image": "https://chesleybrown.ca/img/aboutme.jpg",
+				"email": "mailto:me@chesleybrown.ca",
+				"jobTitle": "Senior Software Engineer",
+				"worksFor": {"@type": "Organization", "name": "Fountain", "url": "https://www.fountain.com"},
+				"alumniOf": {"@type": "CollegeOrUniversity", "name": "College of the North Atlantic", "url": "https://www.cna.nl.ca"},
+				"address": {"@type": "PostalAddress", "addressRegion": "Nova Scotia", "addressCountry": "CA"},
+				"founder": [
+					{"@type": "Organization", "name": "Gemel", "url": "https://getgemel.com"},
+					{"@type": "Organization", "name": "RentChek", "url": "https://rentchek.com"}
+				],
+				"knowsAbout": ["Software engineering", "Ruby on Rails", "TypeScript", "Go", "Swift", "SwiftUI", "Metal", "React", "React Native", "Node.js", "Kubernetes", "AWS", "iOS development"],
+				"sameAs": [
+					"https://github.com/chesleybrown",
+					"https://www.linkedin.com/in/chesleybrown",
+					"https://x.com/Chesley",
+					"https://chesleybrown.github.io/resume"
+				]
+			}
+		]
+	}
+	</script>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,7 +177,7 @@
 					</ul>
 				</div>
 				<figure class="card-art">
-					<div class="device landscape float"><img src="img/projects/scuttle.png" alt="Scuttle gameplay: a burning ocean liner split in two and sinking at dusk" loading="lazy"></div>
+					<div class="device landscape float"><img src="img/projects/scuttle.png" width="1131" height="557" alt="Scuttle gameplay: a burning ocean liner split in two and sinking at dusk" loading="lazy"></div>
 				</figure>
 			</section>
 
@@ -267,7 +322,7 @@
 			</header>
 			<div class="about-grid">
 				<figure class="polaroid" data-tilt>
-					<img src="img/aboutme.jpg" alt="Chesley with his wife and two children outdoors in the fall" loading="lazy">
+					<img src="img/aboutme.jpg" width="800" height="800" alt="Chesley with his wife and two children outdoors in the fall" loading="lazy">
 					<figcaption class="pixel">my crew</figcaption>
 				</figure>
 				<div class="story">
@@ -281,7 +336,7 @@
 					<div id="say-hi" class="hello text">
 						<p class="pixel num" aria-hidden="true" data-n="04"></p>
 						<h2 class="shout split">Let's talk</h2>
-						<p>Questions, ideas or just want to say hi? Email me at <a class="addr" href="mailto:me@chesleybrown.ca" data-hover>me@chesleybrown.ca</a>, or find me on <a href="https://x.com/Chesley" data-hover>X</a>, <a href="https://www.linkedin.com/in/chesleybrown" data-hover>LinkedIn</a>, <a href="https://github.com/chesleybrown" data-hover>GitHub</a> and my <a href="https://chesleybrown.github.io/resume" data-hover>résumé</a>.</p>
+						<p>Questions, ideas or just want to say hi? Email me at <a class="addr" href="mailto:me@chesleybrown.ca" data-hover>me@chesleybrown.ca</a>, or find me on <a rel="me" href="https://x.com/Chesley" data-hover>X</a>, <a rel="me" href="https://www.linkedin.com/in/chesleybrown" data-hover>LinkedIn</a>, <a rel="me" href="https://github.com/chesleybrown" data-hover>GitHub</a> and my <a rel="me" href="https://chesleybrown.github.io/resume" data-hover>résumé</a>.</p>
 					</div>
 				</div>
 			</div>
