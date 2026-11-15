@@ -86,7 +86,6 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Silkscreen&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/scuttle/scuttle.css">
-	<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 	<a class="skip" href="#trailer">Skip to the trailer</a>
@@ -119,10 +118,9 @@
 					<p class="fine">Scuttle: Boat Sandbox. One purchase. Rated 9+.</p>
 				</div>
 				<figure class="stage" id="trailer">
-					<video controls playsinline preload="none" poster="/scuttle/media/poster.webp" width="1280" height="592">
+					<video controls playsinline preload="none" poster="/scuttle/media/poster.webp" width="1280" height="592" aria-label="Scuttle gameplay trailer">
 						<source src="/scuttle/media/trailer.mp4" type="video/mp4">
 					</video>
-					<figcaption class="pixel">30 seconds of gameplay. No voiceover.</figcaption>
 				</figure>
 			</div>
 		</section>
@@ -305,6 +303,13 @@
 				</dl>
 			</div>
 		</section>
+
+		<div class="dock">
+			<p class="pixel">$1.99 · iPhone and iPad</p>
+			<a class="store" href="https://apps.apple.com/app/id6814644019">
+				<img src="/scuttle/app-store-badge.svg" width="120" height="40" alt="Download on the App Store">
+			</a>
+		</div>
 	</main>
 
 	<footer class="site-foot">
@@ -318,25 +323,5 @@
 			<p class="pixel">© 2026 Chesley Brown · Scuttle: Boat Sandbox</p>
 		</div>
 	</footer>
-
-	<div class="dock">
-		<p class="pixel">$1.99 · iPhone and iPad</p>
-		<a class="store" href="https://apps.apple.com/app/id6814644019">
-			<img src="/scuttle/app-store-badge.svg" width="120" height="40" alt="Download on the App Store">
-		</a>
-	</div>
-	<script>
-		(function () {
-			var hero = document.querySelector(".hero .store");
-			var dock = document.querySelector(".dock");
-			if (!hero || !dock || !("IntersectionObserver" in window)) {
-				if (dock) dock.classList.add("show");
-				return;
-			}
-			new IntersectionObserver(function (entries) {
-				dock.classList.toggle("show", !entries[0].isIntersecting);
-			}, { threshold: 0.4 }).observe(hero);
-		})();
-	</script>
 </body>
 </html>
