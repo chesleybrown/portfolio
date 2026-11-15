@@ -1,60 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scuttle Support</title>
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="apple-touch-icon" href="/scuttle/icon.png">
-<link rel="canonical" href="https://chesleybrown.ca/scuttle/">
-<meta name="description" content="Help and common questions for Scuttle: Boat Sandbox, a pixel-art water sandbox for iPhone and iPad.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Scuttle: Boat Sandbox">
-<meta property="og:title" content="Scuttle Support">
-<meta property="og:description" content="Help and common questions for Scuttle: Boat Sandbox, a pixel-art water sandbox for iPhone and iPad.">
-<meta property="og:url" content="https://chesleybrown.ca/scuttle/">
-<meta property="og:image" content="https://chesleybrown.ca/scuttle/icon.png">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
-<meta property="og:image:alt" content="The Scuttle app icon">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@Chesley">
-<meta name="apple-itunes-app" content="app-id=6814644019">
-<style>
-body{margin:0;background:#141a2e;color:#eef0f6;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-main{max-width:640px;margin:0 auto;padding:48px 20px 80px}
-h1{font-size:28px;margin:0 0 4px;color:#f0a030}
-.sub{color:#a2a9c0;margin:0 0 32px;font-size:14px}
-h2{font-size:18px;margin:32px 0 8px;color:#6cb6e6}
-a{color:#f0a030}
-dt{font-weight:600;margin-top:12px} dd{margin:2px 0 0;color:#c9cede}
-</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<title>Scuttle: Boat Sandbox — Pick a boat. Drop it in the sea.</title>
+	<meta name="description" content="A $1.99 pixel-art physics sandbox for iPhone and iPad. Fifty boats that flood, burn, split and capsize, plus co-op and Versus for up to four players. No ads, no analytics.">
+	<meta name="author" content="Chesley Brown">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+	<meta name="theme-color" content="#0b1026">
+	<link rel="canonical" href="https://chesleybrown.ca/scuttle/">
+
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Scuttle: Boat Sandbox">
+	<meta property="og:locale" content="en_CA">
+	<meta property="og:url" content="https://chesleybrown.ca/scuttle/">
+	<meta property="og:title" content="Pick a boat. Drop it in the sea. See what it takes to sink it.">
+	<meta property="og:description" content="Scuttle is a $1.99 pixel-art physics sandbox for iPhone and iPad. No ads, no analytics.">
+	<meta property="og:image" content="https://chesleybrown.ca/scuttle/og.jpg">
+	<meta property="og:image:secure_url" content="https://chesleybrown.ca/scuttle/og.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Scuttle, a pixel-art ocean liner burning and breaking in two, with the tagline Pick a boat. Drop it in the sea.">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@Chesley">
+	<meta name="twitter:creator" content="@Chesley">
+	<meta name="twitter:title" content="Pick a boat. Drop it in the sea. See what it takes to sink it.">
+	<meta name="twitter:description" content="Scuttle is a $1.99 pixel-art physics sandbox for iPhone and iPad. No ads, no analytics.">
+	<meta name="twitter:image" content="https://chesleybrown.ca/scuttle/og.jpg">
+	<meta name="twitter:image:alt" content="Scuttle, a pixel-art ocean liner burning and breaking in two.">
+
+	<meta name="apple-itunes-app" content="app-id=6814644019">
+
+	<link rel="icon" href="/favicon.ico" sizes="48x48">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+	<link rel="apple-touch-icon" href="/scuttle/icon.png">
+
+	<link rel="preload" as="image" href="/scuttle/media/poster.webp" type="image/webp">
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "VideoGame",
+				"@id": "https://chesleybrown.ca/scuttle/#game",
+				"name": "Scuttle: Boat Sandbox",
+				"alternateName": "Scuttle",
+				"url": "https://chesleybrown.ca/scuttle/",
+				"image": "https://chesleybrown.ca/scuttle/og.jpg",
+				"description": "A pixel-art physics sandbox for iPhone and iPad. Pick a boat, drop it in the sea, and see what it takes to sink it.",
+				"applicationCategory": "GameApplication",
+				"operatingSystem": "iOS 15 or later",
+				"gamePlatform": ["iOS", "iPadOS"],
+				"genre": ["Simulation", "Casual"],
+				"playMode": ["SinglePlayer", "MultiPlayer", "CoOp"],
+				"numberOfPlayers": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 4 },
+				"author": { "@type": "Person", "name": "Chesley Brown", "url": "https://chesleybrown.ca/" },
+				"offers": {
+					"@type": "Offer",
+					"price": "1.99",
+					"priceCurrency": "USD",
+					"url": "https://apps.apple.com/app/id6814644019",
+					"availability": "https://schema.org/InStock"
+				},
+				"contentRating": "9+",
+				"trailer": { "@id": "https://chesleybrown.ca/scuttle/#trailer-video" }
+			},
+			{
+				"@type": "VideoObject",
+				"@id": "https://chesleybrown.ca/scuttle/#trailer-video",
+				"name": "Scuttle gameplay trailer",
+				"description": "Thirty seconds of Scuttle: boats flooding, burning, splitting and capsizing, then co-op and Versus.",
+				"thumbnailUrl": "https://chesleybrown.ca/scuttle/media/poster.webp",
+				"contentUrl": "https://chesleybrown.ca/scuttle/media/trailer.mp4",
+				"uploadDate": "2026-11-12",
+				"duration": "PT29S"
+			}
+		]
+	}
+	</script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Silkscreen&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/scuttle/scuttle.css">
+	<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
-<main>
-<h1>Scuttle: Boat Sandbox</h1>
-<p class="sub">Support · <a href="/scuttle/privacy.html">Privacy policy</a></p>
+	<a class="skip" href="#trailer">Skip to the trailer</a>
 
-<p>Scuttle is a pixel-art water sandbox for iPhone and iPad. Pick a boat, drop it in the sea, and see what it takes to sink it. Play solo, or team up in co-op and Versus online over Game Center or with friends nearby.</p>
+	<header class="top">
+		<a class="mark" href="/" aria-label="Chesley Brown, back to the portfolio"><span>C</span><span>B</span></a>
+		<nav aria-label="On this page">
+			<a href="#shots">Shots</a>
+			<a href="#play">Play</a>
+			<a href="#support">Support</a>
+		</nav>
+		<a class="store head-store" href="https://apps.apple.com/app/id6814644019">
+			<img src="/scuttle/app-store-badge.svg" width="120" height="40" alt="Download on the App Store">
+		</a>
+	</header>
 
-<h2>Getting help</h2>
-<p>Found a bug, or have an idea for the sandbox? Email <a href="mailto:me@chesleybrown.ca">me@chesleybrown.ca</a>. Include your device model and iOS or iPadOS version if you are reporting a problem.</p>
+	<main id="top">
+		<section class="hero" aria-labelledby="scuttle-title">
+			<div class="wrap hero-grid">
+				<div>
+					<p class="kicker pixel">iPhone and iPad · $1.99 · no ads</p>
+					<h1 id="scuttle-title">Scuttle</h1>
+					<p class="tagline">Pick a boat. Drop it in the sea. See what it takes to sink it.</p>
+					<p class="lede">A pixel-art physics sandbox. Over fifty boats that flood, burn, split and capsize. Co-op and Versus for up to four players, online or in the same room.</p>
+					<p class="hero-cta">
+						<a class="store" href="https://apps.apple.com/app/id6814644019">
+							<img src="/scuttle/app-store-badge.svg" width="162" height="54" alt="Download on the App Store">
+						</a>
+					</p>
+					<p class="fine">Scuttle: Boat Sandbox. One purchase. Rated 9+.</p>
+				</div>
+				<figure class="stage" id="trailer">
+					<video controls playsinline preload="none" poster="/scuttle/media/poster.webp" width="1280" height="592">
+						<source src="/scuttle/media/trailer.mp4" type="video/mp4">
+					</video>
+					<figcaption class="pixel">30 seconds of gameplay. No voiceover.</figcaption>
+				</figure>
+			</div>
+		</section>
 
-<h2>Common questions</h2>
-<dl>
-<dt>The app only works sideways.</dt>
-<dd>That's intended. Scuttle is landscape only so the sea gets the full width of the screen.</dd>
-<dt>It's running slowly.</dt>
-<dd>Open Settings and lower the Particle budget, or set Render scale to 0.75x. Cell size 4 px is the fastest simulation.</dd>
-<dt>How do I reset everything?</dt>
-<dd>Settings › Restore Defaults puts every slider and toggle back to how it shipped.</dd>
-<dt>Nearby games don't show up.</dt>
-<dd>Nearby play needs permission to find devices on your local network. Turn on Scuttle in Settings › Privacy &amp; Security › Local Network on every device, then open the nearby screen again.</dd>
-<dt>Online play won't start.</dt>
-<dd>Online co-op, Versus and leaderboards need you to be signed in to Game Center in the Settings app. Nearby play and everything else work without it.</dd>
-<dt>Where are the third-party licenses?</dt>
-<dd>Settings › Acknowledgements lists Box2D, the bundled fonts and the sound effects with their license text.</dd>
-</dl>
-</main>
+		<section class="block" id="shots" aria-labelledby="shots-h">
+			<div class="wrap">
+				<p class="sec-kicker pixel">From the App Store shots</p>
+				<h2 id="shots-h">A sea full of ways to lose a boat</h2>
+			</div>
+			<div class="reel" tabindex="0">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/01-main-menu.webp">
+						<img src="/scuttle/media/01-main-menu.jpg" width="1280" height="589" alt="Scuttle's main menu at night: a sailboat on the water, and buttons for Sandbox, Arcade, Multiplayer and Leaderboards." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">The menu</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/04-titanic-breaking.webp">
+						<img src="/scuttle/media/04-titanic-breaking.jpg" width="1280" height="589" alt="An ocean liner on fire along the waterline, with explosions and sharks in the water below." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">On fire</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/08-galleon-fire.webp">
+						<img src="/scuttle/media/08-galleon-fire.jpg" width="1280" height="589" alt="A galleon at night with explosions along the hull and torn sails." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">A galleon</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/10-hurricane-liner.webp">
+						<img src="/scuttle/media/10-hurricane-liner.jpg" width="1280" height="589" alt="A liner in a hurricane, rain and steep waves, with sharks below." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">Hurricane</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/02-coop-arcade-blast.webp">
+						<img src="/scuttle/media/02-coop-arcade-blast.jpg" width="1280" height="589" alt="Co-op Arcade during a storm, with three players on the scoreboard." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">Co-op</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/03-versus-pennants.webp">
+						<img src="/scuttle/media/03-versus-pennants.jpg" width="1280" height="589" alt="Versus, 1v1: West and East fleets with ships on opposite sides of a line down the sea." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">Versus</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/05-nuke.webp">
+						<img src="/scuttle/media/05-nuke.jpg" width="1280" height="589" alt="A blast tearing through a tanker, with a warship just behind it." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">A nuke</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/07-tornado-boxship.webp">
+						<img src="/scuttle/media/07-tornado-boxship.jpg" width="1280" height="589" alt="A container ship in a heavy storm, rain coming down hard." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">A storm</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/06-night-storm-sub.webp">
+						<img src="/scuttle/media/06-night-storm-sub.jpg" width="1280" height="589" alt="A tanker burning along its deck in a night storm." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">Night storm</figcaption>
+				</figure>
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="/scuttle/media/09-meteor-night.webp">
+						<img src="/scuttle/media/09-meteor-night.jpg" width="1280" height="589" alt="A liner at night with a fire on deck and meteors in the sky." loading="lazy" decoding="async">
+					</picture>
+					<figcaption class="pixel">Meteors</figcaption>
+				</figure>
+			</div>
+		</section>
+
+		<section class="block" id="play" aria-labelledby="play-h">
+			<div class="wrap">
+				<p class="sec-kicker pixel">The sandbox</p>
+				<h2 id="play-h">What you get</h2>
+				<div class="feats">
+					<article class="feat">
+						<p class="pixel">Boats</p>
+						<h3>Fifty, and then some</h3>
+						<p>Dinghies and tugs, galleons, container ships, aircraft carriers, supertankers, and an oil rig with a live well. Pick one and drop it in.</p>
+					</article>
+					<article class="feat">
+						<p class="pixel">Damage</p>
+						<h3>Flood, burn, split, capsize</h3>
+						<p>Every hull is cells. Wood splinters, steel buckles, and water rushes into whatever you open. Arrows, missiles, torpedoes, lasers, bombs, mines, TNT, asteroids, and a nuke. Storms, hurricanes and tornadoes will do it for you.</p>
+					</article>
+					<article class="feat">
+						<p class="pixel">Players</p>
+						<h3>Up to four</h3>
+						<p>Co-op and Versus, online over Game Center or nearby on peer-to-peer Wi-Fi. Everyone sees the same sea. Leaderboards for solo, two, three and four players.</p>
+					</article>
+					<article class="feat">
+						<p class="pixel">Quiet</p>
+						<h3>No ads. No analytics.</h3>
+						<p>One purchase. No accounts for solo play, no purchases inside the app, nothing tracking you. Online play is Apple's Game Center. Nearby play never leaves the room.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="block" id="price" aria-labelledby="price-h">
+			<div class="wrap">
+				<p class="sec-kicker pixel">Price and platforms</p>
+				<h2 id="price-h" class="sr-only">Price and where it runs</h2>
+				<div class="buy">
+					<p class="price">$1.99 <span>once, on the App Store.</span></p>
+					<ul class="facts">
+						<li>iPhone and iPad</li>
+						<li>iOS 15 and iPadOS 15, or later</li>
+						<li>Landscape, so the sea gets the full width</li>
+						<li>Family Sharing</li>
+						<li>Game Center leaderboards</li>
+						<li>Rated 9+ for infrequent cartoon or fantasy violence</li>
+					</ul>
+					<a class="store" href="https://apps.apple.com/app/id6814644019">
+						<img src="/scuttle/app-store-badge.svg" width="162" height="54" alt="Download on the App Store">
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="block" id="maker" aria-labelledby="maker-h">
+			<div class="wrap">
+				<p class="sec-kicker pixel">Nova Scotia</p>
+				<h2 id="maker-h">Made by one developer</h2>
+				<div class="maker">
+					<img src="/scuttle/icon.png" width="512" height="512" alt="The Scuttle app icon, a pixel sailboat at sunset.">
+					<div>
+						<p>I built Scuttle on my own, in Swift and SwiftUI. The sea at the top of <a href="/">the portfolio</a> is a tiny tribute to it. The rest of what I ship is there too.</p>
+						<a class="back" href="/">Back to chesleybrown.ca</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="block" id="notes" aria-labelledby="notes-h">
+			<div class="wrap">
+				<p class="sec-kicker pixel">For the curious</p>
+				<h2 id="notes-h">Build notes</h2>
+				<p class="sec-lead">Same stack as the card on the portfolio, in a little more detail.</p>
+				<ul class="notes-list">
+					<li><b>Swift and SwiftUI</b><span>The whole app. Menus, sandbox, arcade, the lobby.</span></li>
+					<li><b>Metal</b><span>The water and the sprites are drawn on the GPU.</span></li>
+					<li><b>Box2D</b><span>Rigid bodies. Hulls made of cells that flood, burn and come apart.</span></li>
+					<li><b>Lockstep</b><span>Every device runs the same simulation. Game Center online, peer-to-peer Wi-Fi nearby. No game server of mine, and nothing to phone home.</span></li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="block support" id="support" aria-labelledby="support-h">
+			<div class="wrap">
+				<p class="sec-kicker pixel">Help</p>
+				<h2 id="support-h">Support</h2>
+				<p class="sec-lead">Scuttle is a pixel-art water sandbox for iPhone and iPad. Found a bug, or have an idea for the sandbox? Email <a href="mailto:me@chesleybrown.ca">me@chesleybrown.ca</a>. Include your device model and iOS or iPadOS version if you are reporting a problem. The <a href="/scuttle/privacy.html">privacy policy</a> is a page of its own.</p>
+				<dl class="faq">
+					<dt>The app only works sideways.</dt>
+					<dd>That's intended. Scuttle is landscape only so the sea gets the full width of the screen.</dd>
+					<dt>It's running slowly.</dt>
+					<dd>Open Settings and lower the Particle budget, or set Render scale to 0.75x. Cell size 4 px is the fastest simulation.</dd>
+					<dt>How do I reset everything?</dt>
+					<dd>Settings › Restore Defaults puts every slider and toggle back to how it shipped.</dd>
+					<dt>Nearby games don't show up.</dt>
+					<dd>Nearby play needs permission to find devices on your local network. Turn on Scuttle in Settings › Privacy &amp; Security › Local Network on every device, then open the nearby screen again.</dd>
+					<dt>Online play won't start.</dt>
+					<dd>Online co-op, Versus and leaderboards need you to be signed in to Game Center in the Settings app. Nearby play and everything else work without it.</dd>
+					<dt>Where are the third-party licenses?</dt>
+					<dd>Settings › Acknowledgements lists Box2D, the bundled fonts and the sound effects with their license text.</dd>
+				</dl>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-foot">
+		<div class="wrap">
+			<nav aria-label="Footer">
+				<a href="/">Portfolio</a>
+				<a href="/scuttle/privacy.html">Privacy</a>
+				<a href="https://apps.apple.com/app/id6814644019">App Store</a>
+				<a href="mailto:me@chesleybrown.ca">me@chesleybrown.ca</a>
+			</nav>
+			<p class="pixel">© 2026 Chesley Brown · Scuttle: Boat Sandbox</p>
+		</div>
+	</footer>
+
+	<div class="dock">
+		<p class="pixel">$1.99 · iPhone and iPad</p>
+		<a class="store" href="https://apps.apple.com/app/id6814644019">
+			<img src="/scuttle/app-store-badge.svg" width="120" height="40" alt="Download on the App Store">
+		</a>
+	</div>
+	<script>
+		(function () {
+			var hero = document.querySelector(".hero .store");
+			var dock = document.querySelector(".dock");
+			if (!hero || !dock || !("IntersectionObserver" in window)) {
+				if (dock) dock.classList.add("show");
+				return;
+			}
+			new IntersectionObserver(function (entries) {
+				dock.classList.toggle("show", !entries[0].isIntersecting);
+			}, { threshold: 0.4 }).observe(hero);
+		})();
+	</script>
 </body>
 </html>
