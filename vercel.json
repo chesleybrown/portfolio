@@ -7,7 +7,7 @@
         { "src": "^/scuttle/index\\.html$", "status": 308, "headers": { "Location": "/scuttle/" } },
         { "src": "^/scuttle$", "status": 308, "headers": { "Location": "/scuttle/" } },
         { "src": "^/scuttle/privacy$", "status": 308, "headers": { "Location": "/scuttle/privacy.html" } },
-        { "src": "^/SCUTTLE/?$", "status": 308, "headers": { "Location": "/scuttle/" } },
+        { "src": "^/SCUTTLE/?$", "status": 308, "headers": { "Location": "/scuttle/" }, "caseSensitive": true },
         { "handle": "filesystem" },
         { "src": "/(.*)", "status": 404, "dest": "/404.html" }
     ]
