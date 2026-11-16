@@ -1,5 +1,14 @@
 {
     "installCommand": "npm install",
     "buildCommand": "npm run postinstall",
-    "outputDirectory": "web"
+    "outputDirectory": "web",
+    "routes": [
+        { "src": "^/index\\.html$", "status": 308, "headers": { "Location": "/" } },
+        { "src": "^/scuttle/index\\.html$", "status": 308, "headers": { "Location": "/scuttle/" } },
+        { "src": "^/scuttle$", "status": 308, "headers": { "Location": "/scuttle/" } },
+        { "src": "^/scuttle/privacy$", "status": 308, "headers": { "Location": "/scuttle/privacy.html" } },
+        { "src": "^/SCUTTLE/?$", "status": 308, "headers": { "Location": "/scuttle/" } },
+        { "handle": "filesystem" },
+        { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+    ]
 }
