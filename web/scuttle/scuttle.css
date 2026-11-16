@@ -1,5 +1,5 @@
-/* Scuttle marketing page. Same night sea, sunset accents and pixel
-   details as the portfolio, tuned for a phone-first store visit. */
+/* Scuttle page. Night sea and sunset from the portfolio.
+   The pictures are the game. The type is one family. */
 
 :root {
 	--night: #0b1026;
@@ -7,16 +7,14 @@
 	--night-3: #1b2550;
 	--ink: #f6f1e7;
 	--ink-2: #b9bfd9;
-	--ink-3: #7880a6;
 	--orange: #ff8a3d;
 	--pink: #ff4d8d;
-	--cyan: #5ce1e6;
 	--yellow: #ffd23f;
+	--rust: #7a2f10;
 	--display: "Bricolage Grotesque", system-ui, sans-serif;
-	--pixel: "Silkscreen", "Space Mono", monospace;
-	--mono: "Space Mono", ui-monospace, monospace;
 	--gutter: clamp(16px, 5vw, 56px);
 	--max: 1120px;
+	--measure: 66ch;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -25,8 +23,9 @@ html {
 	color-scheme: dark;
 	-webkit-text-size-adjust: 100%;
 	scroll-behavior: smooth;
-	scroll-padding-top: 84px;
+	scroll-padding-top: calc(64px + env(safe-area-inset-top, 0px));
 	overflow-x: clip;
+	scrollbar-color: var(--night-3) var(--night);
 }
 
 body {
@@ -34,38 +33,27 @@ body {
 	background: var(--night);
 	color: var(--ink);
 	font: 400 17px/1.6 var(--display);
+	font-synthesis: none;
 	-webkit-font-smoothing: antialiased;
 	overflow-x: clip;
-}
-body::before {
-	content: "";
-	position: fixed;
-	inset: -50%;
-	z-index: 80;
-	pointer-events: none;
-	opacity: .045;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+	text-wrap: pretty;
 }
 
 img, video { display: block; max-width: 100%; height: auto; }
-a { color: inherit; }
-a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 4px; }
-::selection { background: var(--pink); color: var(--night); }
 
-.pixel { font-family: var(--pixel); font-weight: 400; letter-spacing: .04em; text-transform: uppercase; }
-
-.sr-only {
-	position: absolute !important;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0 0 0 0);
-	clip-path: inset(50%);
-	white-space: nowrap;
-	border: 0;
+a {
+	color: inherit;
+	text-decoration-thickness: 2px;
+	text-underline-offset: .18em;
+	-webkit-tap-highlight-color: rgba(255, 138, 61, .28);
 }
+
+a:focus-visible {
+	outline: 3px solid var(--yellow);
+	outline-offset: 3px;
+}
+
+::selection { background: var(--pink); color: var(--night); }
 
 .skip {
 	position: absolute;
@@ -75,7 +63,9 @@ a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-
 	background: var(--yellow);
 	color: var(--night);
 	padding: 8px 12px;
+	font-weight: 700;
 }
+
 .skip:focus { left: 8px; }
 
 .wrap {
@@ -83,7 +73,7 @@ a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-
 	margin-inline: auto;
 }
 
-/* ---------- Header ---------- */
+/* Header. Solid, so type does not ghost through it on scroll. */
 
 .top {
 	position: sticky;
@@ -92,17 +82,18 @@ a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-
 	display: flex;
 	align-items: center;
 	gap: clamp(12px, 2vw, 22px);
-	padding: calc(10px + env(safe-area-inset-top)) var(--gutter) 10px;
-	background: rgba(11, 16, 38, .78);
-	-webkit-backdrop-filter: blur(14px) saturate(1.4);
-	backdrop-filter: blur(14px) saturate(1.4);
+	padding: calc(4px + env(safe-area-inset-top)) var(--gutter) 4px;
+	background: var(--night);
+	border-bottom: 1px solid var(--night-3);
 }
+
 .mark {
 	display: inline-flex;
 	text-decoration: none;
 	font: 800 20px/1 var(--display);
 	flex: none;
 }
+
 .mark span {
 	display: grid;
 	place-items: center;
@@ -110,201 +101,204 @@ a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-
 	height: 32px;
 	background: var(--orange);
 	color: var(--night);
-	border-radius: 8px;
 }
-.mark span + span { background: var(--pink); margin-left: -6px; transform: rotate(8deg); }
+
+.mark span + span {
+	background: var(--pink);
+	margin-left: -6px;
+	transform: rotate(8deg);
+}
+
 .top nav {
 	display: flex;
 	align-items: center;
-	gap: clamp(12px, 2.4vw, 26px);
+	gap: clamp(10px, 2vw, 22px);
 	margin-left: auto;
 }
+
 .top nav a {
-	font: 700 13px/1 var(--mono);
-	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: 0 2px;
+	font: 700 16px/1 var(--display);
 	color: var(--ink-2);
-	position: relative;
+	text-decoration: none;
 }
+
 .top nav a:hover { color: var(--ink); }
-/* The official badge is used as provided: no shadow, no recolor.
-   The header badge is desktop-only. On a phone the hero, the price
-   block, and the strip at the end of the page carry the same link. */
+
 .store { display: inline-block; line-height: 0; text-decoration: none; }
 .store img { height: 54px; width: auto; }
 .store.head-store { display: none; }
 .head-store img { height: 40px; width: auto; }
 
-/* ---------- Hero ---------- */
+/* Hero. Name, the line, the badge, the poster. */
 
-.hero {
-	padding: clamp(28px, 5vw, 64px) 0 clamp(8px, 2vw, 20px);
-}
+.hero { padding: clamp(24px, 4vw, 48px) 0 0; }
+
 .hero-grid {
 	display: grid;
 	gap: clamp(22px, 4vw, 48px);
 	align-items: center;
 }
-.kicker { color: var(--cyan); font-size: 12px; margin: 0 0 14px; }
+
 .hero h1 {
 	margin: 0;
-	font: 800 clamp(64px, 14vw, 120px)/.86 var(--display);
-	letter-spacing: -0.05em;
+	font: 800 clamp(60px, 16vw, 92px)/1.05 var(--display);
+	letter-spacing: -0.03em;
 	color: var(--orange);
-	text-shadow: 4px 4px 0 #7a2f10;
+	text-shadow: 4px 4px 0 var(--rust);
+	text-wrap: balance;
 }
+
 .hero h1 .h1-sub {
 	display: block;
 	margin-top: 12px;
-	max-width: 16em;
-	font: 600 clamp(22px, 3.2vw, 32px)/1.2 var(--display);
-	letter-spacing: -0.03em;
+	max-width: 18em;
+	font: 700 clamp(22px, 2.6vw, 28px)/1.45 var(--display);
+	letter-spacing: -0.02em;
 	color: var(--ink);
 	text-shadow: none;
 }
-.hero h2 {
-	margin: 18px 0 0;
-	font: 800 22px/1.3 var(--display);
-	letter-spacing: -0.03em;
-}
-.tagline {
-	margin: 16px 0 0;
-	max-width: 16em;
-	font-weight: 600;
-	font-size: clamp(26px, 4.2vw, 40px);
-	line-height: 1.15;
-	letter-spacing: -0.03em;
-}
-.lede {
-	margin: 16px 0 0;
-	max-width: 38em;
-	color: var(--ink-2);
-}
-.hero-cta { margin: 22px 0 0; }
-.fine {
-	margin: 12px 0 0;
-	color: var(--ink-3);
-	font-size: 14px;
-}
-.fine a { color: var(--ink-2); }
 
-.stage {
-	margin: 0;
-	background: #070b18;
-	border-radius: 20px;
-	padding: 8px;
-	box-shadow: inset 0 0 0 1px rgba(92, 225, 230, .28), 0 18px 40px rgba(0, 0, 0, .35);
+.tagline {
+	margin: 20px 0 0;
+	max-width: 16em;
+	font-weight: 700;
+	font-size: clamp(24px, 3.2vw, 32px);
+	line-height: 1.45;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
+
+.hero-cta { margin: 22px 0 0; }
+
+.fine {
+	margin: 14px 0 0;
+	max-width: 36em;
+	color: var(--ink);
+	font-size: 15px;
+	line-height: 1.5;
+	text-wrap: pretty;
+}
+
+.fine a { text-decoration-color: var(--orange); }
+.fine a:hover { color: var(--orange); }
+
+.stage { margin: 0; }
+
 .stage video {
 	width: 100%;
 	height: auto;
 	background: #000;
-	border-radius: 12px;
 }
 
-/* ---------- Shots ---------- */
+/* Sections */
 
-.block { padding: clamp(40px, 7vw, 80px) 0 0; }
+.block { padding: clamp(52px, 8vw, 96px) 0 0; }
+
 .block h2 {
-	margin: 6px 0 0;
-	font: 800 clamp(36px, 6vw, 64px)/.95 var(--display);
-	letter-spacing: -0.04em;
+	margin: 0;
+	max-width: 14em;
+	font: 800 clamp(32px, 4.6vw, 48px)/1.4 var(--display);
+	letter-spacing: -0.03em;
+	text-wrap: balance;
 }
-.sec-kicker { margin: 0; color: var(--cyan); font-size: 12px; }
-.sec-lead { margin: 12px 0 0; max-width: 40em; color: var(--ink-2); }
+
+.about.block { padding-top: clamp(32px, 5vw, 48px); }
+
+.about h2 {
+	font: 700 clamp(22px, 2.5vw, 28px)/1.45 var(--display);
+	letter-spacing: -0.02em;
+}
+
+.lede,
+.sec-lead {
+	margin: 12px 0 0;
+	max-width: var(--measure);
+	color: var(--ink);
+	font-size: 18px;
+	line-height: 1.55;
+}
 
 .reel {
 	display: flex;
-	gap: 14px;
+	gap: 16px;
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
 	scroll-padding-inline: max(var(--gutter), calc((100% - var(--max)) / 2));
-	padding: 22px max(var(--gutter), calc((100% - var(--max)) / 2)) 8px;
-	margin-top: 8px;
+	padding: 22px max(var(--gutter), calc((100% - var(--max)) / 2)) 16px;
+	margin-top: 4px;
 	-webkit-overflow-scrolling: touch;
+	scrollbar-color: var(--night-3) transparent;
 }
+
 .reel::-webkit-scrollbar { height: 10px; }
-.reel::-webkit-scrollbar-thumb { background: var(--night-3); border-radius: 99px; }
+.reel::-webkit-scrollbar-thumb { background: var(--night-3); }
+
 .reel figure {
-	flex: 0 0 min(86vw, 560px);
-	scroll-snap-align: start;
+	flex: 0 0 min(84vw, 560px);
 	margin: 0;
+	scroll-snap-align: start;
 }
+
 .reel img {
 	width: 100%;
 	height: auto;
-	border-radius: 16px;
 	background: var(--night-2);
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06);
 }
-.reel figcaption { margin: 8px 2px 0; font-size: 11px; color: var(--ink-3); }
 
-/* ---------- Features ---------- */
+.reel figcaption {
+	margin: 10px 0 0;
+	max-width: 36em;
+	font-size: 15px;
+	line-height: 1.4;
+	color: var(--ink-2);
+}
 
 .feats {
 	display: grid;
-	gap: 12px;
-	margin-top: 22px;
+	gap: 32px 48px;
+	margin-top: 28px;
 }
-.feat {
-	margin: 0;
-	padding: 20px 20px 18px;
-	background: linear-gradient(160deg, #182457, #0e1636 60%, #241833);
-	border-radius: 22px;
-	box-shadow: inset 0 0 0 1px rgba(92, 225, 230, .18);
-}
-.feat .pixel { margin: 0; color: var(--cyan); font-size: 11px; }
+
+.feat { margin: 0; }
+
 .feat h3 {
-	margin: 8px 0 8px;
-	font: 800 clamp(26px, 4vw, 34px)/1.05 var(--display);
-	letter-spacing: -0.03em;
-}
-.feat p { margin: 0; color: var(--ink-2); }
-
-/* ---------- Price ---------- */
-
-.buy {
-	margin-top: 22px;
-	padding: clamp(22px, 4vw, 36px);
-	border-radius: 28px;
-	background:
-		radial-gradient(500px 180px at 0% 0%, rgba(255, 138, 61, .18), transparent 60%),
-		var(--night-2);
-	box-shadow: inset 0 0 0 1px rgba(255, 210, 63, .25);
-}
-.price {
-	margin: 0;
-	font: 800 clamp(64px, 12vw, 104px)/.9 var(--display);
-	letter-spacing: -0.05em;
-	color: var(--yellow);
-}
-.price span {
-	display: block;
-	margin-top: 6px;
-	font: 600 clamp(18px, 2.4vw, 24px)/1.3 var(--display);
+	margin: 0 0 8px;
+	font: 700 22px/1.45 var(--display);
 	letter-spacing: -0.02em;
-	color: var(--ink);
+	text-wrap: balance;
 }
+
+.feat p {
+	margin: 0;
+	max-width: 46ch;
+}
+
 .facts {
 	display: grid;
-	gap: 8px 28px;
-	margin: 18px 0 0;
+	gap: 10px 36px;
+	margin: 22px 0 0;
 	padding: 0;
 	list-style: none;
-	color: var(--ink-2);
 }
-.facts li { padding-left: 16px; position: relative; }
+
+.facts li {
+	position: relative;
+	padding-left: 18px;
+}
+
 .facts li::before {
 	content: "";
 	position: absolute;
 	left: 0;
-	top: .65em;
-	width: 7px;
-	height: 7px;
+	top: .55em;
+	width: 6px;
+	height: 6px;
 	background: var(--orange);
 }
-.buy .store { margin-top: 22px; }
-
-/* ---------- Maker and notes ---------- */
 
 .maker {
 	display: grid;
@@ -312,93 +306,127 @@ a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-
 	align-items: center;
 	margin-top: 22px;
 }
+
 .maker img {
 	width: 96px;
 	height: 96px;
 	border-radius: 22px;
-	box-shadow: 6px 6px 0 #7a2f10;
 }
-.maker p { margin: 10px 0 0; max-width: 46em; color: var(--ink-2); }
-.maker a, .notes a, .support a, .site-foot a {
-	color: var(--ink);
+
+.maker p {
+	margin: 0;
+	max-width: 62ch;
+}
+
+.maker p + p { margin-top: 12px; }
+
+.maker a,
+.notes a,
+.support a,
+.site-foot a {
 	text-decoration-color: var(--orange);
-	text-decoration-thickness: 2px;
-	text-underline-offset: .18em;
 }
-.back {
-	display: inline-block;
-	margin-top: 14px;
-	font: 700 14px/1 var(--mono);
-	text-decoration: none;
-	color: var(--night);
-	background: var(--yellow);
-	padding: 12px 16px;
-	border-radius: 999px;
-	box-shadow: 0 4px 0 #c79c00;
-}
-.back:hover { transform: translateY(2px); box-shadow: 0 2px 0 #c79c00; }
+
+.maker a:hover,
+.notes a:hover,
+.support a:hover,
+.site-foot a:hover,
+.fine a:hover { color: var(--orange); }
 
 .notes-list {
-	display: grid;
-	gap: 12px;
-	margin: 22px 0 0;
+	margin: 20px 0 0;
 	padding: 0;
 	list-style: none;
+	border-top: 1px solid var(--night-3);
 }
+
 .notes-list li {
-	padding: 14px 16px;
-	background: var(--night-2);
-	border-radius: 16px;
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .05);
+	display: grid;
+	gap: 2px;
+	padding: 16px 0;
+	border-bottom: 1px solid var(--night-3);
 }
-.notes-list b { display: block; font-family: var(--mono); font-size: 14px; color: var(--cyan); }
-.notes-list span { color: var(--ink-2); }
 
-/* ---------- Support ---------- */
+.notes-list b { font-weight: 700; }
 
-.support { padding-bottom: clamp(48px, 8vw, 96px); }
-.faq { margin: 8px 0 0; }
-.faq dt { font-weight: 700; margin-top: 18px; }
-.faq dd { margin: 2px 0 0; color: var(--ink-2); }
+.support { padding-bottom: 0; }
+
+.faq { margin: 20px 0 0; }
+
+.faq dt {
+	margin: 0;
+	padding-top: 18px;
+	font-weight: 700;
+}
+
+.faq dd {
+	margin: 4px 0 0;
+	padding-bottom: 18px;
+	max-width: var(--measure);
+	border-bottom: 1px solid var(--night-3);
+}
 
 .site-foot {
-	padding: 8px var(--gutter) calc(28px + env(safe-area-inset-bottom, 0px));
-	color: var(--ink-3);
-	font-size: 13px;
+	padding: 28px var(--gutter) calc(28px + env(safe-area-inset-bottom, 0px));
+	color: var(--ink-2);
+	font-size: 15px;
+	line-height: 1.4;
 }
-.site-foot p { margin: 0; }
-.site-foot nav { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 8px; }
 
-/* In normal flow on small screens. A fixed bottom bar sits above
-   iOS Safari's floating toolbar, with page content showing in the
-   gap. The Apple smart banner already covers that browser, and the
-   footer padding below clears the home indicator. Desktop keeps the
-   badge in the sticky header and does not show this strip. */
+.site-foot p { margin: 0; }
+
+.site-foot nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 18px;
+	margin-bottom: 4px;
+}
+
+.site-foot nav a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+}
+
+/* In normal flow. Not sticky: a fixed bar fights iOS Safari's toolbar.
+   Desktop keeps the badge in the header and hides this row. */
 
 .dock {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 12px;
-	margin-top: clamp(8px, 2vw, 16px);
-	padding: 14px var(--gutter);
-	background: var(--night-2);
-	box-shadow: inset 0 1px 0 rgba(255, 210, 63, .35);
+	gap: 16px;
+	margin-top: clamp(36px, 6vw, 64px);
+	padding: 16px var(--gutter);
+	border-top: 1px solid var(--night-3);
 }
-.dock p { margin: 0; color: var(--yellow); font-size: 11px; }
+
+.dock p {
+	margin: 0;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
 .dock .store img { height: 40px; }
 
-@media (min-width: 860px) {
-	.store.head-store { display: inline-block; }
-	.hero-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.15fr); }
+@media (min-width: 720px) {
 	.feats { grid-template-columns: 1fr 1fr; }
-	.facts { grid-template-columns: 1fr 1fr; }
 	.maker { grid-template-columns: 96px 1fr; }
+	.notes-list li {
+		grid-template-columns: 12rem 1fr;
+		column-gap: 32px;
+		align-items: baseline;
+	}
+}
+
+@media (min-width: 960px) {
+	.store.head-store { display: inline-block; }
+	.hero-grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.2fr); }
+	.hero h1 { font-size: clamp(72px, 6vw, 92px); }
 	.dock { display: none; }
-	.notes-list { grid-template-columns: 1fr 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }
-	.dock, .back { transition: none; }
 }

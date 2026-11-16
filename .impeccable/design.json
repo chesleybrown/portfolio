@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-16T13:08:17Z",
+  "title": "Design System: Scuttle",
+  "extensions": {
+    "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#0b1026",
+        "tonalRamp": [
+          "#212431",
+          "#2f3656",
+          "#374580",
+          "#3b50b0",
+          "#5e72c9",
+          "#949fd1",
+          "#c4c9df",
+          "#eaebf1"
+        ]
+      },
+      "night-raised": {
+        "role": "neutral",
+        "displayName": "Night raised",
+        "canonical": "#121a3a",
+        "tonalRamp": [
+          "#212430",
+          "#303755",
+          "#39477f",
+          "#3d54ad",
+          "#6175c7",
+          "#95a1d0",
+          "#c4c9de",
+          "#eaebf0"
+        ]
+      },
+      "night-line": {
+        "role": "neutral",
+        "displayName": "Night line",
+        "canonical": "#1b2550",
+        "tonalRamp": [
+          "#222430",
+          "#313754",
+          "#3b477d",
+          "#4154aa",
+          "#6476c4",
+          "#97a1ce",
+          "#c5cadd",
+          "#eaebf0"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#f6f1e7",
+        "tonalRamp": [
+          "#2f2b22",
+          "#524832",
+          "#7a663e",
+          "#a68545",
+          "#c0a368",
+          "#ccbb99",
+          "#dcd5c6",
+          "#f0eeea"
+        ]
+      },
+      "ink-quiet": {
+        "role": "neutral",
+        "displayName": "Ink quiet",
+        "canonical": "#b9bfd9",
+        "tonalRamp": [
+          "#25262d",
+          "#383c4d",
+          "#48506f",
+          "#566295",
+          "#7782b1",
+          "#a2a8c3",
+          "#cacdd8",
+          "#ebecef"
+        ]
+      },
+      "sunset": {
+        "role": "primary",
+        "displayName": "Sunset",
+        "canonical": "#ff8a3d",
+        "tonalRamp": [
+          "#37261b",
+          "#663b1f",
+          "#9e4e1a",
+          "#e05f0b",
+          "#f58033",
+          "#eaa77b",
+          "#eaccb9",
+          "#f3ece7"
+        ]
+      },
+      "flare": {
+        "role": "secondary",
+        "displayName": "Flare",
+        "canonical": "#ff4d8d",
+        "tonalRamp": [
+          "#371b25",
+          "#661f38",
+          "#9e1a49",
+          "#e00b57",
+          "#f53379",
+          "#ea7ba3",
+          "#eab9ca",
+          "#f3e7eb"
+        ]
+      },
+      "signal": {
+        "role": "tertiary",
+        "displayName": "Signal",
+        "canonical": "#ffd23f",
+        "tonalRamp": [
+          "#37301b",
+          "#66551f",
+          "#9e7f1a",
+          "#e0ae0b",
+          "#f5c833",
+          "#ead07b",
+          "#eadeb9",
+          "#f3f0e7"
+        ]
+      },
+      "rust": {
+        "role": "neutral",
+        "displayName": "Rust",
+        "canonical": "#7a2f10",
+        "tonalRamp": [
+          "#34241e",
+          "#5e3727",
+          "#8f4729",
+          "#c75324",
+          "#df7549",
+          "#dda188",
+          "#e4c9be",
+          "#f2ebe8"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The word Scuttle only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "The four sandbox points, and the question What is Scuttle?"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text. 17px, measure near 66ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Shot captions and the footer."
+      }
+    },
+    "shadows": [
+      {
+        "name": "wordmark-stamp",
+        "value": "4px 4px 0 #7a2f10",
+        "purpose": "Text shadow on the word Scuttle only."
+      }
+    ],
+    "motion": [],
+    "breakpoints": [
+      {
+        "name": "wide-notes",
+        "value": "720px"
+      },
+      {
+        "name": "hero-split",
+        "value": "960px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Wordmark",
+      "kind": "custom",
+      "refersTo": "wordmark",
+      "description": "The name Scuttle, sunset on night, with the one hard offset.",
+      "html": "<p class=\"ds-wordmark\">Scuttle</p>",
+      "css": ".ds-wordmark { margin: 0; font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-weight: 800; font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; color: #ff8a3d; text-shadow: 4px 4px 0 #7a2f10; }"
+    },
+    {
+      "name": "Nav link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header link. Quiet ink, 44px tall, no underline.",
+      "html": "<a class=\"ds-nav\" href=\"#shots\">Shots</a>",
+      "css": ".ds-nav { display: inline-flex; align-items: center; min-height: 44px; font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-weight: 700; font-size: 16px; line-height: 1; color: #b9bfd9; text-decoration: none; } .ds-nav:hover { color: #f6f1e7; } .ds-nav:focus-visible { outline: 3px solid #ffd23f; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "A sentence link. Cream type, sunset underline.",
+      "html": "<a class=\"ds-link\" href=\"/scuttle/privacy.html\">Privacy</a>",
+      "css": ".ds-link { font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-size: 17px; line-height: 1.6; color: #f6f1e7; text-decoration-color: #ff8a3d; text-decoration-thickness: 2px; text-underline-offset: 0.18em; } .ds-link:hover { color: #ff8a3d; } .ds-link:focus-visible { outline: 3px solid #ffd23f; outline-offset: 3px; }"
+    },
+    {
+      "name": "Fact row",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "A spec line with a 6px sunset square.",
+      "html": "<ul class=\"ds-facts\"><li>iOS 15 and iPadOS 15, or later</li></ul>",
+      "css": ".ds-facts { margin: 0; padding: 0; list-style: none; font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-size: 17px; line-height: 1.6; color: #f6f1e7; } .ds-facts li { position: relative; padding-left: 18px; } .ds-facts li::before { content: \"\"; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; background: #ff8a3d; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The night poster",
+    "overview": "The page is a poster for the game, stuck up at night. The sea is the same dusk navy as the portfolio. The sunset orange is spent on the name. Everything else gets out of the way so the trailer and the shots can be the game.\n\nIt should read like one person made a page for their own game: specific, a bit blunt, no launch-site furniture. The pixel art is in the pictures and in the one hard shadow under the word Scuttle. It is not a texture pasted onto labels.",
+    "keyCharacteristics": [
+      "One type family, Bricolage Grotesque, in three weights",
+      "Night ground, cream type, one sunset accent",
+      "Square frames on the game pictures",
+      "The App Store badge left as Apple drew it",
+      "The mobile purchase row sits in the page, and does not stick"
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Sunset is the accent. If a second color is doing the same job, take it off.",
+        "section": "colors"
+      },
+      {
+        "name": "The Cream for Reading Rule",
+        "body": "Paragraphs, answers, and the rating line are Ink. Quiet ink is for chrome a person can skip past, and it still has to pass AA.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Eyebrow Rule",
+        "body": "Nothing sits above a heading to name the section. The heading is the name.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Do not load a monospace or a pixel face for labels. If the text is not the word Scuttle, it is Bricolage.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "That offset is the pixel stamp on the name. It does not move to buttons, cards, or the app icon. The icon is the icon, with the iOS corner and no shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lead with the name, the line \"Pick a boat. Drop it in the sea. See what it takes to sink it.\", the badge, and the trailer.",
+      "Do keep \"What is Scuttle?\" and the definition on the page, in that order, under the trailer.",
+      "Do keep the FAQ sentences identical to the FAQPage JSON-LD.",
+      "Do put the 9+ reason next to the badge. The page already states it.",
+      "Do keep body text in Ink, on Night, at 17px or larger."
+    ],
+    "donts": [
+      "Don't put a small uppercase label above a heading.",
+      "Don't put facts in rounded gradient cards, or draw a cyan line around them.",
+      "Don't use a monospace face, a pixel face, or an emoji as an icon.",
+      "Don't stick the mobile purchase row or the footer. iOS Safari already has its own bar, and the smart banner covers that browser.",
+      "Don't invent a rating, a quote, a logo, a download count, or a review.",
+      "Don't restyle the App Store badge.",
+      "Don't add a grain overlay, a glow, or a background grid. The pictures are already textured."
+    ]
+  }
+}
