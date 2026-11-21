@@ -18,3 +18,17 @@ To execute all the tests, just run:
 ```
 npm test
 ```
+
+# Scuttle trailer
+
+`web/scuttle/media/trailer.mp4` is made from Scuttle's iPhone App Preview
+(`Design/trailer/preview-iphone.mp4` in the scuttle-sandbox repo). Don't
+re-encode it by hand: the preview has variable frame timing, and a plain
+re-encode can put the picture out of sync with the sound. Run:
+
+```
+scripts/scuttle-trailer.sh ../scuttle-sandbox/Design/trailer/preview-iphone.mp4
+```
+
+It writes the web trailer and fails if any scene cut lands more than a frame
+away from the source. `--check` runs only the check on the current file.
