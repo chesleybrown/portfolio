@@ -58,7 +58,7 @@ The page already shares the portfolio's night sea and sunset colors, and the CB 
 
 Real, in the repo:
 
-- Gameplay stills in `web/scuttle/media/` (menu, Titanic, galleon, hurricane, co-op, versus, nuke, storm, night storm, meteors), plus `poster.webp` and `trailer.mp4`.
+- Gameplay stills in `web/scuttle/media/` (tsunami, boat drawer, lava, Titanic split, co-op, versus, nuke, galleon, night storm, menu; the uncaptioned iPhone App Store shots from scuttle-sandbox's `Design/screenshots/store-raw/iphone/`), plus `poster.webp` and `trailer.mp4`.
 - App icon `web/scuttle/icon.png`. Open graph image `web/scuttle/og.jpg`.
 - Official badge `web/scuttle/app-store-badge.svg`.
 
